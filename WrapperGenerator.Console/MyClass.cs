@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace ObservableWrapperGenerator
+namespace WrapperGenerator.Console
 {
     public class MyClass
     {

@@ -4,7 +4,7 @@ using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 
-namespace ObservableAsync.Playground
+namespace MS.Core
 {
     public static class DelegateExtensions
     {
