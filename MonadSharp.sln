@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WrapperGenerator.Console", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MS.System", "MS.System\MS.System.csproj", "{D5942F87-D674-400C-8DBD-7C2C32970710}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testbed", "Testbed\Testbed.csproj", "{B091E92B-0173-402A-A2FA-AA344BF38BEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{D96A94D5-F663-4CA9-B4CD-541A16C65D9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +37,17 @@ Global
 		{D5942F87-D674-400C-8DBD-7C2C32970710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5942F87-D674-400C-8DBD-7C2C32970710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5942F87-D674-400C-8DBD-7C2C32970710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B091E92B-0173-402A-A2FA-AA344BF38BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B091E92B-0173-402A-A2FA-AA344BF38BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B091E92B-0173-402A-A2FA-AA344BF38BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B091E92B-0173-402A-A2FA-AA344BF38BEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6169E3DF-E665-4005-AA23-8A969C8F3B26} = {D96A94D5-F663-4CA9-B4CD-541A16C65D9C}
+		{A26EA266-8948-42D9-ACCC-F6BBB49EB4A7} = {D96A94D5-F663-4CA9-B4CD-541A16C65D9C}
+		{B091E92B-0173-402A-A2FA-AA344BF38BEA} = {D96A94D5-F663-4CA9-B4CD-541A16C65D9C}
 	EndGlobalSection
 EndGlobal

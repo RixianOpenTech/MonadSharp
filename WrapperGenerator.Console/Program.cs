@@ -13,19 +13,31 @@ namespace WrapperGenerator.Console
     {
         static void Main(string[] args)
         {
-            if (Directory.Exists("System"))
-                Directory.Delete("System", true);
-            System.IO.Directory.CreateDirectory("System");
-            var assm = Assembly.GetAssembly(typeof (int));
-            var types = assm.GetTypes().Where(t => t.IsPublic && !t.IsSpecialName);
-            foreach (var type in types)
-            {
-                var wrapper = NewGenerator.GenerateClassWrapper(type);
-                File.WriteAllText(string.Format(@"System\_{0}Extenstions.cs", type.Name), wrapper);
-                System.Console.WriteLine("Wrapped: {0}", type.Name);
-            }
+            //if (Directory.Exists("System"))
+            //    Directory.Delete("System", true);
+            //System.IO.Directory.CreateDirectory("System");
+            //var assm = Assembly.GetAssembly(typeof (int));
+            //var types = assm.GetTypes().Where(t => t.IsPublic && !t.IsSpecialName);
+            //foreach (var type in types)
+            //{
+            //    var wrapper = NewGenerator.GenerateClassWrapper(type);
+            //    File.WriteAllText(string.Format(@"System\_{0}Extenstions.cs", type.Name), wrapper);
+            //    System.Console.WriteLine("Wrapped: {0}", type.Name);
+            //}
+
+            //GenerateWrapper(typeof(bool));
+            //GenerateWrapper(typeof(string));
+            //GenerateWrapper(typeof(byte));
+            GenerateWrapper(typeof(System.Console));
             System.Console.WriteLine("Done!");
             System.Console.ReadLine();
+        }
+
+        static void GenerateWrapper(Type type)
+        {
+            var wrapper = NewGenerator.GenerateClassWrapper(type);
+            File.WriteAllText(string.Format(@"_{0}Extenstions.cs", type.Name), wrapper);
+            System.Console.WriteLine("Wrapped: {0}", type.Name);
         }
     }
 }

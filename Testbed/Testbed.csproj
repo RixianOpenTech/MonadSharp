@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D5942F87-D674-400C-8DBD-7C2C32970710}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{B091E92B-0173-402A-A2FA-AA344BF38BEA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MS.System</RootNamespace>
-    <AssemblyName>MS.System</AssemblyName>
+    <RootNamespace>Testbed</RootNamespace>
+    <AssemblyName>Testbed</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -51,29 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\_BooleanExtenstions.cs" />
-    <Compile Include="Extensions\_ByteExtenstions.cs" />
-    <Compile Include="Extensions\_CharExtenstions.cs" />
-    <Compile Include="Extensions\_Int64Extensions.cs" />
-    <Compile Include="Extensions\_Int16Extensions.cs" />
-    <Compile Include="Extensions\_StringExtenstions.cs" />
-    <Compile Include="Extensions\_VoidExtensions.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_Char.cs" />
-    <Compile Include="_Boolean.cs" />
-    <Compile Include="_Console.cs" />
-    <Compile Include="_DateTimeOffset.cs" />
-    <Compile Include="_Guid.cs" />
-    <Compile Include="_Int16.cs" />
-    <Compile Include="_Int32.cs" />
-    <Compile Include="Extensions\_Int32Extensions.cs" />
-    <Compile Include="_Int64.cs" />
-    <Compile Include="_Object.cs" />
-    <Compile Include="_Stream.cs" />
-    <Compile Include="_String.cs" />
-    <Compile Include="_Void.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -81,8 +66,11 @@
       <Project>{c0a0f9b0-2cfa-47c1-8477-9fdaad44f00f}</Project>
       <Name>MS.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MS.System\MS.System.csproj">
+      <Project>{d5942f87-d674-400c-8dbd-7c2c32970710}</Project>
+      <Name>MS.System</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

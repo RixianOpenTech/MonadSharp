@@ -47,11 +47,10 @@ namespace ObservableWrapperGenerator
             sb.AppendLine("using System.Reactive.Threading.Tasks;");
             sb.AppendLine("using System.Threading.Tasks;");
             sb.AppendLine("using System.Reactive.Linq;");
-            sb.AppendLine("using Wrappers;");
             sb.AppendLine();
             sb.AppendFormat("namespace {0}{1}", type.Namespace, Environment.NewLine);
             sb.AppendLine("{");
-            sb.AppendFormatIndented(1, "public static class _{0}", type.Name);
+            sb.AppendFormatIndented(1, "public static class _{0}Extensions", type.Name);
             sb.AppendLineIndented(1, "{");
 
             foreach (var method in type.GetRuntimeMethods().Where(m => m.IsPublic && !m.IsSpecialName))
@@ -107,25 +106,25 @@ namespace ObservableWrapperGenerator
 
         private static string GenerateReturn(MethodSignature methodSignature)
         {
-            string returnType = methodSignature.ReturnType.FullName;
+            string returnType = string.Format("_{0}", methodSignature.ReturnType.Name);
             if (methodSignature.ReturnType == typeof (void) || methodSignature.ReturnType == typeof(Task))
             {
-                returnType = typeof (Unit).FullName;
+                returnType = "_Void"; //typeof (Unit).FullName;
             }
             else if (methodSignature.ReturnType.IsGenericParameter)
             {
-                returnType = methodSignature.ReturnType.Name;
+                returnType = string.Format("IObservable<{0}>", methodSignature.ReturnType.Name);
             }
             else if (methodSignature.ReturnType.IsSubclassOf(typeof (Task)))
             {
                 var genericArgument = methodSignature.ReturnType.GetGenericArguments().Single();
                 if (genericArgument.IsGenericParameter)
-                    returnType = genericArgument.Name;
+                    returnType = string.Format("IObservable<{0}>", genericArgument.Name);
                 else
-                    returnType = genericArgument.FullName;
+                    returnType = string.Format("_{0}", genericArgument.Name);
             }
 
-            return string.Format("IObservable<{0}>", returnType);
+            return returnType;
         }
 
         private static string GenerateParameters(MethodSignature methodSignature)
@@ -133,7 +132,7 @@ namespace ObservableWrapperGenerator
             var parameterStrings = new List<string>();
             if (!methodSignature.IsStatic)
             {
-                parameterStrings.Add(string.Format("this IObservable<{0}> _{1}", methodSignature.ClassType.FullName, methodSignature.ClassType.Name));
+                parameterStrings.Add(string.Format("this IObservable<{0}> _{1}Value", methodSignature.ClassType.FullName, methodSignature.ClassType.Name));
             }
 
             if (methodSignature.ParameterSignatures.Any())
@@ -171,7 +170,7 @@ namespace ObservableWrapperGenerator
 
             if (!methodSignature.IsStatic)
             {
-                var instanceParameterName = string.Format("_{0}", methodSignature.ClassType.Name);
+                var instanceParameterName = string.Format("_{0}Value", methodSignature.ClassType.Name);
                 var instanceLambdaName = string.Format("{0}Lambda", instanceParameterName);
                 //sb.Append(instanceParameterName);
 
