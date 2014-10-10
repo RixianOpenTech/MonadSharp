@@ -13,8 +13,7 @@ namespace MS.System
 
         public static IObservable<Int32> Add(this IObservable<Int32> x, IObservable<Int32> y)
         {
-            return x.AsInt32() % y.AsInt32();
-            //return x.Zip(y, (left, right) => left + right);
+            return x.Zip(y, (left, right) => left + right);
         }
         
         public static IObservable<Int32> Subtract(this IObservable<Int32> x, IObservable<Int32> y)

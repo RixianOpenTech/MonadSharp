@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
 namespace MS.System
@@ -7,6 +8,8 @@ namespace MS.System
     {
         private readonly BehaviorSubject<T> valueSubject;
         private IDisposable subscription;
+        private IConnectableObservable<T> source;
+        private IDisposable connection;
 
         public _Object(T value)
         {
@@ -16,7 +19,8 @@ namespace MS.System
         public _Object(IObservable<T> source)
         {
             this.valueSubject = new BehaviorSubject<T>(default(T));
-            this.subscription = source.Subscribe(this.valueSubject);
+            this.source = source.Publish();
+            this.subscription = this.source.Subscribe(this.valueSubject);
         }
 
         public IObservable<T> Value
@@ -35,6 +39,9 @@ namespace MS.System
 
         public IDisposable Subscribe(IObserver<T> observer)
         {
+            if (this.source != null && this.connection == null)
+                this.connection = this.source.Connect();
+
             return this.valueSubject.Subscribe(observer);
         }
 
@@ -71,6 +78,11 @@ namespace MS.System
         public _Object(IObservable<object> source)
             : base(source)
         {
+        }
+
+        public static _Object Create(IObservable<object> source)
+        {
+            return new _Object(source);
         }
     }
 }

@@ -28,15 +28,9 @@ namespace Testbed
             car.Accelerate();
             car.Accelerate();
 
-            _Int32 threes = 0;
-            _Int32 fives = 0;
-            _Int32 all = 0;
-            _Int32 sum = all.Aggregate((left, right) => left + right).AsInt32();
-            var wl = _Console.WriteLine(sum);
-            wl.Subscribe();
-            all.SetValue(Observable.Concat(
-                Observable.Generate(3, i => i < 1000, i => i + 3, i => i),
-                Observable.Generate(5, i => i < 1000, i => i + 5, i => i)).Distinct());
+            _Console.WriteLine(Euler.Problem1()).Subscribe();
+            _Object p2 = Euler.Problem2();
+            _Console.WriteLine(p2).Subscribe();
 
             Console.ReadLine();
         }
