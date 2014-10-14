@@ -1,53 +1,53 @@
-﻿using System;
-using System.Reactive.Linq;
+﻿//using System;
+//using System.Reactive.Linq;
 
-namespace MS.System
-{
-    public class _Int32 : _Object<int>
-    {
-        public _Int32(int value)
-            : base(value)
-        {
-        }
+//namespace MsSystem
+//{
+//    public class IObservable<int> : IObservable<object><int>
+//    {
+//        public IObservable<int>(int value)
+//            : base(value)
+//        {
+//        }
 
-        public _Int32(IObservable<int> source)
-            : base(source)
-        {
-        }
+//        public IObservable<int>(IObservable<int> source)
+//            : base(source)
+//        {
+//        }
 
-        public static _Int32 operator +(_Int32 x, _Int32 y)
-        {
-            return x.Zip(y, (left, right) => left + right).AsInt32();
-        }
+//        public static IObservable<int> operator +(IObservable<int> x, IObservable<int> y)
+//        {
+//            return x.Zip(y, (left, right) => left + right);
+//        }
 
-        public static _Int32 operator -(_Int32 x, _Int32 y)
-        {
-            return x.Zip(y, (left, right) => left - right).AsInt32();
-        }
+//        public static IObservable<int> operator -(IObservable<int> x, IObservable<int> y)
+//        {
+//            return x.Zip(y, (left, right) => left - right);
+//        }
 
-        public static _Int32 operator *(_Int32 x, _Int32 y)
-        {
-            return x.Zip(y, (left, right) => left * right).AsInt32();
-        }
+//        public static IObservable<int> operator *(IObservable<int> x, IObservable<int> y)
+//        {
+//            return x.Zip(y, (left, right) => left * right);
+//        }
 
-        public static _Int32 operator /(_Int32 x, _Int32 y)
-        {
-            return x.Zip(y, (left, right) => left / right).AsInt32();
-        }
+//        public static IObservable<int> operator /(IObservable<int> x, IObservable<int> y)
+//        {
+//            return x.Zip(y, (left, right) => left / right);
+//        }
 
-        public static _Int32 operator %(_Int32 x, _Int32 y)
-        {
-            return x.Zip(y, (left, right) => left % right).AsInt32();
-        }
+//        public static IObservable<int> operator %(IObservable<int> x, IObservable<int> y)
+//        {
+//            return x.Zip(y, (left, right) => left % right);
+//        }
 
-        public static implicit operator _Int32(int value)
-        {
-            return new _Int32(value);
-        }
+//        public static implicit operator IObservable<int>(int value)
+//        {
+//            return new IObservable<int>(value);
+//        }
 
-        public static implicit operator _String(_Int32 value)
-        {
-            return new _String(value.Select(v => v.ToString()));
-        }
-    }
-}
+//        public static implicit operator IObservable<string>(IObservable<int> value)
+//        {
+//            return new IObservable<string>(value.Select(v => v.ToString()));
+//        }
+//    }
+//}

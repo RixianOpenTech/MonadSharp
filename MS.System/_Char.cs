@@ -1,22 +1,22 @@
-using System;
+//using System;
 
-namespace MS.System
-{
-    public class _Char : _Object<Char>
-    {
-        public _Char(Char value)
-            : base(value)
-        {
-        }
+//namespace MsSystem
+//{
+//    public class IObservable<Char> : IObservable<object><Char>
+//    {
+//        public IObservable<Char>(Char value)
+//            : base(value)
+//        {
+//        }
 
-        public _Char(IObservable<Char> source)
-            : base(source)
-        {
-        }
+//        public IObservable<Char>(IObservable<Char> source)
+//            : base(source)
+//        {
+//        }
 
-        public static implicit operator _Char(Char value)
-        {
-            return new _Char(value);
-        }
-    }
-}
+//        public static implicit operator IObservable<Char>(Char value)
+//        {
+//            return new IObservable<Char>(value);
+//        }
+//    }
+//}

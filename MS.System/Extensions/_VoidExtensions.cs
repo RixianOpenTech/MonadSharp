@@ -6,13 +6,13 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MS.System.Extensions
+namespace MsSystem.Extensions
 {
-    public static class _VoidExtensions
+    public static class VoidExtensions
     {
-        public static _Void ToVoid<T>(this IObservable<T> observable)
+        public static IObservable<Unit> ToVoid<T>(this IObservable<T> observable)
         {
-            return new _Void(observable.Select(_ => Unit.Default));
+            return observable.Select(_ => Unit.Default);
         }
     }
 }

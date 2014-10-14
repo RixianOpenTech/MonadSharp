@@ -1,61 +1,57 @@
+using System;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using MS.System;
+using MsSystem;
 
-namespace System
+namespace MsSystem
 {
-   public static class _BooleanExtensions
+   public static class BooleanExtensions
    {
-       public static _Boolean AsBoolean(this IObservable<System.Boolean> source)
-       {
-           return source as _Boolean ?? new _Boolean(source);
-       }
-
-      public static IObservable<System.Int32> GetHashCode(this IObservable<System.Boolean> _Boolean)
+      public static IObservable<System.Int32> GetHashCode(this IObservable<System.Boolean> value)
       {
-         return _Boolean.Select((_BooleanLambda) => _BooleanLambda.GetHashCode());
+         return value.Select((valueLambda) => valueLambda.GetHashCode());
       }
 
-      public static IObservable<System.String> ToString(this IObservable<System.Boolean> _Boolean)
+      public static IObservable<System.String> ToString(this IObservable<System.Boolean> value)
       {
-         return _Boolean.Select((_BooleanLambda) => _BooleanLambda.ToString());
+         return value.Select((valueLambda) => valueLambda.ToString());
       }
 
-      public static IObservable<System.String> ToString(this IObservable<System.Boolean> _Boolean, IObservable<System.IFormatProvider> provider)
+      public static IObservable<System.String> ToString(this IObservable<System.Boolean> value, IObservable<System.IFormatProvider> provider)
       {
-         return _Boolean.Zip(provider, (_BooleanLambda, providerLambda) => _BooleanLambda.ToString(providerLambda));
+         return value.Zip(provider, (valueLambda, providerLambda) => valueLambda.ToString(providerLambda));
       }
 
-      public static IObservable<System.Boolean> Equals(this IObservable<System.Boolean> _Boolean, IObservable<System.Object> obj)
+      public static IObservable<System.Boolean> Equals(this IObservable<System.Boolean> value, IObservable<System.Object> obj)
       {
-         return _Boolean.Zip(obj, (_BooleanLambda, objLambda) => _BooleanLambda.Equals(objLambda));
+         return value.Zip(obj, (valueLambda, objLambda) => valueLambda.Equals(objLambda));
       }
 
-      public static IObservable<System.Boolean> Equals(this IObservable<System.Boolean> _Boolean, IObservable<System.Boolean> obj)
+      public static IObservable<System.Boolean> Equals(this IObservable<System.Boolean> value, IObservable<System.Boolean> obj)
       {
-         return _Boolean.Zip(obj, (_BooleanLambda, objLambda) => _BooleanLambda.Equals(objLambda));
+         return value.Zip(obj, (valueLambda, objLambda) => valueLambda.Equals(objLambda));
       }
 
-      public static IObservable<System.Int32> CompareTo(this IObservable<System.Boolean> _Boolean, IObservable<System.Object> obj)
+      public static IObservable<System.Int32> CompareTo(this IObservable<System.Boolean> value, IObservable<System.Object> obj)
       {
-         return _Boolean.Zip(obj, (_BooleanLambda, objLambda) => _BooleanLambda.CompareTo(objLambda));
+         return value.Zip(obj, (valueLambda, objLambda) => valueLambda.CompareTo(objLambda));
       }
 
-      public static IObservable<System.Int32> CompareTo(this IObservable<System.Boolean> _Boolean, IObservable<System.Boolean> value)
+      public static IObservable<System.Int32> CompareTo(this IObservable<System.Boolean> source, IObservable<System.Boolean> value)
       {
-         return _Boolean.Zip(value, (_BooleanLambda, valueLambda) => _BooleanLambda.CompareTo(valueLambda));
+         return source.Zip(value, (sourceLambda, valueLambda) => sourceLambda.CompareTo(valueLambda));
       }
 
-      public static _Boolean Parse(IObservable<System.String> value)
+      public static IObservable<Boolean> Parse(IObservable<System.String> value)
       {
-         return value.Select(System.Boolean.Parse).AsBoolean();
+          return value.Select(System.Boolean.Parse);
       }
 
-       public static _Boolean TryParse(IObservable<System.String> value, out _Boolean result)
+       public static IObservable<Boolean> TryParse(IObservable<System.String> value, out IObservable<Boolean> result)
        {
            var gate = new object();
            var resultSubject = new ReplaySubject<System.Boolean>(1);
-           result = resultSubject.AsBoolean();
+           result = resultSubject.AsObservable();
            return value.Select(valueLambda =>
                                {
                                    bool tempResult;
@@ -76,18 +72,17 @@ namespace System
                                {
                                    resultSubject.OnCompleted();
                                }
-                           })
-                       .AsBoolean();
+                           });
        }
 
-       public static IObservable<System.TypeCode> GetTypeCode(this IObservable<System.Boolean> _Boolean)
+       public static IObservable<System.TypeCode> GetTypeCode(this IObservable<System.Boolean> value)
       {
-         return _Boolean.Select((_BooleanLambda) => _BooleanLambda.GetTypeCode());
+         return value.Select((valueLambda) => valueLambda.GetTypeCode());
       }
 
-      public static IObservable<System.Type> GetType(this IObservable<System.Boolean> _Boolean)
+      public static IObservable<System.Type> GetType(this IObservable<System.Boolean> value)
       {
-         return _Boolean.Select((_BooleanLambda) => _BooleanLambda.GetType());
+         return value.Select((valueLambda) => valueLambda.GetType());
       }
 
    }

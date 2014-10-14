@@ -1,34 +1,34 @@
-﻿using System;
-using System.Linq;
-using System.Reactive.Linq;
+﻿//using System;
+//using System.Linq;
+//using System.Reactive.Linq;
 
-namespace MS.System
-{
-    public class _String : _Object<string>
-    {
-        public _String(string value)
-            : base(value)
-        {
-        }
+//namespace MsSystem
+//{
+//    public class IObservable<string> : IObservable<object><string>
+//    {
+//        public IObservable<string>(string value)
+//            : base(value)
+//        {
+//        }
 
-        public _String(IObservable<string> source)
-            : base(source)
-        {
-        }
+//        public IObservable<string>(IObservable<string> source)
+//            : base(source)
+//        {
+//        }
 
-        public static _String Empty
-        {
-            get { return string.Empty; }
-        }
+//        public static IObservable<string> Empty
+//        {
+//            get { return string.Empty; }
+//        }
 
-        public static implicit operator _String(string value)
-        {
-            return new _String(value);
-        }
+//        public static implicit operator IObservable<string>(string value)
+//        {
+//            return new IObservable<string>(value);
+//        }
 
-        public static implicit operator _Object(_String value)
-        {
-            return new _Object(value);
-        }
-    }
-}
+//        public static implicit operator IObservable<object>(IObservable<string> value)
+//        {
+//            return new IObservable<object>(value);
+//        }
+//    }
+//}

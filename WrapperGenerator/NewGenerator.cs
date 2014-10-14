@@ -109,7 +109,7 @@ namespace ObservableWrapperGenerator
             string returnType = string.Format("_{0}", methodSignature.ReturnType.Name);
             if (methodSignature.ReturnType == typeof (void) || methodSignature.ReturnType == typeof(Task))
             {
-                returnType = "_Void"; //typeof (Unit).FullName;
+                returnType = "IObservable<Unit>"; //typeof (Unit).FullName;
             }
             else if (methodSignature.ReturnType.IsGenericParameter)
             {

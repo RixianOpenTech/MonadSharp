@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MS.System;
+using MsSystem;
 
 namespace Testbed
 {
@@ -21,30 +17,22 @@ namespace Testbed
             //TestValues();
             Car car = new Car();
             car.Speed.Do(s => Console.WriteLine("Speed: {0}", s)).Subscribe();
-            car.Accelerate();
-            car.Accelerate();
-            car.Accelerate();
-            car.Accelerate();
-            car.Accelerate();
-            car.Accelerate();
+            var r = from c1 in car.Accelerate()
+                    from c2 in car.Accelerate()
+                    from c3 in car.Accelerate()
+                    from c4 in car.Accelerate()
+                    from c5 in car.Accelerate()
+                    from c6 in car.Accelerate()
+                    select c6;
+            r.Subscribe();
 
             _Console.WriteLine(Euler.Problem1()).Subscribe();
-            _Object p2 = Euler.Problem2();
+            var p2 = Euler.Problem2().Select(result => result.ToString());
             _Console.WriteLine(p2).Subscribe();
+            var p3 = Euler.Problem3().Select(result => result.ToString());
+            _Console.WriteLine(p3).Subscribe();
 
             Console.ReadLine();
-        }
-
-        private static void TestValues()
-        {
-            _String text = "foo";
-            var write = text.Do(t => Console.WriteLine("Text: {0}", t)).AsString();
-            var upper = text.ToUpper().Do(t => Console.WriteLine("Upper: {0}", t)).AsString();
-            write.Subscribe();
-            upper.Subscribe();
-            string input;
-            while ((input = Console.ReadLine()) != "q")
-                text.SetValue(Observable.Return(input));
         }
     }
 }

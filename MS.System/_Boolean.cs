@@ -1,22 +1,22 @@
-using System;
+//using System;
 
-namespace MS.System
-{
-    public class _Boolean : _Object<bool>
-    {
-        public _Boolean(bool value)
-            : base(value)
-        {
-        }
+//namespace MsSystem
+//{
+//    public class IObservable<Boolean> : IObservable<object><bool>
+//    {
+//        public IObservable<Boolean>(bool value)
+//            : base(value)
+//        {
+//        }
 
-        public _Boolean(IObservable<bool> source)
-            : base(source)
-        {
-        }
+//        public IObservable<Boolean>(IObservable<bool> source)
+//            : base(source)
+//        {
+//        }
 
-        public static implicit operator _Boolean(bool value)
-        {
-            return new _Boolean(value);
-        }
-    }
-}
+//        public static implicit operator IObservable<Boolean>(bool value)
+//        {
+//            return new IObservable<Boolean>(value);
+//        }
+//    }
+//}

@@ -2,19 +2,13 @@
 using System.Globalization;
 using System.Reactive.Linq;
 
-namespace MS.System.Extensions
+namespace MsSystem.Extensions
 {
     public static class _Int64Extensions
     {
-        public static _Int64 AsInt64(this IObservable<Int64> source)
-        {
-            return source as _Int64 ?? new _Int64(source);
-        }
-
         public static IObservable<Int64> Add(this IObservable<Int64> x, IObservable<Int64> y)
         {
-            return x.AsInt64() % y.AsInt64();
-            //return x.Zip(y, (left, right) => left + right);
+            return x.Zip(y, (left, right) => left + right);
         }
         
         public static IObservable<Int64> Subtract(this IObservable<Int64> x, IObservable<Int64> y)
@@ -72,9 +66,9 @@ namespace MS.System.Extensions
             return source.Zip(format, provider, (i, f, p) => i.ToString(f, p));
         }
 
-        public static _Int64 Parse(IObservable<string> s)
+        public static IObservable<long> Parse(IObservable<string> s)
         {
-            return s.Select(Int64.Parse).AsInt64();
+            return s.Select(Int64.Parse);
         }
 
         public static IObservable<Int64> Parse(IObservable<string> s, IObservable<NumberStyles> style)

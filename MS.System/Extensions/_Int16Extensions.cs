@@ -2,19 +2,13 @@
 using System.Globalization;
 using System.Reactive.Linq;
 
-namespace MS.System.Extensions
+namespace MsSystem.Extensions
 {
     public static class _Int16Extensions
     {
-        public static _Int16 AsInt16(this IObservable<Int16> source)
-        {
-            return source as _Int16 ?? new _Int16(source);
-        }
-
         public static IObservable<Int32> Add(this IObservable<Int16> x, IObservable<Int16> y)
         {
-            return x.AsInt16() % y.AsInt16();
-            //return x.Zip(y, (left, right) => left + right);
+            return x.Zip(y, (left, right) => left + right);
         }
 
         public static IObservable<Int32> Subtract(this IObservable<Int16> x, IObservable<Int16> y)
@@ -72,9 +66,9 @@ namespace MS.System.Extensions
             return source.Zip(format, provider, (i, f, p) => i.ToString(f, p));
         }
 
-        public static _Int16 Parse(IObservable<string> s)
+        public static IObservable<short> Parse(IObservable<string> s)
         {
-            return s.Select(Int16.Parse).AsInt16();
+            return s.Select(Int16.Parse);
         }
 
         public static IObservable<Int16> Parse(IObservable<string> s, IObservable<NumberStyles> style)

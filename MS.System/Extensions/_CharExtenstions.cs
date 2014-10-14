@@ -1,62 +1,58 @@
+using System;
 using System.Globalization;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using MS.System;
+using MsSystem;
 
-namespace System
+namespace MsSystem
 {
-   public static class _CharExtensions
+   public static class CharExtensions
    {
-       public static _Char AsChar(this IObservable<System.Char> source)
-       {
-           return source as _Char ?? new _Char(source);
-       }
-
-      public static _Int32 GetHashCode(this IObservable<System.Char> _CharValue)
+      public static IObservable<int> GetHashCode(this IObservable<System.Char> charValue)
       {
-         return _CharValue.Select((_CharValueLambda) => _CharValueLambda.GetHashCode()).AsInt32();
+         return charValue.Select((charValueLambda) => charValueLambda.GetHashCode());
       }
 
-      public static _Boolean Equals(this IObservable<System.Char> _CharValue, IObservable<System.Object> obj)
+      public static IObservable<Boolean> Equals(this IObservable<System.Char> charValue, IObservable<System.Object> obj)
       {
-         return _CharValue.Zip(obj, (_CharValueLambda, objLambda) => _CharValueLambda.Equals(objLambda)).AsBoolean();
+         return charValue.Zip(obj, (charValueLambda, objLambda) => charValueLambda.Equals(objLambda));
       }
 
-      public static _Boolean Equals(this IObservable<System.Char> _CharValue, IObservable<System.Char> obj)
+      public static IObservable<Boolean> Equals(this IObservable<System.Char> charValue, IObservable<System.Char> obj)
       {
-         return _CharValue.Zip(obj, (_CharValueLambda, objLambda) => _CharValueLambda.Equals(objLambda)).AsBoolean();
+         return charValue.Zip(obj, (charValueLambda, objLambda) => charValueLambda.Equals(objLambda));
       }
 
-      public static _Int32 CompareTo(this IObservable<System.Char> _CharValue, IObservable<System.Object> value)
+      public static IObservable<int> CompareTo(this IObservable<System.Char> charValue, IObservable<System.Object> value)
       {
-         return _CharValue.Zip(value, (_CharValueLambda, valueLambda) => _CharValueLambda.CompareTo(valueLambda)).AsInt32();
+         return charValue.Zip(value, (charValueLambda, valueLambda) => charValueLambda.CompareTo(valueLambda));
       }
 
-      public static _Int32 CompareTo(this IObservable<System.Char> _CharValue, IObservable<System.Char> value)
+      public static IObservable<int> CompareTo(this IObservable<System.Char> charValue, IObservable<System.Char> value)
       {
-         return _CharValue.Zip(value, (_CharValueLambda, valueLambda) => _CharValueLambda.CompareTo(valueLambda)).AsInt32();
+         return charValue.Zip(value, (charValueLambda, valueLambda) => charValueLambda.CompareTo(valueLambda));
       }
 
-      public static _String ToString(this IObservable<System.Char> _CharValue, IObservable<System.IFormatProvider> provider)
+      public static IObservable<string> ToString(this IObservable<System.Char> charValue, IObservable<System.IFormatProvider> provider)
       {
-         return _CharValue.Zip(provider, (_CharValueLambda, providerLambda) => _CharValueLambda.ToString(providerLambda)).AsString();
+         return charValue.Zip(provider, (charValueLambda, providerLambda) => charValueLambda.ToString(providerLambda));
       }
 
-      public static _String ToString(IObservable<System.Char> c)
+      public static IObservable<string> ToString(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.ToString).AsString();
+         return c.Select(System.Char.ToString);
       }
 
-      public static _Char Parse(IObservable<System.String> s)
+      public static IObservable<Char> Parse(IObservable<System.String> s)
       {
-         return s.Select(System.Char.Parse).AsChar();
+         return s.Select(System.Char.Parse);
       }
 
-       public static _Boolean TryParse(IObservable<System.String> s, out _Char result)
+       public static IObservable<Boolean> TryParse(IObservable<System.String> s, out IObservable<Char> result)
        {
            var gate = new object();
            var resultSubject = new ReplaySubject<System.Char>(1);
-           result = resultSubject.AsChar();
+           result = resultSubject.AsObservable();
            return s.Select(valueLambda =>
                            {
                                char tempResult;
@@ -78,162 +74,162 @@ namespace System
                                resultSubject.OnCompleted();
                            }
                        })
-                   .AsBoolean();
+                   ;
        }
 
-       public static _Boolean IsDigit(IObservable<System.Char> c)
+       public static IObservable<Boolean> IsDigit(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsDigit).AsBoolean();
+         return c.Select(System.Char.IsDigit);
       }
 
-      public static _Boolean IsLetter(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsLetter(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsLetter).AsBoolean();
+         return c.Select(System.Char.IsLetter);
       }
 
-      public static _Boolean IsWhiteSpace(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsWhiteSpace(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsWhiteSpace).AsBoolean();
+         return c.Select(System.Char.IsWhiteSpace);
       }
 
-      public static _Boolean IsUpper(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsUpper(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsUpper).AsBoolean();
+         return c.Select(System.Char.IsUpper);
       }
 
-      public static _Boolean IsLower(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsLower(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsLower).AsBoolean();
+         return c.Select(System.Char.IsLower);
       }
 
-      public static _Boolean IsPunctuation(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsPunctuation(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsPunctuation).AsBoolean();
+         return c.Select(System.Char.IsPunctuation);
       }
 
-      public static _Boolean IsLetterOrDigit(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsLetterOrDigit(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsLetterOrDigit).AsBoolean();
+         return c.Select(System.Char.IsLetterOrDigit);
       }
 
-      public static _Char ToUpper(IObservable<System.Char> c, IObservable<System.Globalization.CultureInfo> culture)
+      public static IObservable<Char> ToUpper(IObservable<System.Char> c, IObservable<System.Globalization.CultureInfo> culture)
       {
-         return Observable.Zip(c, culture, System.Char.ToUpper).AsChar();
+         return Observable.Zip(c, culture, System.Char.ToUpper);
       }
 
-      public static _Char ToUpper(IObservable<System.Char> c)
+      public static IObservable<Char> ToUpper(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.ToUpper).AsChar();
+         return c.Select(System.Char.ToUpper);
       }
 
-      public static _Char ToUpperInvariant(IObservable<System.Char> c)
+      public static IObservable<Char> ToUpperInvariant(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.ToUpperInvariant).AsChar();
+         return c.Select(System.Char.ToUpperInvariant);
       }
 
-      public static _Char ToLower(IObservable<System.Char> c, IObservable<System.Globalization.CultureInfo> culture)
+      public static IObservable<Char> ToLower(IObservable<System.Char> c, IObservable<System.Globalization.CultureInfo> culture)
       {
-         return Observable.Zip(c, culture, System.Char.ToLower).AsChar();
+         return Observable.Zip(c, culture, System.Char.ToLower);
       }
 
-      public static _Char ToLower(IObservable<System.Char> c)
+      public static IObservable<Char> ToLower(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.ToLower).AsChar();
+         return c.Select(System.Char.ToLower);
       }
 
-      public static _Char ToLowerInvariant(IObservable<System.Char> c)
+      public static IObservable<Char> ToLowerInvariant(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.ToLowerInvariant).AsChar();
+         return c.Select(System.Char.ToLowerInvariant);
       }
 
-      public static IObservable<TypeCode> GetTypeCode(this IObservable<System.Char> _CharValue)
+      public static IObservable<TypeCode> GetTypeCode(this IObservable<System.Char> charValue)
       {
-          return _CharValue.Select((_CharValueLambda) => _CharValueLambda.GetTypeCode());
+          return charValue.Select((charValueLambda) => charValueLambda.GetTypeCode());
       }
 
-      public static _Boolean IsControl(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsControl(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsControl).AsBoolean();
+         return c.Select(System.Char.IsControl);
       }
 
-      public static _Boolean IsControl(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsControl(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsControl).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsControl);
       }
 
-      public static _Boolean IsDigit(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsDigit(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsDigit).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsDigit);
       }
 
-      public static _Boolean IsLetter(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsLetter(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsLetter).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsLetter);
       }
 
-      public static _Boolean IsLetterOrDigit(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsLetterOrDigit(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsLetterOrDigit).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsLetterOrDigit);
       }
 
-      public static _Boolean IsLower(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsLower(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsLower).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsLower);
       }
 
-      public static _Boolean IsNumber(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsNumber(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsNumber).AsBoolean();
+         return c.Select(System.Char.IsNumber);
       }
 
-      public static _Boolean IsNumber(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsNumber(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsNumber).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsNumber);
       }
 
-      public static _Boolean IsPunctuation(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsPunctuation(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsPunctuation).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsPunctuation);
       }
 
-      public static _Boolean IsSeparator(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsSeparator(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsSeparator).AsBoolean();
+         return c.Select(System.Char.IsSeparator);
       }
 
-      public static _Boolean IsSeparator(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsSeparator(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsSeparator).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsSeparator);
       }
 
-      public static _Boolean IsSurrogate(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsSurrogate(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsSurrogate).AsBoolean();
+         return c.Select(System.Char.IsSurrogate);
       }
 
-      public static _Boolean IsSurrogate(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsSurrogate(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsSurrogate).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsSurrogate);
       }
 
-      public static _Boolean IsSymbol(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsSymbol(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsSymbol).AsBoolean();
+         return c.Select(System.Char.IsSymbol);
       }
 
-      public static _Boolean IsSymbol(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsSymbol(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsSymbol).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsSymbol);
       }
 
-      public static _Boolean IsUpper(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsUpper(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsUpper).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsUpper);
       }
 
-      public static _Boolean IsWhiteSpace(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsWhiteSpace(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsWhiteSpace).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsWhiteSpace);
       }
 
       public static IObservable<UnicodeCategory> GetUnicodeCategory(IObservable<System.Char> c)
@@ -256,54 +252,54 @@ namespace System
           return Observable.Zip(s, index, System.Char.GetNumericValue);
       }
 
-      public static _Boolean IsHighSurrogate(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsHighSurrogate(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsHighSurrogate).AsBoolean();
+         return c.Select(System.Char.IsHighSurrogate);
       }
 
-      public static _Boolean IsHighSurrogate(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsHighSurrogate(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsHighSurrogate).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsHighSurrogate);
       }
 
-      public static _Boolean IsLowSurrogate(IObservable<System.Char> c)
+      public static IObservable<Boolean> IsLowSurrogate(IObservable<System.Char> c)
       {
-         return c.Select(System.Char.IsLowSurrogate).AsBoolean();
+         return c.Select(System.Char.IsLowSurrogate);
       }
 
-      public static _Boolean IsLowSurrogate(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsLowSurrogate(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsLowSurrogate).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsLowSurrogate);
       }
 
-      public static _Boolean IsSurrogatePair(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<Boolean> IsSurrogatePair(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.IsSurrogatePair).AsBoolean();
+         return Observable.Zip(s, index, System.Char.IsSurrogatePair);
       }
 
-      public static _Boolean IsSurrogatePair(IObservable<System.Char> highSurrogate, IObservable<System.Char> lowSurrogate)
+      public static IObservable<Boolean> IsSurrogatePair(IObservable<System.Char> highSurrogate, IObservable<System.Char> lowSurrogate)
       {
-         return Observable.Zip(highSurrogate, lowSurrogate, System.Char.IsSurrogatePair).AsBoolean();
+         return Observable.Zip(highSurrogate, lowSurrogate, System.Char.IsSurrogatePair);
       }
 
-      public static _String ConvertFromUtf32(IObservable<System.Int32> utf32)
+      public static IObservable<string> ConvertFromUtf32(IObservable<System.Int32> utf32)
       {
-         return utf32.Select(System.Char.ConvertFromUtf32).AsString();
+         return utf32.Select(System.Char.ConvertFromUtf32);
       }
 
-      public static _Int32 ConvertToUtf32(IObservable<System.Char> highSurrogate, IObservable<System.Char> lowSurrogate)
+      public static IObservable<int> ConvertToUtf32(IObservable<System.Char> highSurrogate, IObservable<System.Char> lowSurrogate)
       {
-         return Observable.Zip(highSurrogate, lowSurrogate, System.Char.ConvertToUtf32).AsInt32();
+         return Observable.Zip(highSurrogate, lowSurrogate, System.Char.ConvertToUtf32);
       }
 
-      public static _Int32 ConvertToUtf32(IObservable<System.String> s, IObservable<System.Int32> index)
+      public static IObservable<int> ConvertToUtf32(IObservable<System.String> s, IObservable<System.Int32> index)
       {
-         return Observable.Zip(s, index, System.Char.ConvertToUtf32).AsInt32();
+         return Observable.Zip(s, index, System.Char.ConvertToUtf32);
       }
 
-      public static IObservable<Type> GetType(this IObservable<System.Char> _CharValue)
+      public static IObservable<Type> GetType(this IObservable<System.Char> charValue)
       {
-          return _CharValue.Select((_CharValueLambda) => _CharValueLambda.GetType());
+          return charValue.Select((charValueLambda) => charValueLambda.GetType());
       }
    }
 }

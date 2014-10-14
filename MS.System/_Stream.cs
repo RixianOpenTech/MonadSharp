@@ -1,18 +1,18 @@
-﻿using System;
-using System.IO;
+﻿//using System;
+//using System.IO;
 
-namespace MS.System
-{
-    public class _Stream : _Object<Stream>
-    {
-        public _Stream(Stream value)
-            : base(value)
-        {
-        }
+//namespace MsSystem
+//{
+//    public class IObservable<Stream> : IObservable<object><Stream>
+//    {
+//        public IObservable<Stream>(Stream value)
+//            : base(value)
+//        {
+//        }
 
-        public _Stream(IObservable<Stream> source)
-            : base(source)
-        {
-        }
-    }
-}
+//        public IObservable<Stream>(IObservable<Stream> source)
+//            : base(source)
+//        {
+//        }
+//    }
+//}

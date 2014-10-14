@@ -1,35 +1,36 @@
 ﻿using System;
 using System.IO;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using MS.Core;
-using MS.System.Extensions;
+using MsSystem.Extensions;
 
-namespace MS.System
+namespace MsSystem
 {
     public static class _Console
     {
-        public static _Void Beep()
+        public static IObservable<Unit> Beep()
         {
             return Observable.FromAsync(() => new Task(Console.Beep)).ToVoid();
         }
 
-        public static _Void Beep(IObservable<Int32> frequency, IObservable<Int32> duration)
+        public static IObservable<Unit> Beep(IObservable<Int32> frequency, IObservable<Int32> duration)
         {
             return ObservableExt.ZipExecute(frequency, duration, Console.Beep).ToVoid();
         }
 
-        public static _Void Clear()
+        public static IObservable<Unit> Clear()
         {
             return Observable.FromAsync(() => new Task(Console.Clear)).ToVoid();
         }
 
-        public static _Void ResetColor()
+        public static IObservable<Unit> ResetColor()
         {
             return Observable.FromAsync(() => new Task(Console.ResetColor)).ToVoid();
         }
 
-        public static _Void MoveBufferArea(
+        public static IObservable<Unit> MoveBufferArea(
             IObservable<Int32> sourceLeft,
             IObservable<Int32> sourceTop,
             IObservable<Int32> sourceWidth,
@@ -40,7 +41,7 @@ namespace MS.System
             return ObservableExt.ZipExecute(sourceLeft, sourceTop, sourceWidth, sourceHeight, targetLeft, targetTop, Console.MoveBufferArea).ToVoid();
         }
 
-        public static _Void MoveBufferArea(
+        public static IObservable<Unit> MoveBufferArea(
             IObservable<Int32> sourceLeft,
             IObservable<Int32> sourceTop,
             IObservable<Int32> sourceWidth,
@@ -63,22 +64,22 @@ namespace MS.System
                                             Console.MoveBufferArea).ToVoid();
         }
 
-        public static _Void SetBufferSize(IObservable<Int32> width, IObservable<Int32> height)
+        public static IObservable<Unit> SetBufferSize(IObservable<Int32> width, IObservable<Int32> height)
         {
             return ObservableExt.ZipExecute(width, height, Console.SetBufferSize).ToVoid();
         }
 
-        public static _Void SetWindowSize(IObservable<Int32> width, IObservable<Int32> height)
+        public static IObservable<Unit> SetWindowSize(IObservable<Int32> width, IObservable<Int32> height)
         {
             return ObservableExt.ZipExecute(width, height, Console.SetWindowSize).ToVoid();
         }
 
-        public static _Void SetWindowPosition(IObservable<Int32> left, IObservable<Int32> top)
+        public static IObservable<Unit> SetWindowPosition(IObservable<Int32> left, IObservable<Int32> top)
         {
             return ObservableExt.ZipExecute(left, top, Console.SetWindowPosition).ToVoid();
         }
 
-        public static _Void SetCursorPosition(IObservable<Int32> left, IObservable<Int32> top)
+        public static IObservable<Unit> SetCursorPosition(IObservable<Int32> left, IObservable<Int32> top)
         {
             return ObservableExt.ZipExecute(left, top, Console.SetCursorPosition).ToVoid();
         }
@@ -93,147 +94,147 @@ namespace MS.System
             return intercept.Select(Console.ReadKey);
         }
 
-        public static _Stream OpenStandardError()
+        public static IObservable<Stream> OpenStandardError()
         {
-            return new _Stream(Observable.FromAsync(() => Task.FromResult(Console.OpenStandardError())));
+            return Observable.FromAsync(() => Task.FromResult(Console.OpenStandardError()));
         }
 
-        public static _Stream OpenStandardError(IObservable<Int32> bufferSize)
+        public static IObservable<Stream> OpenStandardError(IObservable<Int32> bufferSize)
         {
-            return new _Stream(bufferSize.Select(Console.OpenStandardError));
+            return bufferSize.Select(Console.OpenStandardError);
         }
 
-        public static _Stream OpenStandardInput()
+        public static IObservable<Stream> OpenStandardInput()
         {
-            return new _Stream(Observable.FromAsync(() => Task.FromResult(Console.OpenStandardInput())));
+            return Observable.FromAsync(() => Task.FromResult(Console.OpenStandardInput()));
         }
 
-        public static _Stream OpenStandardInput(IObservable<Int32> bufferSize)
+        public static IObservable<Stream> OpenStandardInput(IObservable<Int32> bufferSize)
         {
-            return new _Stream(bufferSize.Select(Console.OpenStandardInput));
+            return bufferSize.Select(Console.OpenStandardInput);
         }
 
-        public static _Stream OpenStandardOutput()
+        public static IObservable<Stream> OpenStandardOutput()
         {
-            return new _Stream(Observable.FromAsync(() => Task.FromResult(Console.OpenStandardOutput())));
+            return Observable.FromAsync(() => Task.FromResult(Console.OpenStandardOutput()));
         }
 
-        public static _Stream OpenStandardOutput(IObservable<Int32> bufferSize)
+        public static IObservable<Stream> OpenStandardOutput(IObservable<Int32> bufferSize)
         {
-            return new _Stream(bufferSize.Select(Console.OpenStandardOutput));
+            return bufferSize.Select(Console.OpenStandardOutput);
         }
 
-        public static _Void SetIn(IObservable<TextReader> newIn)
+        public static IObservable<Unit> SetIn(IObservable<TextReader> newIn)
         {
             return newIn.Do(Console.SetIn).ToVoid();
         }
 
-        public static _Void SetOut(IObservable<TextWriter> newOut)
+        public static IObservable<Unit> SetOut(IObservable<TextWriter> newOut)
         {
             return newOut.Do(Console.SetOut).ToVoid();
         }
 
-        public static _Void SetError(IObservable<TextWriter> newError)
+        public static IObservable<Unit> SetError(IObservable<TextWriter> newError)
         {
             return newError.Do(Console.SetError).ToVoid();
         }
 
-        public static _Int32 Read()
+        public static IObservable<int> Read()
         {
-            return Observable.FromAsync(() => Task.FromResult(Console.Read())).AsInt32();
+            return Observable.FromAsync(() => Task.FromResult(Console.Read()));
         }
 
-        public static _String ReadLine()
+        public static IObservable<string> ReadLine()
         {
-            return Observable.FromAsync(() => Task.FromResult(Console.ReadLine())).AsString();
+            return Observable.FromAsync(() => Task.FromResult(Console.ReadLine()));
         }
 
-        public static _Void WriteLine()
+        public static IObservable<Unit> WriteLine()
         {
             return Observable.FromAsync(() => new Task(Console.WriteLine)).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Boolean> value)
+        public static IObservable<Unit> WriteLine(IObservable<Boolean> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Char> value)
+        public static IObservable<Unit> WriteLine(IObservable<Char> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Char[]> buffer)
+        public static IObservable<Unit> WriteLine(IObservable<Char[]> buffer)
         {
             return buffer.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Char[]> buffer, IObservable<Int32> index, IObservable<Int32> count)
+        public static IObservable<Unit> WriteLine(IObservable<Char[]> buffer, IObservable<Int32> index, IObservable<Int32> count)
         {
             return ObservableExt.ZipExecute(buffer, index, count, Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Decimal> value)
+        public static IObservable<Unit> WriteLine(IObservable<Decimal> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Double> value)
+        public static IObservable<Unit> WriteLine(IObservable<Double> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Single> value)
+        public static IObservable<Unit> WriteLine(IObservable<Single> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Int32> value)
+        public static IObservable<Unit> WriteLine(IObservable<Int32> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<UInt32> value)
+        public static IObservable<Unit> WriteLine(IObservable<UInt32> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Int64> value)
+        public static IObservable<Unit> WriteLine(IObservable<Int64> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<UInt64> value)
+        public static IObservable<Unit> WriteLine(IObservable<UInt64> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<Object> value)
+        public static IObservable<Unit> WriteLine(IObservable<Object> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<String> value)
+        public static IObservable<Unit> WriteLine(IObservable<String> value)
         {
             return value.Do(Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<String> format, IObservable<Object> arg0)
+        public static IObservable<Unit> WriteLine(IObservable<String> format, IObservable<Object> arg0)
         {
             return ObservableExt.ZipExecute(format, arg0, Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<String> format, IObservable<Object> arg0, IObservable<Object> arg1)
+        public static IObservable<Unit> WriteLine(IObservable<String> format, IObservable<Object> arg0, IObservable<Object> arg1)
         {
             return ObservableExt.ZipExecute(format, arg0, arg1, Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<String> format, IObservable<Object> arg0, IObservable<Object> arg1, IObservable<Object> arg2)
+        public static IObservable<Unit> WriteLine(IObservable<String> format, IObservable<Object> arg0, IObservable<Object> arg1, IObservable<Object> arg2)
         {
             return ObservableExt.ZipExecute(format, arg0, arg1, arg2, Console.WriteLine).ToVoid();
         }
 
-        public static _Void WriteLine(
+        public static IObservable<Unit> WriteLine(
             IObservable<String> format,
             IObservable<Object> arg0,
             IObservable<Object> arg1,
@@ -245,27 +246,27 @@ namespace MS.System
                     Console.WriteLine(formatLambda, arg0Lambda, arg1Lambda, arg2Lambda, arg3Lambda)).ToVoid();
         }
 
-        public static _Void WriteLine(IObservable<String> format, IObservable<Object[]> arg)
+        public static IObservable<Unit> WriteLine(IObservable<String> format, IObservable<Object[]> arg)
         {
             return ObservableExt.ZipExecute(format, arg, Console.WriteLine).ToVoid();
         }
 
-        public static _Void Write(IObservable<String> format, IObservable<Object> arg0)
+        public static IObservable<Unit> Write(IObservable<String> format, IObservable<Object> arg0)
         {
             return ObservableExt.ZipExecute(format, arg0, Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<String> format, IObservable<Object> arg0, IObservable<Object> arg1)
+        public static IObservable<Unit> Write(IObservable<String> format, IObservable<Object> arg0, IObservable<Object> arg1)
         {
             return ObservableExt.ZipExecute(format, arg0, arg1, Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<String> format, IObservable<Object> arg0, IObservable<Object> arg1, IObservable<Object> arg2)
+        public static IObservable<Unit> Write(IObservable<String> format, IObservable<Object> arg0, IObservable<Object> arg1, IObservable<Object> arg2)
         {
             return ObservableExt.ZipExecute(format, arg0, arg1, arg2, Console.Write).ToVoid();
         }
 
-        public static _Void Write(
+        public static IObservable<Unit> Write(
             IObservable<String> format,
             IObservable<Object> arg0,
             IObservable<Object> arg1,
@@ -277,72 +278,72 @@ namespace MS.System
                     Console.Write(formatLambda, arg0Lambda, arg1Lambda, arg2Lambda, arg3Lambda)).ToVoid();
         }
 
-        public static _Void Write(IObservable<String> format, IObservable<Object[]> arg)
+        public static IObservable<Unit> Write(IObservable<String> format, IObservable<Object[]> arg)
         {
             return ObservableExt.ZipExecute(format, arg, Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Boolean> value)
+        public static IObservable<Unit> Write(IObservable<Boolean> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Char> value)
+        public static IObservable<Unit> Write(IObservable<Char> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Char[]> buffer)
+        public static IObservable<Unit> Write(IObservable<Char[]> buffer)
         {
             return buffer.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Char[]> buffer, IObservable<Int32> index, IObservable<Int32> count)
+        public static IObservable<Unit> Write(IObservable<Char[]> buffer, IObservable<Int32> index, IObservable<Int32> count)
         {
             return ObservableExt.ZipExecute(buffer, index, count, Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Double> value)
+        public static IObservable<Unit> Write(IObservable<Double> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Decimal> value)
+        public static IObservable<Unit> Write(IObservable<Decimal> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Single> value)
+        public static IObservable<Unit> Write(IObservable<Single> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Int32> value)
+        public static IObservable<Unit> Write(IObservable<Int32> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<UInt32> value)
+        public static IObservable<Unit> Write(IObservable<UInt32> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Int64> value)
+        public static IObservable<Unit> Write(IObservable<Int64> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<UInt64> value)
+        public static IObservable<Unit> Write(IObservable<UInt64> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<Object> value)
+        public static IObservable<Unit> Write(IObservable<Object> value)
         {
             return value.Do(Console.Write).ToVoid();
         }
 
-        public static _Void Write(IObservable<String> value)
+        public static IObservable<Unit> Write(IObservable<String> value)
         {
             return value.Do(Console.Write).ToVoid();
         }

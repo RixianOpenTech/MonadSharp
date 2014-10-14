@@ -1,55 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
-using System.Text;
-using System.Threading.Tasks;
-using MS.System;
+using MsSystem;
 
 namespace Testbed
 {
     public static class Euler
     {
-        public static _Int32 Problem1()
+        public static IObservable<int> Problem1()
         {
-            _Int32 threes = Observable.Generate(3, i => i < 1000, i => i + 3, i => i).AsInt32();
-            _Int32 fives = Observable.Generate(5, i => i < 1000, i => i + 5, i => i).AsInt32();
-            _Int32 all = threes.Concat(fives).Distinct().AsInt32();
-            return all.Aggregate((left, right) => left + right).AsInt32();
+            var threes = Observable.Generate(3, i => i < 1000, i => i + 3, i => i);
+            var fives = Observable.Generate(5, i => i < 1000, i => i + 5, i => i);
+            var all = threes.Concat(fives).Distinct();
+            return all.Aggregate((left, right) => left + right);
         }
 
-        public static _BigInteger Problem2()
+        public static IObservable<BigInteger> Problem2()
         {
-            var evenTerms = new ReplaySubject<_BigInteger>();
-            _BigInteger x = 1;
-            _BigInteger y = 2;
-            evenTerms.OnNext(y);
+            return Observable.Generate(new Tuple<BigInteger, BigInteger>(1, 2),
+                                       tuple => tuple.Item2 < 4000000,
+                                       tuple => Tuple.Create(tuple.Item2, tuple.Item1 + tuple.Item2),
+                                       tuple => tuple.Item2)
+                             .Where(value => value % 2 == 0)
+                             .Aggregate((left, right) => left + right);
+        }
 
-            //Subject<_BigInteger> newTerms = new Subject<_BigInteger>();
-            var result = Observable.While(() =>
-                                          {
-                                              var newTerm = x + y;
-                                              x.SetValue(y);
-                                              y.SetValue(newTerm);
-                                              if ((newTerm % new _BigInteger(2)).GetValue() == 0)
-                                                  evenTerms.OnNext(newTerm);
-                                              return y.GetValue() < 4000000;
-                                          },
-                                          evenTerms)
-                                   .Aggregate((left, right) => left + right);
-
-            //for (; y < 4000000;)
-            //{
-            //    var newTerm = x + y;
-            //    x = y;
-            //    y = newTerm;
-            //    if (newTerm % 2 == 0)
-            //        evenTerms.Add(newTerm);
-            //}
-            return result.FirstAsync().ToTask().Result;
+        public static IObservable<BigInteger> Problem3()
+        {
+            var xValues = Observable.Range(100, 899).Select(value => new BigInteger(value));
+            var yValues = Observable.Range(100, 899).Select(value => new BigInteger(value));
+            var palindromes = from x in xValues
+                              from y in yValues
+                              let z = x * y
+                              let zString = z.ToString()
+                              let reversedZ = new string(zString.Reverse().ToArray())
+                              where zString == reversedZ
+                              select z;
+            var maxPalindrom = palindromes.Max();
+            return maxPalindrom;
         }
     }
 }

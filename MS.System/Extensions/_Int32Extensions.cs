@@ -2,15 +2,10 @@
 using System.Globalization;
 using System.Reactive.Linq;
 
-namespace MS.System
+namespace MsSystem
 {
-    public static class _Int32Extensions
+    public static class Int32Extensions
     {
-        public static _Int32 AsInt32(this IObservable<int> source)
-        {
-            return source as _Int32 ?? new _Int32(source);
-        }
-
         public static IObservable<Int32> Add(this IObservable<Int32> x, IObservable<Int32> y)
         {
             return x.Zip(y, (left, right) => left + right);
@@ -71,9 +66,9 @@ namespace MS.System
             return source.Zip(format, provider, (i, f, p) => i.ToString(f, p));
         }
 
-        public static _Int32 Parse(IObservable<string> s)
+        public static IObservable<int> Parse(IObservable<string> s)
         {
-            return s.Select(int.Parse).AsInt32();
+            return s.Select(int.Parse);
         }
 
         public static IObservable<Int32> Parse(IObservable<string> s, IObservable<NumberStyles> style)

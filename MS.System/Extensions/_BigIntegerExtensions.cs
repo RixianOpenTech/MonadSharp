@@ -3,15 +3,10 @@ using System.Globalization;
 using System.Numerics;
 using System.Reactive.Linq;
 
-namespace MS.System
+namespace MsSystem
 {
-    public static class _BigIntegerExtensions
+    public static class BigIntegerExtensions
     {
-        public static _BigInteger AsBigInteger(this IObservable<BigInteger> source)
-        {
-            return source as _BigInteger ?? new _BigInteger(source);
-        }
-
         public static IObservable<BigInteger> Add(this IObservable<BigInteger> x, IObservable<BigInteger> y)
         {
             return x.Zip(y, (left, right) => left + right);
@@ -72,9 +67,9 @@ namespace MS.System
             return source.Zip(format, provider, (i, f, p) => i.ToString(f, p));
         }
 
-        public static _BigInteger Parse(IObservable<string> s)
+        public static IObservable<BigInteger> Parse(IObservable<string> s)
         {
-            return s.Select(BigInteger.Parse).AsBigInteger();
+            return s.Select(BigInteger.Parse);
         }
 
         public static IObservable<BigInteger> Parse(IObservable<string> s, IObservable<NumberStyles> style)

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MS.System;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 
 namespace Testbed
 {
@@ -11,15 +9,14 @@ namespace Testbed
     {
         public Car()
         {
-            Speed = 0;
+            Speed = new BehaviorSubject<int>(0);
         }
 
-        public _Int32 Speed { get; set; }
+        public BehaviorSubject<int> Speed { get; set; }
 
-        public _Void Accelerate()
+        public IObservable<Unit> Accelerate()
         {
-            Speed.SetValue(Speed + 10);
-            return _Void.Default;
+            return Observable.Return(Unit.Default).Do(_ => this.Speed.OnNext(this.Speed.Value + 10));
         }
     }
 }

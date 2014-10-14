@@ -1,7 +1,8 @@
+using System;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
-namespace System
+namespace MsSystem
 {
     public static class _ByteExtensions
     {
