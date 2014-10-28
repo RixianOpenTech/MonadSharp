@@ -19,6 +19,7 @@ namespace Testbed
 
         public static IObservable<Unit> Work()
         {
+            //Ex.ForAsync(Observable.Range(0,10), i => )
             IObservable<int> x = Observable.Range(1, 3);
             var y = Observable.Range(20, 10).SubscribeOnce();
             IObservable<int> ifBlock = y;//.Add(y);
@@ -30,6 +31,11 @@ namespace Testbed
 
     public static class Ex
     {
+        public static IObservable<TResult> ForAsync<TSource, TResult>(IObservable<TSource> source, Func<TSource, IObservable<TResult>> resultSelector)
+        {
+            return source.Select(resultSelector).Flatten();
+        }
+
         public static IObservable<TResult> If<TSource, TResult>(
             this IObservable<TSource> source,
             Func<TSource, bool> conditional,

@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace Testbed
 {
-    public class Sample
-    {
-	    public unit Work()
+	public class Sample
+	{
+		public unit Work()
 		{
-		    int x = 5;
-		    if (x < 10)
-		    {
+			int x = 5;
+			if (x < 10)
+			{
 				for (int i = 0; i < x; i++)
 				{
-                
+					Console.WriteLine(i);s
 				}
-		    }
-		    else
-		    {
-		    }
+			}
+			else
+			{
+			}
+			x = 10;
 		}
-    }
+	}
 }
