@@ -24,7 +24,7 @@ namespace Testbed
             var y = Observable.Range(20, 10).SubscribeOnce();
             IObservable<int> ifBlock = y;//.Add(y);
             IObservable<int> elseBlock = x;//.Subtract(x);
-            var result = x.If(xVal => xVal < 5, ifBlock, elseBlock);
+            var result = x.Select(xVal => xVal < 5).If(ifBlock, elseBlock);
             return _Console.WriteLine(result);
         }
     }
@@ -36,17 +36,12 @@ namespace Testbed
             return source.Select(resultSelector).Flatten();
         }
 
-        public static IObservable<TResult> If<TSource, TResult>(
-            this IObservable<TSource> source,
-            Func<TSource, bool> conditional,
+        public static IObservable<TResult> If<TResult>(
+            this IObservable<bool> source,
             IObservable<TResult> ifBranch,
             IObservable<TResult> elseBranch)
         {
-            return source.Select(value =>
-                                 {
-                                     var result = conditional(value);
-                                     return Observable.If(() => result, ifBranch, elseBranch);
-                                 }).Flatten();
+            return source.Select(value => Observable.If(() => value, ifBranch, elseBranch)).Flatten();
         }
 
         public static IObservable<T> SubscribeOnce<T>(this IObservable<T> source)

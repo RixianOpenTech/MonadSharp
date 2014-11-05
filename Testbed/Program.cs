@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Windows.Markup;
 using MS.Core;
 using MsSystem;
+using ObservableTracer;
 
 namespace Testbed
 {
@@ -46,11 +48,20 @@ namespace Testbed
             var x = Observable.Return(5);
             var ifBranch = Ex.ForAsync(Observable.Range(0, 10), i => _Console.WriteLine(Observable.Return(i)));
             var elseBranch = Ex.ForAsync(Observable.Range(15, 5), i => _Console.WriteLine(Observable.Return(i)));
-            var ifStatement = x.If(xVal => xVal < 10, ifBranch, elseBranch);
+            var ifStatement = x.Select(xVal => xVal < 10).If(ifBranch, elseBranch);
             x = Observable.Return(10);
-            ifStatement.Subscribe();
-            ifStatement.Subscribe();
 
+            //List<IObservable<object>>
+            var point = new Point();
+            _Console.WriteLine(point.X);
+            _Console.WriteLine(point.Y);
+            point.Translate(Observable.Return(10), Observable.Return(15));
+            _Console.WriteLine(point.X);
+            _Console.WriteLine(point.Y);
+            point.Translate(Observable.Return(10), Observable.Return(15));
+            _Console.WriteLine(point.X);
+            _Console.WriteLine(point.Y);
+            
             //Sample.Work().Subscribe();
             //var x = Observable.Return(new Context<int>(2));
             //var y = Observable.Return(new Context<int>(5, new[] {Tuple.Create("x", new GenericType(x.GetType(), x))}));
