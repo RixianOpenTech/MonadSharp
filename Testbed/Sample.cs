@@ -44,6 +44,15 @@ namespace Testbed
             return source.Select(value => Observable.If(() => value, ifBranch, elseBranch)).Flatten();
         }
 
+        public static IObservable<TResult> Generate<TState, TResult>(
+            this IObservable<TState> source,
+            Func<TState, bool> condition,
+            Func<TState, TState> iterate,
+            Func<TState, TResult> resultSelector)
+        {
+            return source.Select(state => Observable.Generate(state, condition, iterate, resultSelector)).Flatten();
+        }
+
         public static IObservable<T> SubscribeOnce<T>(this IObservable<T> source)
         {
             var published = source.Publish();
