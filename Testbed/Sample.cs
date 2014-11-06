@@ -2,81 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
-using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
 using MS.Core;
 using MsSystem;
-using MsSystem.Extensions;
 
 namespace Testbed
 {
-    public class Sample
+    /*
+    class Sample
     {
-        //How do we define an observable that has a shared subscription?
-
+	    unit Work()
+	    {
+		    int x = 5;
+		    if (x < 10)
+		    {
+			    foreach(int i in [0..x])
+			    {
+				    Console.WriteLine(i);
+			    }
+		    }
+		    else
+		    {
+		    }
+		    x = 10;
+	    }
+    }
+     */
+    
+    class Sample
+    {
         public static IObservable<Unit> Work()
         {
-            //Ex.ForAsync(Observable.Range(0,10), i => )
-            IObservable<int> x = Observable.Range(1, 3);
-            var y = Observable.Range(20, 10).SubscribeOnce();
-            IObservable<int> ifBlock = y;//.Add(y);
-            IObservable<int> elseBlock = x;//.Subtract(x);
-            var result = x.Select(xVal => xVal < 5).If(ifBlock, elseBlock);
-            return _Console.WriteLine(result);
-        }
-    }
-
-    public static class Ex
-    {
-        public static IObservable<TResult> ForAsync<TSource, TResult>(IObservable<TSource> source, Func<TSource, IObservable<TResult>> resultSelector)
-        {
-            return source.Select(resultSelector).Flatten();
-        }
-
-        public static IObservable<TResult> If<TResult>(
-            this IObservable<bool> source,
-            IObservable<TResult> ifBranch,
-            IObservable<TResult> elseBranch)
-        {
-            return source.Select(value => Observable.If(() => value, ifBranch, elseBranch)).Flatten();
-        }
-
-        public static IObservable<TResult> Generate<TState, TResult>(
-            this IObservable<TState> source,
-            Func<TState, bool> condition,
-            Func<TState, TState> iterate,
-            Func<TState, TResult> resultSelector)
-        {
-            return source.Select(state => Observable.Generate(state, condition, iterate, resultSelector)).Flatten();
-        }
-
-        public static IObservable<T> SubscribeOnce<T>(this IObservable<T> source)
-        {
-            var published = source.Publish();
-            IDisposable publishedConnection = null;
-            var gate = new object();
-            var disposable = new RefCountDisposable(Disposable.Create(() =>
-                                                                      {
-                                                                          if (publishedConnection != null)
-                                                                              publishedConnection.Dispose();
-                                                                      }));
-            return Observable.Create<T>(observer =>
-                                        {
-                                            var currentDisposable = new CompositeDisposable(published.Subscribe(observer),
-                                                                                            disposable.GetDisposable());
-                                            lock (gate)
-                                            {
-                                                if (publishedConnection == null)
-                                                {
-                                                    publishedConnection = published.Connect();
-                                                }
-                                            }
-
-                                            return currentDisposable;
-                                        });
+            return Observable.Create<Unit>(observer =>
+                                           {
+                                               IObservable<int> x = Observable.Return(5);
+                                               return x.Select(xVal => Observable.If(() => xVal < 10,
+                                                                              Observable.Generate(0, i => i < xVal, i => i + 1, i => i)
+                                                                                        .Select(i => _Console.WriteLine(Observable.Return(i))).Flatten(),
+                                                                              Observable.Return(Unit.Default))).Flatten().ContinueWith(
+                                                                       Observable.Return(Unit.Default).Do(_ => x = Observable.Return(10)))
+                                                       .Subscribe(observer);
+                                           });
         }
     }
 }

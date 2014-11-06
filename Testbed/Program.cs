@@ -26,10 +26,18 @@ namespace Testbed
             point.Translate(x, y).ContinueWith(
             _Console.WriteLine(point.ToObservableString()).ContinueWith(
             point.Translate(x, y).ContinueWith(
-            _Console.WriteLine(point.ToObservableString())))))))))))
-            .Subscribe();
+            _Console.WriteLine(point.ToObservableString())))))))))));
+            //.Subscribe();
 
-            
+
+            var car = new Car();
+            car.Accelerate().ContinueWith(
+            _Console.WriteLine(car.GetSpeed()).ContinueWith(
+            car.Accelerate().ContinueWith(
+            _Console.WriteLine(car.GetSpeed()))));
+            //.Subscribe();
+
+            Sample.Work().Subscribe();
             
             Console.ReadLine();
         }

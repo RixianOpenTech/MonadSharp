@@ -75,6 +75,53 @@ namespace MS.Core
             return disposable;
         }
 
+        public static IObservable<TResult> ForAsync<TSource, TResult>(IObservable<TSource> source, Func<TSource, IObservable<TResult>> resultSelector)
+        {
+            return source.Select(resultSelector).Flatten();
+        }
+
+        public static IObservable<TResult> If<TResult>(
+            this IObservable<bool> source,
+            IObservable<TResult> ifBranch,
+            IObservable<TResult> elseBranch)
+        {
+            return source.Select(value => Observable.If(() => value, ifBranch, elseBranch)).Flatten();
+        }
+
+        public static IObservable<TResult> Generate<TState, TResult>(
+            this IObservable<TState> source,
+            Func<TState, bool> condition,
+            Func<TState, TState> iterate,
+            Func<TState, TResult> resultSelector)
+        {
+            return source.Select(state => Observable.Generate<TState, TResult>(state, condition, iterate, resultSelector)).Flatten();
+        }
+
+        public static IObservable<T> SubscribeOnce<T>(this IObservable<T> source)
+        {
+            var published = source.Publish();
+            IDisposable publishedConnection = null;
+            var gate = new object();
+            var disposable = new RefCountDisposable(Disposable.Create(() =>
+                                                                      {
+                                                                          if (publishedConnection != null)
+                                                                              publishedConnection.Dispose();
+                                                                      }));
+            return Observable.Create<T>(observer =>
+                                        {
+                                            var currentDisposable = new CompositeDisposable(published.Subscribe((IObserver<T>)observer),
+                                                                                            disposable.GetDisposable());
+                                            lock (gate)
+                                            {
+                                                if (publishedConnection == null)
+                                                {
+                                                    publishedConnection = published.Connect();
+                                                }
+                                            }
+
+                                            return currentDisposable;
+                                        });
+        }
 
 
         //
@@ -1104,8 +1151,7 @@ namespace MS.Core
             IObservable<TSource9> source9,
             IObservable<TSource10> source10,
             IObservable<TSource11> source11,
-            Action<TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11>
-                action)
+            Action<TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11> action)
         {
             return Observable.Zip(source1,
                                   source2,
@@ -1257,8 +1303,7 @@ namespace MS.Core
             IObservable<TSource10> source10,
             IObservable<TSource11> source11,
             IObservable<TSource12> source12,
-            Action<TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12>
-                action)
+            Action<TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12> action)
         {
             return Observable.Zip(source1,
                                   source2,
@@ -1420,9 +1465,7 @@ namespace MS.Core
             IObservable<TSource11> source11,
             IObservable<TSource12> source12,
             IObservable<TSource13> source13,
-            Action
-                <TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12, TSource13>
-                action)
+            Action<TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12, TSource13> action)
         {
             return Observable.Zip(source1,
                                   source2,
@@ -1595,9 +1638,7 @@ namespace MS.Core
             IObservable<TSource12> source12,
             IObservable<TSource13> source13,
             IObservable<TSource14> source14,
-            Action
-                <TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12, TSource13,
-                    TSource14> action)
+            Action<TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12, TSource13, TSource14> action)
         {
             return Observable.Zip(source1,
                                   source2,
@@ -1780,9 +1821,7 @@ namespace MS.Core
             IObservable<TSource13> source13,
             IObservable<TSource14> source14,
             IObservable<TSource15> source15,
-            Action
-                <TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12, TSource13,
-                    TSource14, TSource15> action)
+            Action<TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12, TSource13, TSource14, TSource15> action)
         {
             return Observable.Zip(source1,
                                   source2,
@@ -1975,9 +2014,7 @@ namespace MS.Core
             IObservable<TSource14> source14,
             IObservable<TSource15> source15,
             IObservable<TSource16> source16,
-            Action
-                <TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12, TSource13,
-                    TSource14, TSource15, TSource16> action)
+            Action<TSource1, TSource2, TSource3, TSource4, TSource5, TSource6, TSource7, TSource8, TSource9, TSource10, TSource11, TSource12, TSource13, TSource14, TSource15, TSource16> action)
         {
             return Observable.Zip(source1,
                                   source2,
