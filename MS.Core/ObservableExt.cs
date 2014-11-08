@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -22,6 +23,12 @@ namespace MS.Core
                 return selector(valueObservable);
             });
         }
+
+        public static IObservable<Unit> Sequence(IEnumerable<IObservable<Unit>> observables)
+        {
+            return observables.Aggregate((left, right) => left.ContinueWith(right));
+        }
+
         public static IObservable<TResult> ContinueWith<TSource, TResult>(this IObservable<TSource> source, IObservable<TResult> other)
         {
             return source.SelectMany(_ => other);
