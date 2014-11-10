@@ -28,8 +28,17 @@ namespace Testbed
             _Console.WriteLine(point.ToObservableString()).ContinueWith(
             point.Translate(x, y).ContinueWith(
             _Console.WriteLine(point.ToObservableString())))))))))));
-            
-            Debug.WriteLine(JsonConvert.SerializeObject(program, Formatting.Indented));
+
+            var observables = new List<IObservable<Unit>>();
+            observables.Add(Observable.Return(5).ToUnit());
+            observables.Add(Observable.Return("Foo").ToUnit());
+            observables.Add(Observable.Return(5.4).ToUnit());
+
+            var jss = new JsonSerializerSettings();
+            var dcr = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+            dcr.DefaultMembersSearchFlags |= System.Reflection.BindingFlags.NonPublic;
+            jss.ContractResolver = dcr;
+            Debug.WriteLine(JsonConvert.SerializeObject(program, Formatting.Indented, jss));
             
             program.Subscribe();
 
