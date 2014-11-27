@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8FA0183C-8BF0-460F-9A26-8474AB0E6B92}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MonadSharp.Compiler</RootNamespace>
+    <AssemblyName>MonadSharp.Compiler</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Parser\MonadSharpParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tokens\TokenFactories\AsteriskTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\BooleanTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\ElseTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\IfTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\Int32TokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\LeftCurlyBraceTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\MinusTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\ForwardSlashTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\PercentTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\PeriodTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\PlusTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\RightCurlyBraceTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\SemicolonTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\StringTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\TokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\UnitTokenFactory.cs" />
+    <Compile Include="Tokens\AsteriskToken.cs" />
+    <Compile Include="Tokens\BooleanToken.cs" />
+    <Compile Include="Tokens\ElseToken.cs" />
+    <Compile Include="Tokens\IfToken.cs" />
+    <Compile Include="Tokens\Int32Token.cs" />
+    <Compile Include="Tokens\LeftCurlyBraceToken.cs" />
+    <Compile Include="Tokens\MinusToken.cs" />
+    <Compile Include="Tokens\ForwardSlashToken.cs" />
+    <Compile Include="Tokens\PercentToken.cs" />
+    <Compile Include="Tokens\PeriodToken.cs" />
+    <Compile Include="Tokens\PlusToken.cs" />
+    <Compile Include="Tokens\RightCurlyBraceToken.cs" />
+    <Compile Include="Tokens\SemicolonToken.cs" />
+    <Compile Include="Tokens\StringToken.cs" />
+    <Compile Include="Tokens\Token.cs" />
+    <Compile Include="Tokens\UnitToken.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Windows.Markup;
+using Antlr4.Runtime;
 using MS.Core;
 using MsSystem;
 using Newtonsoft.Json;
@@ -14,6 +15,10 @@ namespace Testbed
     {
         static void Main(string[] args)
         {
+            TestLexer lexer = new TestLexer(new AntlrFileStream(@"C:\Users\Samuel\Downloads\tpantlr2-code\code\examples\data.csv"));
+            var parser = new TestParser(new BufferedTokenStream(lexer));
+            
+
             var x = Observable.Return(10);
             var y = Observable.Return(15);
             var point = new Point();

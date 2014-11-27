@@ -20,7 +20,7 @@ namespace Testbed
 		    {
 			    foreach(int i in [0..x])
 			    {
-				    Console.WriteLine(i);
+				    Print(i);
 			    }
 		    }
 		    else

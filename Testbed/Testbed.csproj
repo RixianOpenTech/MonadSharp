@@ -80,6 +80,12 @@
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="Euler.cs" />
+    <Compile Include="obj\Debug\TestBaseListener.cs" />
+    <Compile Include="obj\Debug\TestBaseVisitor.cs" />
+    <Compile Include="obj\Debug\TestLexer.cs" />
+    <Compile Include="obj\Debug\TestListener.cs" />
+    <Compile Include="obj\Debug\TestParser.cs" />
+    <Compile Include="obj\Debug\TestVisitor.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +99,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="obj\Debug\Test.tokens" />
+    <None Include="obj\Debug\TestLexer.tokens" />
     <None Include="packages.config" />
     <None Include="Sample.ms" />
     <Antlr4 Include="Test.g4">

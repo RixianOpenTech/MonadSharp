@@ -1,6 +1,6 @@
 ﻿namespace Testbed
 {
-    partial class TestLexer
+    public partial class TestLexer
     {
     }
 }
