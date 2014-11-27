@@ -4,7 +4,7 @@
     {
         public override string TokenName
         {
-            get { return PercentToken.TokenName; }
+            get { return PeriodToken.TokenName; }
         }
 
         public override string TokenRegexPattern

@@ -1,20 +1,20 @@
 ﻿namespace MonadSharp.Compiler.Tokens.TokenFactories
 {
-    public sealed class LeftCurlyBraceTokenFactory : TokenFactory
+    public sealed class ConstantStringTokenFactory : TokenFactory
     {
-        internal LeftCurlyBraceTokenFactory()
+        internal ConstantStringTokenFactory()
         {
             
         }
 
         public override string TokenName
         {
-            get { return LeftCurlyBraceToken.TokenName; }
+            get { return ConstantStringToken.TokenName; }
         }
 
         public override string TokenRegexPattern
         {
-            get { return @"^{$"; }
+            get { return "^\".*\"$"; }
         }
     }
 }

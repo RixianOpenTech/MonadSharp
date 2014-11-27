@@ -1,7 +1,12 @@
 ﻿namespace MonadSharp.Compiler.Tokens.TokenFactories
 {
-    public class IfTokenFactory : TokenFactory
+    public sealed class IfTokenFactory : TokenFactory
     {
+        internal IfTokenFactory()
+        {
+            
+        }
+
         public override string TokenName
         {
             get { return IfToken.TokenName; }

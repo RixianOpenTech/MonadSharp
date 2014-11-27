@@ -1,7 +1,12 @@
 ﻿namespace MonadSharp.Compiler.Tokens.TokenFactories
 {
-    public class PercentTokenFactory : TokenFactory
+    public sealed class PercentTokenFactory : TokenFactory
     {
+        internal PercentTokenFactory()
+        {
+            
+        }
+
         public override string TokenName
         {
             get { return PercentToken.TokenName; }

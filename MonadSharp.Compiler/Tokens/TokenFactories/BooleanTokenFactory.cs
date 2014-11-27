@@ -1,7 +1,12 @@
 ﻿namespace MonadSharp.Compiler.Tokens.TokenFactories
 {
-    public class BooleanTokenFactory : TokenFactory
+    public sealed class BooleanTokenFactory : TokenFactory
     {
+        internal BooleanTokenFactory()
+        {
+            
+        }
+
         public override string TokenName
         {
             get { return BooleanToken.TokenName; }

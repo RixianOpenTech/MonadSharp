@@ -1,7 +1,12 @@
 ﻿namespace MonadSharp.Compiler.Tokens.TokenFactories
 {
-    public class AsteriskTokenFactory : TokenFactory
+    public sealed class AsteriskTokenFactory : TokenFactory
     {
+        internal AsteriskTokenFactory()
+        {
+            
+        }
+
         public override string TokenName
         {
             get { return AsteriskToken.TokenName; }

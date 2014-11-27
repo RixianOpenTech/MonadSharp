@@ -1,7 +1,12 @@
 ﻿namespace MonadSharp.Compiler.Tokens.TokenFactories
 {
-    public class RightCurlyBraceTokenFactory : TokenFactory
+    public sealed class RightCurlyBraceTokenFactory : TokenFactory
     {
+        internal RightCurlyBraceTokenFactory()
+        {
+            
+        }
+
         public override string TokenName
         {
             get { return RightCurlyBraceToken.TokenName; }

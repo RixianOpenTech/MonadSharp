@@ -1,7 +1,12 @@
 ﻿namespace MonadSharp.Compiler.Tokens.TokenFactories
 {
-    public class SemicolonTokenFactory : TokenFactory
+    public sealed class SemicolonTokenFactory : TokenFactory
     {
+        internal SemicolonTokenFactory()
+        {
+            
+        }
+
         public override string TokenName
         {
             get { return SemicolonToken.TokenName; }
