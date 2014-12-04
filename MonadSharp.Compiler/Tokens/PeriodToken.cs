@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class PeriodToken : Token
     {
         public const string TokenName = "Period";
+
+        public PeriodToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

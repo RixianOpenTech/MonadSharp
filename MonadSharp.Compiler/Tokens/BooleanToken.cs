@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class BooleanToken : Token
     {
         public const string TokenName = "Boolean";
+
+        public BooleanToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

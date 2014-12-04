@@ -7,6 +7,11 @@
             
         }
 
+        public override Token ParseToken(string tokenValue)
+        {
+            return new AsteriskToken(tokenValue);
+        }
+
         public override string TokenName
         {
             get { return AsteriskToken.TokenName; }
@@ -14,7 +19,7 @@
 
         public override string TokenRegexPattern
         {
-            get { return @"^\*$"; } //Match asterisk with no leading or trailing characters
+            get { return @"\*"; } //Match asterisk with no leading or trailing characters
         }
     }
 }

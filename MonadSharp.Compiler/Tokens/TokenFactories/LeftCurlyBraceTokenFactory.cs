@@ -7,6 +7,11 @@
             
         }
 
+        public override Token ParseToken(string tokenValue)
+        {
+            return new LeftCurlyBraceToken(tokenValue);
+        }
+
         public override string TokenName
         {
             get { return LeftCurlyBraceToken.TokenName; }
@@ -14,7 +19,7 @@
 
         public override string TokenRegexPattern
         {
-            get { return @"^{$"; }
+            get { return @"{"; }
         }
     }
 }

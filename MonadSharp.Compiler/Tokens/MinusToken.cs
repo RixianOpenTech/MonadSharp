@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class MinusToken : Token
     {
         public const string TokenName = "Minus";
+
+        public MinusToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

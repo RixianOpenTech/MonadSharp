@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class RightCurlyBraceToken : Token
     {
         public const string TokenName = "RightCurlyBrace";
+
+        public RightCurlyBraceToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

@@ -36,7 +36,24 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Parser\MonadSharpParser.cs" />
+    <Compile Include="Parser\SplitExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateMachine\States.cs" />
+    <Compile Include="Tokens\ConstantBooleanToken.cs" />
+    <Compile Include="Tokens\GreaterThanToken.cs" />
+    <Compile Include="Tokens\LessThanToken.cs" />
+    <Compile Include="Tokens\EqualsToken.cs" />
+    <Compile Include="Tokens\LeftParenToken.cs" />
+    <Compile Include="Tokens\RightParenToken.cs" />
+    <Compile Include="Tokens\TokenFactories\ConstantBooleanTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\WhileTokenFactory.cs" />
+    <Compile Include="Tokens\WhileToken.cs" />
+    <Compile Include="Tokens\TokenFactories\GreaterThanTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\LessThanTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\EqualsTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\LeftParenTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\RightParenTokenFactory.cs" />
+    <Compile Include="Tokens\UnknownToken.cs" />
     <Compile Include="Tokens\ConstantStringToken.cs" />
     <Compile Include="Tokens\TokenFactories\AsteriskTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\BooleanTokenFactory.cs" />
@@ -96,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="SampleProgram.ms">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

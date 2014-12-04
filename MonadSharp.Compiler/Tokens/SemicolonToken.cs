@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class SemicolonToken : Token
     {
         public const string TokenName = "Semicolon";
+
+        public SemicolonToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }
