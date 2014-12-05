@@ -36,6 +36,7 @@ namespace MonadSharp.Compiler.Parser
                 .SplitWhile()
                 .SplitConstantInt32()
                 .SplitConstantBoolean()
+                .SplitName()
                 .Where(t => !string.IsNullOrWhiteSpace(t.TokenValue));
         }
 
@@ -182,6 +183,11 @@ namespace MonadSharp.Compiler.Parser
         private static IEnumerable<Token> SplitWhile(this IEnumerable<Token> tokens)
         {
             return Split(tokens, WhileToken.TokenName, true);
+        }
+
+        private static IEnumerable<Token> SplitName(this IEnumerable<Token> tokens)
+        {
+            return Split(tokens, NameToken.TokenName);
         }
     }
 }

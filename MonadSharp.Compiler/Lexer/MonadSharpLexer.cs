@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using MonadSharp.Compiler.Parser;
 using MonadSharp.Compiler.Tokens;
-using MonadSharp.Compiler.Tokens.TokenFactories;
 
-namespace MonadSharp.Compiler.Parser
+namespace MonadSharp.Compiler.Lexer
 {
-    public class MonadSharpParser
+    public class MonadSharpLexer
     {
-        static MonadSharpParser()
+        static MonadSharpLexer()
         {
-            var currentAssembly = typeof (MonadSharpParser).GetTypeInfo().Assembly;
+            var currentAssembly = typeof (MonadSharpLexer).GetTypeInfo().Assembly;
             var allTokens = currentAssembly.DefinedTypes.Where(info => !info.IsAbstract && info.IsSubclassOf(typeof (Token)));
         }
 
