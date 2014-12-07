@@ -37,6 +37,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Lexer\MonadSharpLexer.cs" />
     <Compile Include="Lexer\SplitExtensions.cs" />
+    <Compile Include="Parser\MonadSharpParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateMachine\States.cs" />
     <Compile Include="Tokens\ConstantBooleanToken.cs" />
@@ -45,9 +46,13 @@
     <Compile Include="Tokens\LessThanToken.cs" />
     <Compile Include="Tokens\EqualsToken.cs" />
     <Compile Include="Tokens\LeftParenToken.cs" />
+    <Compile Include="Tokens\ParallelToken.cs" />
+    <Compile Include="Tokens\SerialToken.cs" />
     <Compile Include="Tokens\RightParenToken.cs" />
     <Compile Include="Tokens\TokenFactories\ConstantBooleanTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\NameTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\ParallelTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\SerialTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\WhileTokenFactory.cs" />
     <Compile Include="Tokens\WhileToken.cs" />
     <Compile Include="Tokens\TokenFactories\GreaterThanTokenFactory.cs" />

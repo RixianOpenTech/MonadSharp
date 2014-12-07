@@ -12,8 +12,11 @@
 	unit u = unit;
 	Console.WriteLine(u);
 
-	ThisProgram();
-	ThatProgram();
+	serial
+	{
+		ThisProgram();
+		ThatProgram();
+	}
 
 	DemonstrateParallelism();
 }
@@ -52,5 +55,5 @@ unit Print(bool thisProgram)
 
 unit DemonstrateParallelism()
 {
-		
+	
 }

@@ -34,6 +34,8 @@ namespace MonadSharp.Compiler.Parser
                 .SplitIf()
                 .SplitElse()
                 .SplitWhile()
+                .SplitSerial()
+                .SplitParallel()
                 .SplitConstantInt32()
                 .SplitConstantBoolean()
                 .SplitName()
@@ -183,6 +185,16 @@ namespace MonadSharp.Compiler.Parser
         private static IEnumerable<Token> SplitWhile(this IEnumerable<Token> tokens)
         {
             return Split(tokens, WhileToken.TokenName, true);
+        }
+
+        private static IEnumerable<Token> SplitSerial(this IEnumerable<Token> tokens)
+        {
+            return Split(tokens, SerialToken.TokenName, true);
+        }
+
+        private static IEnumerable<Token> SplitParallel(this IEnumerable<Token> tokens)
+        {
+            return Split(tokens, ParallelToken.TokenName, true);
         }
 
         private static IEnumerable<Token> SplitName(this IEnumerable<Token> tokens)
