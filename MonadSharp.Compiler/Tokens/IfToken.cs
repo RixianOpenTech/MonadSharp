@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class IfToken : Token
     {
         public const string TokenName = "If";
+
+        public IfToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

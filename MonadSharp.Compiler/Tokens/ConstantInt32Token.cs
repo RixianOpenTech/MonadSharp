@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class ConstantInt32Token : Token
     {
         public const string TokenName = "ConstantInt32";
+
+        public ConstantInt32Token(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

@@ -7,6 +7,11 @@
             
         }
 
+        public override Token ParseToken(string tokenValue)
+        {
+            return new ConstantInt32Token(tokenValue);
+        }
+
         public override string TokenName
         {
             get { return ConstantInt32Token.TokenName; }
@@ -14,7 +19,7 @@
 
         public override string TokenRegexPattern
         {
-            get { return @"^\d+$"; }
+            get { return @"\d+"; }
         }
     }
 }

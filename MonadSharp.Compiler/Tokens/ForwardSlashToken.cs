@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class ForwardSlashToken : Token
     {
         public const string TokenName = "ForwardSlash";
+
+        public ForwardSlashToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

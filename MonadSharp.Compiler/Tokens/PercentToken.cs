@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class PercentToken : Token
     {
         public const string TokenName = "Percent";
+
+        public PercentToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

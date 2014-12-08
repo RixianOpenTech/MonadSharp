@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class AsteriskToken : Token
     {
         public const string TokenName = "Asterisk";
+
+        public AsteriskToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

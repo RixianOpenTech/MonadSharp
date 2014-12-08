@@ -50,14 +50,26 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TokenGeneratorTests.cs" />
     <Compile Include="TokenRegexTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LexerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonadSharp.Compiler\MonadSharp.Compiler.csproj">
       <Project>{8FA0183C-8BF0-460F-9A26-8474AB0E6B92}</Project>
       <Name>MonadSharp.Compiler</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\MonadSharp.Compiler\SampleProgram-Mini.ms">
+      <Link>SampleProgram-Mini.ms</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\MonadSharp.Compiler\SampleProgram.ms">
+      <Link>SampleProgram.ms</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

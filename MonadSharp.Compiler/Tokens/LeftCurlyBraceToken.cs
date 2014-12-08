@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class LeftCurlyBraceToken : Token
     {
         public const string TokenName = "LeftCurlyBrace";
+
+        public LeftCurlyBraceToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }

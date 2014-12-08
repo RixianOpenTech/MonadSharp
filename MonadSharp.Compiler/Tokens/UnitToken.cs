@@ -9,5 +9,9 @@ namespace MonadSharp.Compiler.Tokens
     public class UnitToken : Token
     {
         public const string TokenName = "Unit";
+
+        public UnitToken(string tokenValue) : base(tokenValue)
+        {
+        }
     }
 }
