@@ -17,8 +17,6 @@
 		ThisProgram();
 		ThatProgram();
 	}
-
-	DemonstrateParallelism();
 }
 
 unit ThisProgram()
@@ -53,7 +51,9 @@ unit Print(bool thisProgram)
 	}
 }
 
-unit DemonstrateParallelism()
+serial SayHello()
 {
-	
+	Console.Write("Please Enter Your Name: ");
+	string name = Console.ReadLine();
+	Console.WriteLine("Hello " + name);
 }
