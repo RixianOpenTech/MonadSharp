@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class GreaterThanToken : Token
+    public class GreaterThanToken : SyntaxToken
     {
         public const string TokenName = "GreaterThan";
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class WhileToken : Token
+    public class WhileToken : SyntaxToken
     {
         public const string TokenName = "While";
 

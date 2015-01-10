@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class SemicolonToken : Token
+    public class SemicolonToken : SyntaxToken
     {
         public const string TokenName = "Semicolon";
 

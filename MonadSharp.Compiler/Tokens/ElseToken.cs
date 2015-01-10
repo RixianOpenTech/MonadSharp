@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class ElseToken : Token
+    public class ElseToken : SyntaxToken
     {
         public const string TokenName = "Else";
 

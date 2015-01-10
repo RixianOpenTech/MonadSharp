@@ -7,7 +7,7 @@
             
         }
 
-        public override Token ParseToken(string tokenValue)
+        public override SyntaxToken ParseToken(string tokenValue)
         {
             return new AsteriskToken(tokenValue);
         }
