@@ -1,0 +1,1 @@
+csc /out:SampleProgram.exe SampleProgram.cs

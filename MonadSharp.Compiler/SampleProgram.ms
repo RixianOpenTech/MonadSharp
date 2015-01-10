@@ -11,6 +11,10 @@
 
 	unit u = unit;
 	Console.WriteLine(u);
+	
+	Console.Write("Enter some text: ");
+	string input = Console.ReadLine();
+	Console.WriteLine(input);
 
 	serial
 	{
@@ -51,7 +55,7 @@ unit Print(bool thisProgram)
 	}
 }
 
-serial SayHello()
+serial unit SayHello()
 {
 	Console.Write("Please Enter Your Name: ");
 	string name = Console.ReadLine();
