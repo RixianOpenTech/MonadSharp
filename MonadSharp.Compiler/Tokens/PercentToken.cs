@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class PercentToken : Token
+    public class PercentToken : SyntaxToken
     {
         public const string TokenName = "Percent";
 

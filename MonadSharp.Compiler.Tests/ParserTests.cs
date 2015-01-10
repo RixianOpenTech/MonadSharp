@@ -1,8 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.IO;
-using MonadSharp.Compiler.Parser;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MonadSharp.Compiler.Lexer;
+using MonadSharp.Compiler.Parser;
+using MonadSharp.Compiler.Tokens;
+using MonadSharp.Compiler.Tokens.TokenFactories;
 
 namespace MonadSharp.Compiler.Tests
 {
@@ -24,6 +29,15 @@ namespace MonadSharp.Compiler.Tests
         {
             var tokens = MonadSharpLexer.Parse(this.sampleProgramText);
             MonadSharpParser.Parse(tokens);
+        }
+
+        [TestMethod]
+        public void ParseMini()
+        {
+            var tokens = MonadSharpLexer.Parse(this.sampleProgramText);
+            var unknownTokens = tokens.OfType<UnknownToken>().ToList();
+            var miniTokens = MonadSharpLexer.Parse(this.sampleProgramText);
+            var miniUnknownTokens = miniTokens.OfType<UnknownToken>().ToList();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class LeftParenToken : Token
+    public class LeftParenToken : SyntaxToken
     {
         public const string TokenName = "LeftParen";
 

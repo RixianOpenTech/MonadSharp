@@ -11,10 +11,10 @@ namespace MonadSharp.Compiler.Lexer
         static MonadSharpLexer()
         {
             var currentAssembly = typeof (MonadSharpLexer).GetTypeInfo().Assembly;
-            var allTokens = currentAssembly.DefinedTypes.Where(info => !info.IsAbstract && info.IsSubclassOf(typeof (Token)));
+            var allTokens = currentAssembly.DefinedTypes.Where(info => !info.IsAbstract && info.IsSubclassOf(typeof (SyntaxToken)));
         }
 
-        public static IReadOnlyList<Token> Parse(string program)
+        public static IReadOnlyList<SyntaxToken> Parse(string program)
         {
             return SplitExtensions.SplitIntoTokens(program).ToList();
         }

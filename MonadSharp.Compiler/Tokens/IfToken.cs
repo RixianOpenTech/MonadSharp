@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class IfToken : Token
+    public class IfToken : SyntaxToken
     {
         public const string TokenName = "If";
 

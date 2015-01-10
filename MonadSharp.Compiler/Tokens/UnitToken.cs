@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class UnitToken : Token
+    public class UnitToken : TypeToken
     {
         public const string TokenName = "Unit";
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class ParallelToken : Token
+    public class ParallelToken : SyntaxToken
     {
         public const string TokenName = "Parallel";
 

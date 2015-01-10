@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class ConstantInt32Token : Token
+    public class ConstantInt32Token : SyntaxToken
     {
         public const string TokenName = "ConstantInt32";
 

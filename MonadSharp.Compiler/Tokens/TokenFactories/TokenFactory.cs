@@ -22,7 +22,7 @@ namespace MonadSharp.Compiler.Tokens.TokenFactories
             TokenFactories = tokenFactories.ToDictionary(factory => factory.TokenName);
         }
 
-        public static Token CreateToken(string tokenValue)
+        public static SyntaxToken CreateToken(string tokenValue)
         {
             var tokenFactory = GetTokenParserFactory(tokenValue);
             if (tokenFactory == null)
@@ -31,7 +31,7 @@ namespace MonadSharp.Compiler.Tokens.TokenFactories
             return tokenFactory.ParseToken(tokenValue);
         }
 
-        public abstract Token ParseToken(string tokenValue);
+        public abstract SyntaxToken ParseToken(string tokenValue);
 
         protected TokenFactory()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class ForwardSlashToken : Token
+    public class ForwardSlashToken : SyntaxToken
     {
         public const string TokenName = "ForwardSlash";
 

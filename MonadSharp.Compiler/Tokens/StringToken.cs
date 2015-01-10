@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class StringToken : Token
+    public class StringToken : TypeToken
     {
         public const string TokenName = "String";
 

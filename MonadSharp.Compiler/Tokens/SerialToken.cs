@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class SerialToken : Token
+    public class SerialToken : SyntaxToken
     {
         public const string TokenName = "Serial";
 

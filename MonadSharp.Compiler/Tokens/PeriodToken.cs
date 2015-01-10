@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class PeriodToken : Token
+    public class PeriodToken : SyntaxToken
     {
         public const string TokenName = "Period";
 

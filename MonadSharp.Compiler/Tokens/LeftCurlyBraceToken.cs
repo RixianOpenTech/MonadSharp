@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonadSharp.Compiler.Tokens
 {
-    public class LeftCurlyBraceToken : Token
+    public class LeftCurlyBraceToken : SyntaxToken
     {
         public const string TokenName = "LeftCurlyBrace";
 
