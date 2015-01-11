@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WrapperGenerator", "WrapperGenerator\WrapperGenerator.csproj", "{6169E3DF-E665-4005-AA23-8A969C8F3B26}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonadSharp.Compiler", "MonadSharp.Compiler\MonadSharp.Compiler.csproj", "{8FA0183C-8BF0-460F-9A26-8474AB0E6B92}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonadSharp.Compiler.Tests", "MonadSharp.Compiler.Tests\MonadSharp.Compiler.Tests.csproj", "{C2201550-3A79-49E5-BDE0-366A5F6F3AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonadSharp.Syntax", "MonadSharp.Syntax\MonadSharp.Syntax.csproj", "{EDADBD26-0D65-4DDD-993E-8FDD065C4FA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleProgramRunner", "SampleProgramRunner\SampleProgramRunner.csproj", "{E2FCC155-15F8-4EE4-AD15-F96CC9ED111D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,14 @@ Global
 		{C2201550-3A79-49E5-BDE0-366A5F6F3AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2201550-3A79-49E5-BDE0-366A5F6F3AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2201550-3A79-49E5-BDE0-366A5F6F3AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDADBD26-0D65-4DDD-993E-8FDD065C4FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDADBD26-0D65-4DDD-993E-8FDD065C4FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDADBD26-0D65-4DDD-993E-8FDD065C4FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDADBD26-0D65-4DDD-993E-8FDD065C4FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2FCC155-15F8-4EE4-AD15-F96CC9ED111D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2FCC155-15F8-4EE4-AD15-F96CC9ED111D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2FCC155-15F8-4EE4-AD15-F96CC9ED111D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2FCC155-15F8-4EE4-AD15-F96CC9ED111D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +77,8 @@ Global
 		{3733B999-1967-4A3D-B3EA-16E9800026F6} = {D96A94D5-F663-4CA9-B4CD-541A16C65D9C}
 		{8FA0183C-8BF0-460F-9A26-8474AB0E6B92} = {3180AF50-D70A-4C15-A840-DA281D33D516}
 		{C2201550-3A79-49E5-BDE0-366A5F6F3AD3} = {3180AF50-D70A-4C15-A840-DA281D33D516}
+		{EDADBD26-0D65-4DDD-993E-8FDD065C4FA9} = {3180AF50-D70A-4C15-A840-DA281D33D516}
+		{E2FCC155-15F8-4EE4-AD15-F96CC9ED111D} = {D96A94D5-F663-4CA9-B4CD-541A16C65D9C}
 	EndGlobalSection
 	GlobalSection(CodealikeProperties) = postSolution
 		SolutionGuid = d8ffd199-0c8e-47dc-a5da-c42b0b79b054

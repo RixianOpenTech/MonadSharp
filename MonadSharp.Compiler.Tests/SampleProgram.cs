@@ -2,77 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
 using System.Text;
+using MsSystem;
+using MS.Core;
 
 namespace MonadSharp.Compiler
 {
     public class SampleProgram
     {
-        Unit Main()
+        public IObservable<Unit> Main()
         {
-            bool b = true;
-            Console.WriteLine(b);
+            IObservable<bool> b = Observable.Return(true);
+            IObservable<string> s = Observable.Return("Hi 1234 { } = . ; world");
+            IObservable<int> x = Observable.Return(12345);
+            IObservable<Unit> u = Observable.Return(Unit.Default);
 
-            string s = "Hi 1234 { } = . ; world";
-            Console.WriteLine(s);
-
-            int x = 12345;
-            Console.WriteLine(x);
-
-            Unit u = Unit.Default;
-            Console.WriteLine(u);
-
-            ThisProgram();
-            ThatProgram();
-
-            return Unit.Default;
+            return _Console.WriteLine(b).ContinueWith(
+                _Console.WriteLine(s).ContinueWith(
+                    _Console.WriteLine(x).ContinueWith(
+                        _Console.WriteLine(u.Select(unit => unit.ToString())).ContinueWith(
+                            this.ThisProgram().ContinueWith(
+                                this.ThatProgram())))));
         }
 
-        Unit ThisProgram()
+        IObservable<Unit> ThisProgram()
         {
-            int x = 0;
-            while (x < 5)
-            {
-                Print(true);
-                x = x + 1;
-            }
-
-            return Unit.Default;
+            return Observable.Generate(0, x => x < 5, x => x + 1, x => Unit.Default).ObserveOn(NewThreadScheduler.Default)
+                .SelectMany(_ => this.Print(Observable.Return(true))).LastAsync();
         }
 
-        Unit ThatProgram()
+        IObservable<Unit> ThatProgram()
         {
-            int x = 0;
-            while (x < 5)
-            {
-                Print(false);
-                x = x + 1;
-            }
-
-            return Unit.Default;
+            return Observable.Generate(0, x => x < 5, x => x + 1, x => Unit.Default).ObserveOn(NewThreadScheduler.Default)
+                .SelectMany(_ => this.Print(Observable.Return(false))).LastAsync();
         }
 
-        Unit Print(bool thisProgram)
+        IObservable<Unit> Print(IObservable<bool> thisProgram)
         {
-            if (thisProgram)
-            {
-                Console.WriteLine("Hello from this program.");
-            }
-            else
-            {
-                Console.WriteLine("Hello from that program.");
-            }
-
-            return Unit.Default;
+            return thisProgram.SelectMany(b =>
+                Observable.If(() => b,
+                    _Console.WriteLine(Observable.Return("Hello from this program.")),
+                    _Console.WriteLine(Observable.Return("Hello from that program."))));
         }
 
-        Unit SayHello()
+        private IObservable<Unit> SayHello()
         {
-            Console.Write("Please Enter Your Name: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Hello " + name);
-
-            return Unit.Default;
+            IObservable<string> name = _Console.ReadLine();
+            return _Console.Write(Observable.Return("Please Enter Your Name: ")).ContinueWith(
+                _Console.WriteLine(Observable.Return("Hello ").Concat(name)));
         }
     }
 }

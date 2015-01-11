@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EDADBD26-0D65-4DDD-993E-8FDD065C4FA9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MonadSharp.Syntax</RootNamespace>
+    <AssemblyName>MonadSharp.Syntax</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Nodes\StatementNode.cs" />
+    <Compile Include="Tokens\Abstract\BinaryOperatorToken.cs" />
+    <Compile Include="Nodes\BlockNode.cs" />
+    <Compile Include="Nodes\MethodDeclarationNode.cs" />
+    <Compile Include="Nodes\ParameterListNode.cs" />
+    <Compile Include="Nodes\ParameterNode.cs" />
+    <Compile Include="Nodes\PredefinedTypeNode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Nodes\SerialBlockNode.cs" />
+    <Compile Include="SyntaxNode.cs" />
+    <Compile Include="SyntaxToken.cs" />
+    <Compile Include="Tokens\Fixed\BinaryOperators\AsteriskToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\TrueToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\FalseToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\PredefinedTypes\BooleanToken.cs" />
+    <Compile Include="Tokens\Fixed\CommaToken.cs" />
+    <Compile Include="Tokens\Abstract\BooleanTypeToken.cs" />
+    <Compile Include="Tokens\ConstantInt32Token.cs" />
+    <Compile Include="Tokens\ConstantStringToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\ElseToken.cs" />
+    <Compile Include="Tokens\Fixed\BinaryOperators\EqualsToken.cs" />
+    <Compile Include="Tokens\Abstract\FixedSyntaxToken.cs" />
+    <Compile Include="Tokens\Fixed\BinaryOperators\ForwardSlashToken.cs" />
+    <Compile Include="Tokens\Fixed\BinaryOperators\GreaterThanToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\IfToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\PredefinedTypes\Int32Token.cs" />
+    <Compile Include="Tokens\Abstract\KeywordToken.cs" />
+    <Compile Include="Tokens\Fixed\LeftCurlyBraceToken.cs" />
+    <Compile Include="Tokens\Fixed\LeftParenToken.cs" />
+    <Compile Include="Tokens\Fixed\BinaryOperators\LessThanToken.cs" />
+    <Compile Include="Tokens\Fixed\BinaryOperators\MinusToken.cs" />
+    <Compile Include="Tokens\NameToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\ParallelToken.cs" />
+    <Compile Include="Tokens\Fixed\BinaryOperators\PercentToken.cs" />
+    <Compile Include="Tokens\Fixed\PeriodToken.cs" />
+    <Compile Include="Tokens\Fixed\BinaryOperators\PlusToken.cs" />
+    <Compile Include="Tokens\Abstract\PredefinedTypeToken.cs" />
+    <Compile Include="Tokens\Fixed\RightCurlyBraceToken.cs" />
+    <Compile Include="Tokens\Fixed\RightParenToken.cs" />
+    <Compile Include="Tokens\Fixed\SemicolonToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\SerialToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\PredefinedTypes\StringToken.cs" />
+    <Compile Include="Tokens\TokenFactories\AsteriskTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\BooleanTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\CommaTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\ConstantBooleanTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\ConstantInt32TokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\ConstantStringTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\ElseTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\EqualsTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\ForwardSlashTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\GreaterThanTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\IfTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\Int32TokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\LeftCurlyBraceTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\LeftParenTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\LessThanTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\MinusTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\NameTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\ParallelTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\PercentTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\PeriodTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\PlusTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\RightCurlyBraceTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\RightParenTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\SemicolonTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\SerialTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\StringTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\TokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\UnitTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\WhileTokenFactory.cs" />
+    <Compile Include="Tokens\Abstract\TypeToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\PredefinedTypes\UnitToken.cs" />
+    <Compile Include="Tokens\UnknownToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\WhileToken.cs" />
+    <Compile Include="Nodes\Abstract\TypeNode.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

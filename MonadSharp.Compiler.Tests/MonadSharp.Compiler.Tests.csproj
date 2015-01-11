@@ -35,7 +35,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.1.0.0-beta1-20141031-01\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.1.0.0-beta1-20141031-01\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Desktop">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.1.0.0-beta1-20141031-01\lib\net45\Microsoft.CodeAnalysis.CSharp.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Desktop">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.1.0.0-beta1-20141031-01\lib\net45\Microsoft.CodeAnalysis.Desktop.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\packages\System.Collections.Immutable.1.1.32-beta\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Reactive.Core">
       <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
     </Reference>
@@ -44,6 +59,12 @@
     </Reference>
     <Reference Include="System.Reactive.Linq">
       <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata">
+      <HintPath>..\packages\System.Reflection.Metadata.1.0.17-beta\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Choose>
@@ -65,11 +86,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LexerTests.cs" />
     <Compile Include="ParserTests.cs" />
+    <Compile Include="RoslynTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonadSharp.Compiler\MonadSharp.Compiler.csproj">
       <Project>{8FA0183C-8BF0-460F-9A26-8474AB0E6B92}</Project>
       <Name>MonadSharp.Compiler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MS.Core\MS.Core.csproj">
+      <Project>{C0A0F9B0-2CFA-47C1-8477-9FDAAD44F00F}</Project>
+      <Name>MS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MS.System\MS.System.csproj">
+      <Project>{D5942F87-D674-400C-8DBD-7C2C32970710}</Project>
+      <Name>MS.System</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -45,13 +45,6 @@
     <Compile Include="Syntax\SyntaxKind.cs" />
     <Compile Include="Syntax\SyntaxNode.cs" />
     <Compile Include="Syntax\SyntaxNodeOrToken.cs" />
-    <Compile Include="Syntax\SyntaxNodes\BlockNode.cs" />
-    <Compile Include="Syntax\SyntaxNodes\MethodDeclarationNode.cs" />
-    <Compile Include="Syntax\SyntaxNodes\ParameterListNode.cs" />
-    <Compile Include="Syntax\SyntaxNodes\ParameterNode.cs" />
-    <Compile Include="Syntax\SyntaxNodes\PredefinedTypeNode.cs" />
-    <Compile Include="Syntax\SyntaxNodes\SerialBlockNode.cs" />
-    <Compile Include="Syntax\SyntaxNodes\TypeNode.cs" />
     <Compile Include="Syntax\SyntaxToken.cs" />
     <Compile Include="Syntax\SyntaxTokens\PredefinedTypeToken.cs" />
     <Compile Include="Tokens\CommaToken.cs" />
@@ -143,7 +136,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Syntax\SyntaxNodes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
