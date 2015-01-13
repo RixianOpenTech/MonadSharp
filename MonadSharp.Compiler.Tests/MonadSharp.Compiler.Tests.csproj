@@ -93,6 +93,10 @@
       <Project>{8FA0183C-8BF0-460F-9A26-8474AB0E6B92}</Project>
       <Name>MonadSharp.Compiler</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MonadSharp.Syntax\MonadSharp.Syntax.csproj">
+      <Project>{EDADBD26-0D65-4DDD-993E-8FDD065C4FA9}</Project>
+      <Name>MonadSharp.Syntax</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MS.Core\MS.Core.csproj">
       <Project>{C0A0F9B0-2CFA-47C1-8477-9FDAAD44F00F}</Project>
       <Name>MS.Core</Name>

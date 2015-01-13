@@ -6,7 +6,7 @@ namespace MonadSharp.Syntax.Tokens.TokenFactories
     {
         public override SyntaxToken ParseToken(string tokenValue)
         {
-            return new PeriodToken(tokenValue);
+            return new PeriodToken();
         }
 
         public override string TokenName

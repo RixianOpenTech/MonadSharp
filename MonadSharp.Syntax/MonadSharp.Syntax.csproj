@@ -37,7 +37,14 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Nodes\Abstract\ExpressionNode.cs" />
+    <Compile Include="Nodes\ArgumentListNode.cs" />
+    <Compile Include="Nodes\ExpressionStatementNode.cs" />
+    <Compile Include="Nodes\IdentifierNameNode.cs" />
+    <Compile Include="Nodes\InvocationExpressionNode.cs" />
+    <Compile Include="Nodes\SimpleMemberAccessExpressionNode.cs" />
     <Compile Include="Nodes\StatementNode.cs" />
+    <Compile Include="Nodes\StringLiteralExpressionNode.cs" />
     <Compile Include="Tokens\Abstract\BinaryOperatorToken.cs" />
     <Compile Include="Nodes\BlockNode.cs" />
     <Compile Include="Nodes\MethodDeclarationNode.cs" />

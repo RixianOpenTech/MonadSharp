@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MonadSharp.Syntax.Nodes;
+using MonadSharp.Syntax.Nodes.Abstract;
+using MonadSharp.Syntax.Tokens;
+using MonadSharp.Syntax.Tokens.Fixed.Keywords.PredefinedTypes;
+using MsSystem;
 
 namespace MonadSharp.Compiler.Tests
 {
@@ -13,14 +19,100 @@ namespace MonadSharp.Compiler.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            var tree = CSharpSyntaxTree.ParseText(
-                @"
+            var tree = CSharpSyntaxTree.ParseText(@"
 public void Main()
 {
     bool b = true;
-}
-");
+}");
             PrintTree(tree);
+        }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            //Microsoft.CodeAnalysis.CSharp.Syntax.InvocationExpressionSyntax
+            /*
+ MethodDeclaration
+    PublicKeyword
+    PredefinedType
+        VoidKeyword
+    IdentifierToken
+    ParameterList
+        OpenParenToken
+        CloseParenToken
+    Block
+        OpenBraceToken
+        ExpressionStatement
+            InvocationExpression
+                SimpleMemberAccessExpression
+                    IdentifierName
+                        IdentifierToken
+                    DotToken
+                    IdentifierName
+                        IdentifierToken
+                ArgumentList
+                    OpenParenToken
+                    Argument
+                        StringLiteralExpression
+                            StringLiteralToken
+                    CloseParenToken
+            SemicolonToken
+        CloseBraceToken
+EndOfFileToken*/
+
+            var tree = CSharpSyntaxTree.ParseText(@"
+public void Main()
+{
+    string s = Console.ReadLine(""poop"");
+}");
+            PrintTree(tree);
+        }
+
+        [TestMethod]
+        public void TestMethod3()
+        {
+            var tree = new MethodDeclarationNode
+            {
+                Name = new NameToken("Main"),
+                ParameterList = new ParameterListNode(),
+                ReturnType = new PredefinedTypeNode
+                {
+                    TypeToken = new UnitToken()
+                },
+                Block = new BlockNode
+                {
+                    Statements = new List<StatementNode>
+                    {
+                        new ExpressionStatementNode
+                        {
+                            Expression = new InvocationExpressionNode
+                            {
+                                Expression = new SimpleMemberAccessExpressionNode
+                                {
+                                    SourceMember = new IdentifierNameNode
+                                    {
+                                        Name = new NameToken("Console")
+                                    },
+                                    AccessedMember = new IdentifierNameNode
+                                    {
+                                        Name = new NameToken("WriteLine")
+                                    }
+                                },
+                                ArgumentList = new ArgumentListNode
+                                {
+                                    ArgumentExpressions = new List<ExpressionNode>
+                                    {
+                                        new StringLiteralExpressionNode
+                                        {
+                                            StringToken = new ConstantStringToken("poop")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
         }
 
         private static void PrintTree(SyntaxTree tree)

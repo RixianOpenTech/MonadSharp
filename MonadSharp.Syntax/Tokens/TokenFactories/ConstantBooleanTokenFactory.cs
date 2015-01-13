@@ -9,12 +9,12 @@
 
         public override SyntaxToken ParseToken(string tokenValue)
         {
-            return new BooleanTypeToken(tokenValue);
+            return BooleanTypeToken.ParseToken(tokenValue);
         }
 
         public override string TokenName
         {
-            get { return BooleanTypeToken.TokenName; }
+            get { return BooleanTypeToken.; }
         }
 
         public override string TokenRegexPattern

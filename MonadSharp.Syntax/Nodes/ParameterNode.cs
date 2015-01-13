@@ -1,4 +1,7 @@
-﻿namespace MonadSharp.Syntax.Nodes
+﻿using MonadSharp.Syntax.Tokens;
+using MonadSharp.Syntax.Tokens.Abstract;
+
+namespace MonadSharp.Syntax.Nodes
 {
     public sealed class ParameterNode : SyntaxNode
     {
