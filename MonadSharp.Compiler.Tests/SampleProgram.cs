@@ -29,14 +29,12 @@ namespace MonadSharp.Compiler
 
         IObservable<Unit> ThisProgram()
         {
-            return Observable.Generate(0, x => x < 5, x => x + 1, x => Unit.Default).ObserveOn(NewThreadScheduler.Default)
-                .SelectMany(_ => this.Print(Observable.Return(true))).LastAsync();
+            return Observable.Range(0, 10).Select(Observable.Return).SelectMany(x => this.Print(Observable.Return(true))).LastAsync();
         }
 
         IObservable<Unit> ThatProgram()
         {
-            return Observable.Generate(0, x => x < 5, x => x + 1, x => Unit.Default).ObserveOn(NewThreadScheduler.Default)
-                .SelectMany(_ => this.Print(Observable.Return(false))).LastAsync();
+            return Observable.Range(0, 10).Select(Observable.Return).SelectMany(x => this.Print(Observable.Return(false))).LastAsync();
         }
 
         IObservable<Unit> Print(IObservable<bool> thisProgram)

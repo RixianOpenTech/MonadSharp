@@ -25,11 +25,9 @@
 
 unit ThisProgram()
 {
-	int x = 0;
-	while (x < 5)
+	for(x = 0..10)
 	{
 		Print(true);
-		x = x + 1;
 	}
 }
 
