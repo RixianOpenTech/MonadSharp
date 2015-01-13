@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MonadSharp.Compiler.Lexer;
 using MonadSharp.Compiler.Parser;
-using MonadSharp.Compiler.Tokens;
-using MonadSharp.Compiler.Tokens.TokenFactories;
+using MonadSharp.Syntax.Tokens;
 
 namespace MonadSharp.Compiler.Tests
 {

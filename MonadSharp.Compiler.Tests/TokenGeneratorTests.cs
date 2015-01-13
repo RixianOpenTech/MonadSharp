@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MonadSharp.Compiler.Tokens;
-using MonadSharp.Compiler.Tokens.TokenFactories;
+using MonadSharp.Syntax.Tokens;
+using MonadSharp.Syntax.Tokens.Fixed.BinaryOperators;
+using MonadSharp.Syntax.Tokens.TokenFactories;
 
 namespace MonadSharp.Compiler.Tests
 {

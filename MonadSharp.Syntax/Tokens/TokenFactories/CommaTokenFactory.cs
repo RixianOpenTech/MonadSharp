@@ -1,4 +1,5 @@
-﻿using MonadSharp.Syntax.Tokens.Fixed;
+﻿using System.Text.RegularExpressions;
+using MonadSharp.Syntax.Tokens.Fixed;
 
 namespace MonadSharp.Syntax.Tokens.TokenFactories
 {
@@ -11,7 +12,7 @@ namespace MonadSharp.Syntax.Tokens.TokenFactories
 
         public override SyntaxToken ParseToken(string tokenValue)
         {
-            return new CommaToken(tokenValue);
+            return new CommaToken();
         }
 
         public override string TokenName
@@ -21,7 +22,7 @@ namespace MonadSharp.Syntax.Tokens.TokenFactories
 
         public override string TokenRegexPattern
         {
-            get { return @","; }
+            get { return Regex.Escape(CommaToken.Syntax); }
         }
     }
 }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MonadSharp.Compiler.Tokens;
+﻿using System.Collections.Generic;
+using MonadSharp.Syntax;
 
 namespace MonadSharp.Compiler.Parser
 {

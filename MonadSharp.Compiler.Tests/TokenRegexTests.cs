@@ -1,7 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MonadSharp.Compiler.Tokens;
-using MonadSharp.Compiler.Tokens.TokenFactories;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MonadSharp.Syntax.Tokens;
+using MonadSharp.Syntax.Tokens.Fixed;
+using MonadSharp.Syntax.Tokens.Fixed.BinaryOperators;
+using MonadSharp.Syntax.Tokens.Fixed.Keywords;
+using MonadSharp.Syntax.Tokens.Fixed.Keywords.PredefinedTypes;
+using MonadSharp.Syntax.Tokens.TokenFactories;
 
 namespace MonadSharp.Compiler.Tests
 {

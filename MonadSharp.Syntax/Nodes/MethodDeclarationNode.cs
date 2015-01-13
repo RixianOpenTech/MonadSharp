@@ -5,7 +5,7 @@ namespace MonadSharp.Syntax.Nodes
 {
     public sealed class MethodDeclarationNode : SyntaxNode
     {
-        public TypeNode ReturnType { get; set; }
+        public PredefinedTypeNode ReturnType { get; set; }
         public NameToken Name { get; set; }
         public ParameterListNode ParameterList { get; set; }
         public BlockNode Block { get; set; }

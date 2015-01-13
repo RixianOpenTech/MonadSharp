@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using MonadSharp.Compiler.Parser;
-using MonadSharp.Compiler.Tokens;
+using MonadSharp.Syntax;
 
 namespace MonadSharp.Compiler.Lexer
 {

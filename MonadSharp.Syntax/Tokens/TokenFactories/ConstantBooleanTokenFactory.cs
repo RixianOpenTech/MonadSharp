@@ -1,7 +1,10 @@
-﻿namespace MonadSharp.Syntax.Tokens.TokenFactories
+﻿using System.Runtime.CompilerServices;
+
+namespace MonadSharp.Syntax.Tokens.TokenFactories
 {
     public sealed class ConstantBooleanTokenFactory : TokenFactory
     {
+        public const string RegexPattern = @"true|false";
         internal ConstantBooleanTokenFactory()
         {
             
@@ -14,12 +17,12 @@
 
         public override string TokenName
         {
-            get { return BooleanTypeToken.; }
+            get { return "ConstantBool"; }
         }
 
         public override string TokenRegexPattern
         {
-            get { return @"true|false"; }
+            get { return RegexPattern; }
         }
     }
 }

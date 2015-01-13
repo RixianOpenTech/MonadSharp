@@ -34,78 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Emitter\EmitterDefinitions.cs" />
+    <Compile Include="Emitter\MonadSharpEmitter.cs" />
     <Compile Include="Lexer\MonadSharpLexer.cs" />
     <Compile Include="Lexer\SplitExtensions.cs" />
-    <Compile Include="Nodes\MethodDeclarationNode.cs" />
-    <Compile Include="Nodes\ParameterListNode.cs" />
     <Compile Include="Parser\MonadSharpParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateMachine\States.cs" />
-    <Compile Include="Syntax\SyntaxFacts.cs" />
-    <Compile Include="Syntax\SyntaxKind.cs" />
-    <Compile Include="Syntax\SyntaxNode.cs" />
-    <Compile Include="Syntax\SyntaxNodeOrToken.cs" />
-    <Compile Include="Syntax\SyntaxToken.cs" />
-    <Compile Include="Syntax\SyntaxTokens\PredefinedTypeToken.cs" />
-    <Compile Include="Tokens\CommaToken.cs" />
-    <Compile Include="Tokens\ConstantBooleanToken.cs" />
-    <Compile Include="Tokens\NameToken.cs" />
-    <Compile Include="Tokens\GreaterThanToken.cs" />
-    <Compile Include="Tokens\LessThanToken.cs" />
-    <Compile Include="Tokens\EqualsToken.cs" />
-    <Compile Include="Tokens\LeftParenToken.cs" />
-    <Compile Include="Tokens\ParallelToken.cs" />
-    <Compile Include="Tokens\SerialToken.cs" />
-    <Compile Include="Tokens\RightParenToken.cs" />
-    <Compile Include="Tokens\TokenFactories\CommaTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\ConstantBooleanTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\NameTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\ParallelTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\SerialTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\WhileTokenFactory.cs" />
-    <Compile Include="Tokens\TypeToken.cs" />
-    <Compile Include="Tokens\WhileToken.cs" />
-    <Compile Include="Tokens\TokenFactories\GreaterThanTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\LessThanTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\EqualsTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\LeftParenTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\RightParenTokenFactory.cs" />
-    <Compile Include="Tokens\UnknownToken.cs" />
-    <Compile Include="Tokens\ConstantStringToken.cs" />
-    <Compile Include="Tokens\TokenFactories\AsteriskTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\BooleanTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\ElseTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\IfTokenFactory.cs" />
-    <Compile Include="Tokens\ConstantInt32Token.cs" />
-    <Compile Include="Tokens\TokenFactories\ConstantInt32TokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\Int32TokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\LeftCurlyBraceTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\MinusTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\ForwardSlashTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\PercentTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\PeriodTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\PlusTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\RightCurlyBraceTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\SemicolonTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\ConstantStringTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\StringTokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\TokenFactory.cs" />
-    <Compile Include="Tokens\TokenFactories\UnitTokenFactory.cs" />
-    <Compile Include="Tokens\AsteriskToken.cs" />
-    <Compile Include="Tokens\BooleanToken.cs" />
-    <Compile Include="Tokens\ElseToken.cs" />
-    <Compile Include="Tokens\IfToken.cs" />
-    <Compile Include="Tokens\Int32Token.cs" />
-    <Compile Include="Tokens\LeftCurlyBraceToken.cs" />
-    <Compile Include="Tokens\MinusToken.cs" />
-    <Compile Include="Tokens\ForwardSlashToken.cs" />
-    <Compile Include="Tokens\PercentToken.cs" />
-    <Compile Include="Tokens\PeriodToken.cs" />
-    <Compile Include="Tokens\PlusToken.cs" />
-    <Compile Include="Tokens\RightCurlyBraceToken.cs" />
-    <Compile Include="Tokens\SemicolonToken.cs" />
-    <Compile Include="Tokens\StringToken.cs" />
-    <Compile Include="Tokens\UnitToken.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Interactive">
@@ -137,7 +72,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Syntax\SyntaxNodes\" />
+    <ProjectReference Include="..\MonadSharp.Syntax\MonadSharp.Syntax.csproj">
+      <Project>{EDADBD26-0D65-4DDD-993E-8FDD065C4FA9}</Project>
+      <Name>MonadSharp.Syntax</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

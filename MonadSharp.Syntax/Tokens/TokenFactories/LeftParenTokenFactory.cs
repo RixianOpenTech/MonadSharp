@@ -11,7 +11,7 @@ namespace MonadSharp.Syntax.Tokens.TokenFactories
 
         public override SyntaxToken ParseToken(string tokenValue)
         {
-            return new LeftParenToken(tokenValue);
+            return new LeftParenToken();
         }
 
         public override string TokenName

@@ -1,4 +1,6 @@
-﻿using MonadSharp.Syntax.Tokens.Fixed.BinaryOperators;
+﻿using System.Text.RegularExpressions;
+using MonadSharp.Syntax.Tokens.Fixed;
+using MonadSharp.Syntax.Tokens.Fixed.BinaryOperators;
 
 namespace MonadSharp.Syntax.Tokens.TokenFactories
 {
@@ -11,7 +13,7 @@ namespace MonadSharp.Syntax.Tokens.TokenFactories
 
         public override SyntaxToken ParseToken(string tokenValue)
         {
-            return new EqualsToken(tokenValue);
+            return new EqualsToken();
         }
 
         public override string TokenName
@@ -21,7 +23,7 @@ namespace MonadSharp.Syntax.Tokens.TokenFactories
 
         public override string TokenRegexPattern
         {
-            get { return @"\="; } //Match asterisk with no leading or trailing characters
+            get { return Regex.Escape(EqualsToken.Syntax); }
         }
     }
 }

@@ -10,7 +10,9 @@ namespace MonadSharp.Syntax
     {
         protected SyntaxToken(string tokenValue)
         {
-            throw new NotImplementedException();
+            this.TokenValue = tokenValue;
         }
+
+        public string TokenValue { get; set; }
     }
 }

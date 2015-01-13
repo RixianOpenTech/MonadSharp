@@ -1,8 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using MonadSharp.Compiler.Tokens;
-using MonadSharp.Compiler.Tokens.TokenFactories;
+using MonadSharp.Syntax;
+using MonadSharp.Syntax.Tokens;
+using MonadSharp.Syntax.Tokens.Fixed;
+using MonadSharp.Syntax.Tokens.Fixed.BinaryOperators;
+using MonadSharp.Syntax.Tokens.Fixed.Keywords;
+using MonadSharp.Syntax.Tokens.Fixed.Keywords.PredefinedTypes;
+using MonadSharp.Syntax.Tokens.TokenFactories;
 
 namespace MonadSharp.Compiler.Parser
 {
@@ -89,7 +94,7 @@ namespace MonadSharp.Compiler.Parser
 
         private static IEnumerable<SyntaxToken> SplitConstantBoolean(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, ConstantBooleanToken.TokenName);
+            return Split(tokens, ConstantBooleanTokenFactory.RegexPattern);
         }
 
         private static IEnumerable<SyntaxToken> SplitLeftCurlyBrace(this IEnumerable<SyntaxToken> tokens)

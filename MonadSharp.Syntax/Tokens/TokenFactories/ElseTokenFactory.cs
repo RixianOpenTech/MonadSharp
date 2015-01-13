@@ -1,4 +1,6 @@
-﻿using MonadSharp.Syntax.Tokens.Fixed.Keywords;
+﻿using System.Text.RegularExpressions;
+using MonadSharp.Syntax.Tokens.Fixed;
+using MonadSharp.Syntax.Tokens.Fixed.Keywords;
 
 namespace MonadSharp.Syntax.Tokens.TokenFactories
 {
@@ -11,7 +13,7 @@ namespace MonadSharp.Syntax.Tokens.TokenFactories
 
         public override SyntaxToken ParseToken(string tokenValue)
         {
-            return new ElseToken(tokenValue);
+            return new ElseToken();
         }
 
         public override string TokenName
@@ -21,7 +23,7 @@ namespace MonadSharp.Syntax.Tokens.TokenFactories
 
         public override string TokenRegexPattern
         {
-            get { return @"else"; }
+            get { return Regex.Escape(ElseToken.Syntax); }
         }
     }
 }

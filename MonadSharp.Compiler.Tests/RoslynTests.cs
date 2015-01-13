@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MonadSharp.Compiler.Emitter;
 using MonadSharp.Syntax.Nodes;
 using MonadSharp.Syntax.Nodes.Abstract;
 using MonadSharp.Syntax.Tokens;
@@ -113,6 +114,7 @@ public void Main()
                     }
                 }
             };
+            var output = MonadSharpEmitter.Emit(tree);
         }
 
         private static void PrintTree(SyntaxTree tree)
