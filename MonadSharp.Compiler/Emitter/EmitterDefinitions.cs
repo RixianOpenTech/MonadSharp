@@ -7,6 +7,7 @@ using MonadSharp.Syntax.Nodes;
 using MonadSharp.Syntax.Nodes.Abstract;
 using MonadSharp.Syntax.Tokens;
 using MonadSharp.Syntax.Tokens.Fixed;
+using MonadSharp.Syntax.Tokens.Fixed.Keywords.PredefinedTypes;
 
 namespace MonadSharp.Compiler.Emitter
 {
@@ -16,6 +17,15 @@ namespace MonadSharp.Compiler.Emitter
         {
             return identifier.Name.TokenValue;
         }
+
+        public static string EmitCheckForSystemType(IdentifierNameNode identifier)
+        {
+            var name = identifier.Name.TokenValue;
+            if (name == "Console")
+                return "_" + name;
+            return name;
+        }
+
         public static string Emit(BlockNode block)
         {
             var sb = new StringBuilder();
@@ -41,7 +51,7 @@ namespace MonadSharp.Compiler.Emitter
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine(string.Format("{0} {1}{2}", Emit(methodDeclarationNode.ReturnType), Emit(methodDeclarationNode.Name), Emit(methodDeclarationNode.ParameterList)));
+            sb.AppendLine(string.Format("{0} {1}{2}", EmitType(Emit(methodDeclarationNode.ReturnType)), Emit(methodDeclarationNode.Name), Emit(methodDeclarationNode.ParameterList)));
             sb.AppendLine(Emit(methodDeclarationNode.Block));
 
             return sb.ToString();
@@ -75,7 +85,14 @@ namespace MonadSharp.Compiler.Emitter
 
         public static string Emit(PredefinedTypeNode typeNode)
         {
+            if (typeNode.TypeToken is UnitToken)
+                return Emit((UnitToken)typeNode.TypeToken);
             return typeNode.TypeToken.TokenValue;
+        }
+
+        public static string Emit(UnitToken typeNode)
+        {
+            return "Unit";
         }
 
         public static string Emit(ExpressionStatementNode expressionStatementNode)
@@ -93,7 +110,7 @@ namespace MonadSharp.Compiler.Emitter
         public static string Emit(SimpleMemberAccessExpressionNode simpleMemberAccessExpressionNode)
         {
             return string.Format("{0}.{1}",
-                Emit(simpleMemberAccessExpressionNode.SourceMember),
+                EmitCheckForSystemType(simpleMemberAccessExpressionNode.SourceMember),
                 Emit(simpleMemberAccessExpressionNode.AccessedMember));
         }
 
@@ -126,7 +143,18 @@ namespace MonadSharp.Compiler.Emitter
 
         public static string Emit(StringLiteralExpressionNode stringLiteralExpressionNode)
         {
-            return string.Format("\"{0}\"", stringLiteralExpressionNode.StringToken.TokenValue);
+            var value = string.Format("\"{0}\"", stringLiteralExpressionNode.StringToken.TokenValue);
+            return EmitReturn(value);
+        }
+
+        private static string EmitReturn(string value)
+        {
+            return string.Format("Observable.Return({0})", value);
+        }
+
+        private static string EmitType(string value)
+        {
+            return string.Format("IObservable<{0}>", value);
         }
     }
 }
