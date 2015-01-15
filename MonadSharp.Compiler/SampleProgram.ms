@@ -1,25 +1,25 @@
 ﻿unit Main()
 {
 	bool b = true;
-	Console.WriteLine(b);
+	eval Console.WriteLine(b);
 		
 	string s = "Hi 1234 { } = . ; world";
-	Console.WriteLine(s);
+	eval Console.WriteLine(s);
 		
 	int x = 12345;
-	Console.WriteLine(x);
+	eval Console.WriteLine(x);
 
 	unit u = unit;
-	Console.WriteLine(u);
+	eval Console.WriteLine(u);
 	
-	Console.Write("Enter some text: ");
+	eval Console.Write("Enter some text: ");
 	string input = Console.ReadLine();
-	Console.WriteLine(input);
+	eval Console.WriteLine(input);
 
 	serial
 	{
-		ThisProgram();
-		ThatProgram();
+		eval ThisProgram();
+		eval ThatProgram();
 	}
 }
 

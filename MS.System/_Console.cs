@@ -214,6 +214,11 @@ namespace MsSystem
             return value.Do(Console.WriteLine).ToVoid();
         }
 
+        public static IObservable<Unit> WriteLine<T>(IObservable<T> value)
+        {
+            return value.Do(t => Console.WriteLine(t)).ToVoid();
+        }
+
         public static IObservable<Unit> WriteLine(IObservable<String> value)
         {
             return value.Do(Console.WriteLine).ToVoid();

@@ -39,6 +39,11 @@ namespace MS.Core
             return source.Ignore(Unit.Default);
         }
 
+        public static IObservable<TOut> Cast<TIn, TOut>(this IObservable<TIn> source)
+        {
+            return source.Select(tin => tin is TOut ? (TOut)(object) tin : default(TOut));
+        }
+
         public static IObservable<T> Once<T>(this IObservable<T> source)
         {
             var subject = new AsyncSubject<T>();

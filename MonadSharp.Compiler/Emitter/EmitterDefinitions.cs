@@ -29,22 +29,30 @@ namespace MonadSharp.Compiler.Emitter
         public static string Emit(BlockNode block)
         {
             var sb = new StringBuilder();
-
+            List<string> evalNames= new List<string>();
             sb.AppendLine("{");
             foreach (var statementNode in block.Statements)
             {
-                sb.AppendLine(Emit(statementNode));
+                var emittedStatement = Emit(statementNode, evalNames.Count);
+                sb.AppendLine(emittedStatement.Item1);
+                if (!string.IsNullOrWhiteSpace(emittedStatement.Item2))
+                    evalNames.Add(emittedStatement.Item2);
             }
+
+            var evalArgs = evalNames.Aggregate((left, right) => string.Format("{0}, {1}", left, right));
+            sb.AppendLine(string.Format("return ObservableEx.ForkJoin({0}).ToUnit();",evalArgs));
             sb.AppendLine("}");
 
             return sb.ToString();
         }
 
-        public static string Emit(StatementNode statementNode)
+        public static Tuple<string, string> Emit(StatementNode statementNode, int evalIndex)
         {
             if (statementNode is ExpressionStatementNode)
-                return Emit((ExpressionStatementNode) statementNode);
-            return "???";
+                return Emit((ExpressionStatementNode)statementNode);
+            if (statementNode is EvalExpressionStatementNode)
+                return Emit((EvalExpressionStatementNode)statementNode,evalIndex);
+            return null;
         }
 
         public static string Emit(MethodDeclarationNode methodDeclarationNode)
@@ -95,9 +103,17 @@ namespace MonadSharp.Compiler.Emitter
             return "Unit";
         }
 
-        public static string Emit(ExpressionStatementNode expressionStatementNode)
+        public static Tuple<string, string> Emit(ExpressionStatementNode expressionStatementNode)
         {
-            return string.Format("{0};", Emit(expressionStatementNode.Expression));
+            var statement = string.Format("{0};", Emit(expressionStatementNode.Expression));
+            return Tuple.Create(statement, (string)null); // No eval to record
+        }
+
+        public static Tuple<string, string> Emit(EvalExpressionStatementNode expressionStatementNode, int evalIndex)
+        {
+            var evalName = string.Format("_{0}", evalIndex);
+            var statement = string.Format("var {0} = {1};", evalName, Emit(expressionStatementNode.Expression));
+            return Tuple.Create(statement, evalName);
         }
 
         public static string Emit(InvocationExpressionNode invocationExpressionNode)

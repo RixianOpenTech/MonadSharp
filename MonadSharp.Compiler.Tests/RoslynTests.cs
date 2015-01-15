@@ -84,7 +84,7 @@ public void Main()
                 {
                     Statements = new List<StatementNode>
                     {
-                        new ExpressionStatementNode
+                        new EvalExpressionStatementNode
                         {
                             Expression = new InvocationExpressionNode
                             {

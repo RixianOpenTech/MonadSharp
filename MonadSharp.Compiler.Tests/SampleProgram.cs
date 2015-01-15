@@ -24,19 +24,13 @@ namespace MonadSharp.Compiler
             var _1 = _Console.WriteLine(b);
             var _2 = _Console.WriteLine(s);
             var _3 = _Console.WriteLine(x);
-            var _4 = _Console.WriteLine(u.Select(unit => unit.ToString()));
+            var _4 = _Console.WriteLine(u);
 
             //var _5 = Serial(ThisProgram().ObserveOn(ThreadPoolScheduler.Instance), ThatProgram().ObserveOn(ThreadPoolScheduler.Instance), ThisProgram().ObserveOn(ThreadPoolScheduler.Instance));
             //var _5 = this.ThisProgram().ContinueWith(
             //    this.ThatProgram());
 
-            return ObservableEx.ForkJoin(_1, _2, _3, _4, ThisProgram(),ThatProgram()).ToUnit();
-            //return _Console.WriteLine(b).ContinueWith(
-            //    _Console.WriteLine(s).ContinueWith(
-            //        _Console.WriteLine(x).ContinueWith(
-            //            _Console.WriteLine(u.Select(unit => unit.ToString())).ContinueWith(
-            //                this.ThisProgram().ContinueWith(
-            //                    this.ThatProgram())))));
+            return ObservableEx.ForkJoin(_1, _2, _3, _4, ThisProgram(), ThatProgram()).ToUnit();
         }
 
         public static IObservable<Unit> Serial(params IObservable<Unit>[] observables)
