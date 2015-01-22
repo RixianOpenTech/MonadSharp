@@ -5,8 +5,9 @@ namespace MonadSharp.Compiler.Parser
 {
     public static class MonadSharpParser
     {
-        public static void Parse(IEnumerable<SyntaxToken> tokens)
+        public static SyntaxNode Parse(IEnumerable<SyntaxToken> tokens)
         {
+            return null;
         }
     }
 }

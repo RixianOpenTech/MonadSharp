@@ -23,16 +23,16 @@ namespace MonadSharp.Compiler.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            var tokens = MonadSharpLexer.Parse(this.sampleProgramText);
+            var tokens = MonadSharpLexer.Lex(this.sampleProgramText);
             MonadSharpParser.Parse(tokens);
         }
 
         [TestMethod]
         public void ParseMini()
         {
-            var tokens = MonadSharpLexer.Parse(this.sampleProgramText);
+            var tokens = MonadSharpLexer.Lex(this.sampleProgramText);
             var unknownTokens = tokens.OfType<UnknownToken>().ToList();
-            var miniTokens = MonadSharpLexer.Parse(this.sampleProgramText);
+            var miniTokens = MonadSharpLexer.Lex(this.sampleProgramText);
             var miniUnknownTokens = miniTokens.OfType<UnknownToken>().ToList();
         }
     }

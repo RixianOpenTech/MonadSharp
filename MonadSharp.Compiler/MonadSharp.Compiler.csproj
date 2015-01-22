@@ -34,8 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CsCompiler\CsCompiler.cs" />
     <Compile Include="Emitter\EmitterDefinitions.cs" />
     <Compile Include="Emitter\MonadSharpEmitter.cs" />
+    <Compile Include="Emitter\Scope.cs" />
     <Compile Include="Lexer\MonadSharpLexer.cs" />
     <Compile Include="Lexer\SplitExtensions.cs" />
     <Compile Include="Parser\MonadSharpParser.cs" />
@@ -63,6 +65,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CsCompiler\ObservableExecutable.cs.template">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="SampleProgram-Mini.ms">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

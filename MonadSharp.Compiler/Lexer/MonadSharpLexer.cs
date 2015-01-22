@@ -14,7 +14,7 @@ namespace MonadSharp.Compiler.Lexer
             var allTokens = currentAssembly.DefinedTypes.Where(info => !info.IsAbstract && info.IsSubclassOf(typeof (SyntaxToken)));
         }
 
-        public static IReadOnlyList<SyntaxToken> Parse(string program)
+        public static IReadOnlyList<SyntaxToken> Lex(string program)
         {
             return SplitExtensions.SplitIntoTokens(program).ToList();
         }

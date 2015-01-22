@@ -110,6 +110,33 @@ public void Main()
                                     }
                                 }
                             }
+                        },
+                        new EvalExpressionStatementNode
+                        {
+                            Expression = new InvocationExpressionNode
+                            {
+                                Expression = new SimpleMemberAccessExpressionNode
+                                {
+                                    SourceMember = new IdentifierNameNode
+                                    {
+                                        Name = new NameToken("Console")
+                                    },
+                                    AccessedMember = new IdentifierNameNode
+                                    {
+                                        Name = new NameToken("WriteLine")
+                                    }
+                                },
+                                ArgumentList = new ArgumentListNode
+                                {
+                                    ArgumentExpressions = new List<ExpressionNode>
+                                    {
+                                        new StringLiteralExpressionNode
+                                        {
+                                            StringToken = new ConstantStringToken("This is a test...")
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

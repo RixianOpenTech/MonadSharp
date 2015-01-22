@@ -26,32 +26,30 @@ namespace MonadSharp.Compiler.Emitter
             return name;
         }
 
-        public static string Emit(BlockNode block)
+        public static string Emit(Scope scope, BlockNode block)
         {
+            var currentScope = new Scope();
             var sb = new StringBuilder();
-            List<string> evalNames= new List<string>();
             sb.AppendLine("{");
             foreach (var statementNode in block.Statements)
             {
-                var emittedStatement = Emit(statementNode, evalNames.Count);
-                sb.AppendLine(emittedStatement.Item1);
-                if (!string.IsNullOrWhiteSpace(emittedStatement.Item2))
-                    evalNames.Add(emittedStatement.Item2);
+                var emittedStatement = Emit(currentScope, statementNode);
+                sb.AppendLine(emittedStatement);
             }
 
-            var evalArgs = evalNames.Aggregate((left, right) => string.Format("{0}, {1}", left, right));
-            sb.AppendLine(string.Format("return ObservableEx.ForkJoin({0}).ToUnit();",evalArgs));
+            var evalArgs = currentScope.EvaluatedIdentifiers.Aggregate((left, right) => string.Format("{0}, {1}", left, right));
+            sb.AppendLine(string.Format("return ObservableEx.ForkJoin({0}).ToVoid();",evalArgs));
             sb.AppendLine("}");
 
             return sb.ToString();
         }
 
-        public static Tuple<string, string> Emit(StatementNode statementNode, int evalIndex)
+        public static string Emit(Scope scope, StatementNode statementNode)
         {
             if (statementNode is ExpressionStatementNode)
-                return Emit((ExpressionStatementNode)statementNode);
+                return Emit(scope, (ExpressionStatementNode)statementNode);
             if (statementNode is EvalExpressionStatementNode)
-                return Emit((EvalExpressionStatementNode)statementNode,evalIndex);
+                return Emit(scope, (EvalExpressionStatementNode)statementNode);
             return null;
         }
 
@@ -59,8 +57,8 @@ namespace MonadSharp.Compiler.Emitter
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine(string.Format("{0} {1}{2}", EmitType(Emit(methodDeclarationNode.ReturnType)), Emit(methodDeclarationNode.Name), Emit(methodDeclarationNode.ParameterList)));
-            sb.AppendLine(Emit(methodDeclarationNode.Block));
+            sb.AppendLine(string.Format("public static {0} {1}{2}", EmitType(Emit(methodDeclarationNode.ReturnType)), Emit(methodDeclarationNode.Name), Emit(methodDeclarationNode.ParameterList)));
+            sb.AppendLine(Emit(new Scope(), methodDeclarationNode.Block));
 
             return sb.ToString();
         }
@@ -103,17 +101,18 @@ namespace MonadSharp.Compiler.Emitter
             return "Unit";
         }
 
-        public static Tuple<string, string> Emit(ExpressionStatementNode expressionStatementNode)
+        public static string Emit(Scope scope, ExpressionStatementNode expressionStatementNode)
         {
             var statement = string.Format("{0};", Emit(expressionStatementNode.Expression));
-            return Tuple.Create(statement, (string)null); // No eval to record
+            return statement;
         }
 
-        public static Tuple<string, string> Emit(EvalExpressionStatementNode expressionStatementNode, int evalIndex)
+        public static string Emit(Scope scope, EvalExpressionStatementNode expressionStatementNode)
         {
-            var evalName = string.Format("_{0}", evalIndex);
+            var evalName = string.Format("_{0}", scope.EvaluatedIdentifiers.Count);
+            scope.EvaluatedIdentifiers.Add(evalName);
             var statement = string.Format("var {0} = {1};", evalName, Emit(expressionStatementNode.Expression));
-            return Tuple.Create(statement, evalName);
+            return statement;
         }
 
         public static string Emit(InvocationExpressionNode invocationExpressionNode)
