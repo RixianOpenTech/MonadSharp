@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="msc.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ProgramShellStart" Type="System.String" Scope="User">
+      <Value Profile="(Default)">using MsSystem;
+using MsSystem.Extensions;
+using System;
+using System.Reactive;
+using System.Reactive.Linq;
+
+#pragma warning disable 0028
+
+namespace MsShellExe
+{
+    public static class ObservableExecutable
+    {</Value>
+    </Setting>
+    <Setting Name="ProgramShellEnd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">    }
+}</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
