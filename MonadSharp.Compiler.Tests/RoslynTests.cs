@@ -24,6 +24,7 @@ namespace MonadSharp.Compiler.Tests
 public void Main()
 {
     bool b = true;
+    b = false;
 }");
             PrintTree(tree);
         }

@@ -39,13 +39,20 @@
   <ItemGroup>
     <Compile Include="Nodes\Abstract\ExpressionNode.cs" />
     <Compile Include="Nodes\ArgumentListNode.cs" />
+    <Compile Include="Nodes\EqualsValueClauseNode.cs" />
     <Compile Include="Nodes\EvalExpressionStatementNode.cs" />
     <Compile Include="Nodes\ExpressionStatementNode.cs" />
     <Compile Include="Nodes\IdentifierNameNode.cs" />
+    <Compile Include="Nodes\TrueLiteralExpressionNode.cs" />
+    <Compile Include="Nodes\FalseLiteralExpressionNode.cs" />
     <Compile Include="Nodes\InvocationExpressionNode.cs" />
+    <Compile Include="Nodes\LocalDeclarationStatementNode.cs" />
     <Compile Include="Nodes\SimpleMemberAccessExpressionNode.cs" />
     <Compile Include="Nodes\StatementNode.cs" />
+    <Compile Include="Nodes\Int32LiteralExpressionNode.cs" />
     <Compile Include="Nodes\StringLiteralExpressionNode.cs" />
+    <Compile Include="Nodes\VariableDeclarationNode.cs" />
+    <Compile Include="Nodes\VariableDeclaratorNode.cs" />
     <Compile Include="Tokens\Abstract\BinaryOperatorToken.cs" />
     <Compile Include="Nodes\BlockNode.cs" />
     <Compile Include="Nodes\MethodDeclarationNode.cs" />

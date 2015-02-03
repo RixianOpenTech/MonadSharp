@@ -94,7 +94,7 @@ namespace MonadSharp.Compiler.Parser
 
         private static IEnumerable<SyntaxToken> SplitConstantBoolean(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, ConstantBooleanTokenFactory.RegexPattern);
+            return Split(tokens, BooleanTypeToken.TokenName);
         }
 
         private static IEnumerable<SyntaxToken> SplitLeftCurlyBrace(this IEnumerable<SyntaxToken> tokens)

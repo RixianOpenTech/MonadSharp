@@ -6,6 +6,7 @@ namespace MonadSharp.Syntax.Tokens
 {
     public abstract class BooleanTypeToken : KeywordToken
     {
+        public const string TokenName = "BooleanType";
         public BooleanTypeToken(string tokenValue) : base(tokenValue)
         {
         }

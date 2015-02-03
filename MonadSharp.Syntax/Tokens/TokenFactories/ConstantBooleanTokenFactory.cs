@@ -17,7 +17,7 @@ namespace MonadSharp.Syntax.Tokens.TokenFactories
 
         public override string TokenName
         {
-            get { return "ConstantBool"; }
+            get { return "BooleanType"; }
         }
 
         public override string TokenRegexPattern
