@@ -2,7 +2,7 @@
 
 namespace MonadSharp.Syntax.Tokens.Fixed.Keywords
 {
-    public sealed class ElseToken : KeywordToken
+    public sealed class ElseToken : SyntaxToken, IKeywordToken
     {
         public const string TokenName = "Else";
         public const string Syntax = "else";

@@ -2,7 +2,7 @@
 
 namespace MonadSharp.Syntax.Tokens.Fixed.Keywords.PredefinedTypes
 {
-    public sealed class BooleanToken : PredefinedTypeToken
+    public sealed class BooleanToken : SyntaxToken, IPredefinedTypeToken
     {
         public const string TokenName = "Boolean";
         public const string Syntax = "bool";

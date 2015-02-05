@@ -34,7 +34,7 @@ namespace MonadSharp.Compiler.Parser
 
             node.ReturnType = new PredefinedTypeNode
             {
-                TypeToken = (PredefinedTypeToken)tokens[index++]
+                TypeToken = (IPredefinedTypeToken)tokens[index++]
             };
             node.Name = (NameToken)tokens[index++];
             node.ParameterList = ParseParameterListNode(tokens, ref index);
@@ -51,7 +51,7 @@ namespace MonadSharp.Compiler.Parser
             while (tokens[index] is RightParenToken == false)
             {
                 var paramNode = new ParameterNode();
-                paramNode.Type = (TypeToken)tokens[index++];
+                paramNode.Type = (ITypeToken)tokens[index++];
                 paramNode.Name = (NameToken)tokens[index++];
                 node.Parameters.Add(paramNode);
             }
@@ -78,24 +78,24 @@ namespace MonadSharp.Compiler.Parser
         private static StatementNode ParseStatementNode(IReadOnlyList<SyntaxToken> tokens, ref int index)
         {
             var currentToken = tokens[index];
+            StatementNode node = null;
 
-            if ((currentToken is TypeToken || currentToken is PredefinedTypeToken) && tokens[index + 1] is NameToken)
+            if (currentToken is ITypeToken && tokens[index + 1] is NameToken)
             {
-                return ParseLocalDeclarationStatementNode(tokens, ref index);
+                node = ParseVariableDeclarationStatementNode(tokens, ref index);
             }
 
-            return null;
+            index++; //Skip the semicolon
+            return node;
         }
 
-        private static LocalDeclarationStatementNode ParseLocalDeclarationStatementNode(IReadOnlyList<SyntaxToken> tokens, ref int index)
+        private static VariableDeclarationStatementNode ParseVariableDeclarationStatementNode(IReadOnlyList<SyntaxToken> tokens, ref int index)
         {
-            var node = new LocalDeclarationStatementNode();
-
-            node.VariableDeclaration = new VariableDeclarationNode
+            var node = new VariableDeclarationStatementNode
             {
-                VariableType = (TypeToken) tokens[index++]
+                VariableType = (ITypeToken) tokens[index++]
             };
-            node.VariableDeclaration.Declarator = ParseVariableDeclaratorNode(tokens, ref index);
+            node.Declarator = ParseVariableDeclaratorNode(tokens, ref index);
 
             return node;
         }
@@ -116,7 +116,8 @@ namespace MonadSharp.Compiler.Parser
         private static EqualsValueClauseNode ParseEqualsValueClauseNode(IReadOnlyList<SyntaxToken> tokens, ref int index)
         {
             var node = new EqualsValueClauseNode();
-
+            
+            index++; //Skip the equals sign
             node.Expression = ParseExpressionNode(tokens, ref index);
 
             return node;
@@ -168,7 +169,7 @@ namespace MonadSharp.Compiler.Parser
         //        ParameterList = new ParameterListNode(),
         //        ReturnType = new PredefinedTypeNode
         //        {
-        //            TypeToken = new UnitToken()
+        //            ITypeToken = new UnitToken()
         //        },
         //        Block = new BlockNode
         //        {

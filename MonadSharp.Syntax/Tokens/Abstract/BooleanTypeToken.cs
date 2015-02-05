@@ -4,7 +4,7 @@ using MonadSharp.Syntax.Tokens.Fixed.Keywords;
 
 namespace MonadSharp.Syntax.Tokens
 {
-    public abstract class BooleanTypeToken : KeywordToken
+    public abstract class BooleanTypeToken : SyntaxToken, IKeywordToken
     {
         public const string TokenName = "BooleanType";
         public BooleanTypeToken(string tokenValue) : base(tokenValue)

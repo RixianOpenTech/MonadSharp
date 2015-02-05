@@ -46,12 +46,11 @@
     <Compile Include="Nodes\TrueLiteralExpressionNode.cs" />
     <Compile Include="Nodes\FalseLiteralExpressionNode.cs" />
     <Compile Include="Nodes\InvocationExpressionNode.cs" />
-    <Compile Include="Nodes\LocalDeclarationStatementNode.cs" />
     <Compile Include="Nodes\SimpleMemberAccessExpressionNode.cs" />
     <Compile Include="Nodes\StatementNode.cs" />
     <Compile Include="Nodes\Int32LiteralExpressionNode.cs" />
     <Compile Include="Nodes\StringLiteralExpressionNode.cs" />
-    <Compile Include="Nodes\VariableDeclarationNode.cs" />
+    <Compile Include="Nodes\VariableDeclarationStatementNode.cs" />
     <Compile Include="Nodes\VariableDeclaratorNode.cs" />
     <Compile Include="Tokens\Abstract\BinaryOperatorToken.cs" />
     <Compile Include="Nodes\BlockNode.cs" />
@@ -75,12 +74,12 @@
     <Compile Include="Tokens\ConstantStringToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\ElseToken.cs" />
     <Compile Include="Tokens\Fixed\BinaryOperators\EqualsToken.cs" />
-    <Compile Include="Tokens\Abstract\FixedSyntaxToken.cs" />
+    <Compile Include="Tokens\Abstract\IFixedSyntaxToken.cs" />
     <Compile Include="Tokens\Fixed\BinaryOperators\ForwardSlashToken.cs" />
     <Compile Include="Tokens\Fixed\BinaryOperators\GreaterThanToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\IfToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\PredefinedTypes\Int32Token.cs" />
-    <Compile Include="Tokens\Abstract\KeywordToken.cs" />
+    <Compile Include="Tokens\Abstract\IKeywordToken.cs" />
     <Compile Include="Tokens\Fixed\LeftCurlyBraceToken.cs" />
     <Compile Include="Tokens\Fixed\LeftParenToken.cs" />
     <Compile Include="Tokens\Fixed\BinaryOperators\LessThanToken.cs" />
@@ -90,7 +89,7 @@
     <Compile Include="Tokens\Fixed\BinaryOperators\PercentToken.cs" />
     <Compile Include="Tokens\Fixed\PeriodToken.cs" />
     <Compile Include="Tokens\Fixed\BinaryOperators\PlusToken.cs" />
-    <Compile Include="Tokens\Abstract\PredefinedTypeToken.cs" />
+    <Compile Include="Tokens\Abstract\IPredefinedTypeToken.cs" />
     <Compile Include="Tokens\Fixed\RightCurlyBraceToken.cs" />
     <Compile Include="Tokens\Fixed\RightParenToken.cs" />
     <Compile Include="Tokens\Fixed\SemicolonToken.cs" />
@@ -102,6 +101,7 @@
     <Compile Include="Tokens\TokenFactories\ConstantBooleanTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\ConstantInt32TokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\ConstantStringTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\EvalTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\ElseTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\EqualsTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\ForwardSlashTokenFactory.cs" />
@@ -125,7 +125,7 @@
     <Compile Include="Tokens\TokenFactories\TokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\UnitTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\WhileTokenFactory.cs" />
-    <Compile Include="Tokens\Abstract\TypeToken.cs" />
+    <Compile Include="Tokens\Abstract\ITypeToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\PredefinedTypes\UnitToken.cs" />
     <Compile Include="Tokens\UnknownToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\WhileToken.cs" />

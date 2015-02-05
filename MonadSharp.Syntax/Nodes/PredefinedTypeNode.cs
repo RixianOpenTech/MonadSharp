@@ -5,6 +5,6 @@ namespace MonadSharp.Syntax.Nodes
 {
     public sealed class PredefinedTypeNode : TypeNode
     {
-        public PredefinedTypeToken TypeToken { get; set; }
+        public IPredefinedTypeToken TypeToken { get; set; }
     }
 }

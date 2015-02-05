@@ -2,7 +2,7 @@
 
 namespace MonadSharp.Syntax.Tokens.Fixed.Keywords
 {
-    public sealed class WhileToken : KeywordToken
+    public sealed class WhileToken : SyntaxToken, IKeywordToken
     {
         public const string TokenName = "While";
         public const string Syntax = "while";

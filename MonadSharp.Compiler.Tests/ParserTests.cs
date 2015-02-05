@@ -28,6 +28,19 @@ namespace MonadSharp.Compiler.Tests
         }
 
         [TestMethod]
+        public void SimpleProgramCompileTest()
+        {
+            var program = @"
+unit Main()
+{
+   string s = ""FooBar"";
+   eval Console.WriteLine(s);
+}";
+            var tokens = MonadSharpLexer.Lex(program);
+            MonadSharpParser.Parse(tokens);
+        }
+
+        [TestMethod]
         public void ParseMini()
         {
             var tokens = MonadSharpLexer.Lex(this.sampleProgramText);

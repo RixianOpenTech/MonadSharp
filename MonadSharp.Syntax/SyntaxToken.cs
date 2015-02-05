@@ -13,6 +13,6 @@ namespace MonadSharp.Syntax
             this.TokenValue = tokenValue;
         }
 
-        public string TokenValue { get; set; }
+        public string TokenValue { get; private set; }
     }
 }

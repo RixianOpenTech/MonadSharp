@@ -2,7 +2,7 @@
 
 namespace MonadSharp.Syntax.Tokens.Fixed.Keywords
 {
-    public sealed class EvalToken : KeywordToken
+    public sealed class EvalToken : SyntaxToken, IKeywordToken
     {
         public const string TokenName = "Eval";
         public const string Syntax = "eval";
