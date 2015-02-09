@@ -1,7 +1,6 @@
 namespace MonadSharp.Syntax.Tokens.Abstract
 {
-    public interface IFixedSyntaxToken
+    public interface IFixedSyntaxToken : ISyntaxToken
     {
-        string TokenValue { get; }
     }
 }

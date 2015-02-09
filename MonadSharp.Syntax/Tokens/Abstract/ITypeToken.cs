@@ -1,6 +1,6 @@
 ﻿namespace MonadSharp.Syntax.Tokens.Abstract
 {
-    public interface ITypeToken
+    public interface ITypeToken : ISyntaxToken
     {
     }
 }

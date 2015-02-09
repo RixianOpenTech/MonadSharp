@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using MonadSharp.Syntax.Nodes;
@@ -50,6 +51,8 @@ namespace MonadSharp.Compiler.Emitter
                 return Emit(scope, (ExpressionStatementNode)statementNode);
             if (statementNode is EvalExpressionStatementNode)
                 return Emit(scope, (EvalExpressionStatementNode)statementNode);
+            if (statementNode is VariableDeclarationStatementNode)
+                return Emit(scope, (VariableDeclarationStatementNode)statementNode);
             return null;
         }
 
@@ -68,7 +71,7 @@ namespace MonadSharp.Compiler.Emitter
             var sb = new StringBuilder();
 
             sb.Append("(");
-            if (parameterList.Parameters != null)
+            if (parameterList.Parameters != null && parameterList.Parameters.Count > 0)
             {
                 var parameters = parameterList.Parameters.Select(Emit)
                     .Aggregate((left, right) => string.Format("{0}, {1}", left, right));
@@ -115,11 +118,35 @@ namespace MonadSharp.Compiler.Emitter
             return statement;
         }
 
+        public static string Emit(Scope scope, VariableDeclarationStatementNode expressionStatementNode)
+        {
+            var statement = string.Format("IObservable<{0}> {1};", expressionStatementNode.VariableType.TokenValue, Emit(expressionStatementNode.Declarator));
+            return statement;
+        }
+
+        private static string Emit(VariableDeclaratorNode variableDeclaratorNode)
+        {
+            var variableDeclarator = string.Format("{0} {1}", variableDeclaratorNode.IdentifierName.Name.TokenValue,
+                Emit(variableDeclaratorNode.EqualsValueClause));
+            return variableDeclarator;
+        }
+
+        private static string Emit(EqualsValueClauseNode equalsValueClauseNode)
+        {
+            var equalsValue = string.Format("= {0}", Emit(equalsValueClauseNode.Expression));
+            return equalsValue;
+        }
+
         public static string Emit(InvocationExpressionNode invocationExpressionNode)
         {
             return string.Format("{0}{1}",
                 Emit(invocationExpressionNode.Expression),
                 Emit(invocationExpressionNode.ArgumentList));
+        }
+
+        public static string Emit(ArgumentExpressionNode argumentExpressionNode)
+        {
+            return argumentExpressionNode.IdentifierName.Name.TokenValue;
         }
 
         public static string Emit(SimpleMemberAccessExpressionNode simpleMemberAccessExpressionNode)
@@ -153,12 +180,14 @@ namespace MonadSharp.Compiler.Emitter
                 return Emit((SimpleMemberAccessExpressionNode)expression);
             if (expression is InvocationExpressionNode)
                 return Emit((InvocationExpressionNode)expression);
+            if (expression is ArgumentExpressionNode)
+                return Emit((ArgumentExpressionNode)expression);
             return "???";
         }
 
         public static string Emit(StringLiteralExpressionNode stringLiteralExpressionNode)
         {
-            var value = string.Format("\"{0}\"", stringLiteralExpressionNode.StringToken.TokenValue);
+            var value = string.Format("{0}", stringLiteralExpressionNode.StringToken.TokenValue);
             return EmitReturn(value);
         }
 

@@ -63,6 +63,7 @@
     <Compile Include="Nodes\SerialBlockNode.cs" />
     <Compile Include="SyntaxNode.cs" />
     <Compile Include="SyntaxToken.cs" />
+    <Compile Include="Tokens\Abstract\ISyntaxToken.cs" />
     <Compile Include="Tokens\Fixed\BinaryOperators\RangeToken.cs" />
     <Compile Include="Tokens\Fixed\BinaryOperators\AsteriskToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\EvalToken.cs" />

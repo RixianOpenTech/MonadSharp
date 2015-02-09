@@ -16,10 +16,10 @@ namespace msc
     {
         static void Main(string[] args)
         {
-            //var msProgramFile = args[0];
-            //var msProgram = File.ReadAllText(msProgramFile);
-            //var lexed = MonadSharpLexer.Lex(msProgram);
-            var parsed = MonadSharpParser.Parse(null);
+            var msProgramFile = args[0];
+            var msProgram = File.ReadAllText(msProgramFile);
+            var lexed = MonadSharpLexer.Lex(msProgram);
+            var parsed = MonadSharpParser.Parse(lexed);
             var emitted = MonadSharpEmitter.Emit(parsed);
             var programText = string.Format("{0}{1}{2}", msc.Properties.Settings.Default.ProgramShellStart, emitted, msc.Properties.Settings.Default.ProgramShellEnd);
             File.WriteAllText(@"C:\Develop\Rixian\MonadSharp\MsShellExe\ObservableExecutable.cs", programText);

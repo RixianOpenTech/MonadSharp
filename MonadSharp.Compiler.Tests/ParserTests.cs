@@ -37,7 +37,7 @@ unit Main()
    eval Console.WriteLine(s);
 }";
             var tokens = MonadSharpLexer.Lex(program);
-            MonadSharpParser.Parse(tokens);
+            var ast = MonadSharpParser.Parse(tokens);
         }
 
         [TestMethod]

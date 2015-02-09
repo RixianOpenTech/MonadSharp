@@ -93,6 +93,7 @@
     <Compile Include="LexerTests.cs" />
     <Compile Include="ParserTests.cs" />
     <Compile Include="RoslynTests.cs" />
+    <Compile Include="EmitterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonadSharp.Compiler\MonadSharp.Compiler.csproj">
