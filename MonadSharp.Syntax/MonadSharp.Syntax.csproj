@@ -50,6 +50,7 @@
     <Compile Include="Nodes\StatementNode.cs" />
     <Compile Include="Nodes\Int32LiteralExpressionNode.cs" />
     <Compile Include="Nodes\StringLiteralExpressionNode.cs" />
+    <Compile Include="Nodes\ArgumentExpressionNode.cs" />
     <Compile Include="Nodes\VariableDeclarationStatementNode.cs" />
     <Compile Include="Nodes\VariableDeclaratorNode.cs" />
     <Compile Include="Tokens\Abstract\BinaryOperatorToken.cs" />

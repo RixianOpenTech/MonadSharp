@@ -84,8 +84,22 @@ namespace MonadSharp.Compiler.Parser
             {
                 node = ParseVariableDeclarationStatementNode(tokens, ref index);
             }
+            else if (currentToken is EvalToken)
+            {
+                node = ParseEvalExpressionStatement(tokens, ref index);
+            }
 
             index++; //Skip the semicolon
+            return node;
+        }
+
+        private static StatementNode ParseEvalExpressionStatement(IReadOnlyList<SyntaxToken> tokens, ref int index)
+        {
+            index++; // Skip the eval token
+            var node = new EvalExpressionStatementNode();
+
+            node.Expression = ParseExpressionNode(tokens, ref index);
+
             return node;
         }
 
@@ -143,7 +157,6 @@ namespace MonadSharp.Compiler.Parser
             }
             else if (currentToken is TrueTypeToken)
             {
-
                 return new TrueLiteralExpressionNode
                 {
                     TrueToken = (TrueTypeToken) currentToken
@@ -157,8 +170,65 @@ namespace MonadSharp.Compiler.Parser
                 };
 
             }
+            else if (currentToken is NameToken && tokens[index] is PeriodToken)
+            {
+                index--;
+                var memberAccessNode = ParseSimpleMemberAccessExpressionNode(tokens, ref index);
+                if (tokens[index] is LeftParenToken)
+                {
+                    return ParseInvocationExpressionNode(tokens, ref index, memberAccessNode);
+                }
+                return memberAccessNode;
+            }
 
             return null;
+        }
+
+        private static ExpressionNode ParseInvocationExpressionNode(IReadOnlyList<SyntaxToken> tokens, ref int index, ExpressionNode expressionNode)
+        {
+            var node = new InvocationExpressionNode();
+
+            index++; //Skip the left paren
+            node.Expression = expressionNode;
+            node.ArgumentList = ParseArgumentListNode(tokens, ref index);
+
+            return node;
+        }
+
+        private static ArgumentListNode ParseArgumentListNode(IReadOnlyList<SyntaxToken> tokens, ref int index)
+        {
+            var node = new ArgumentListNode();
+
+            while (tokens[index] is RightParenToken == false)
+            {
+                node.ArgumentExpressions.Add(ParseArgumentExpressionNode(tokens, ref index));
+            }
+
+            index++; //Skip the right paren
+
+            return node;
+        }
+
+        private static ExpressionNode ParseArgumentExpressionNode(IReadOnlyList<SyntaxToken> tokens, ref int index)
+        {
+            var node = new ArgumentExpressionNode();
+
+            node.IdentifierName = new IdentifierNameNode {Name = (NameToken) tokens[index++]};
+            if (tokens[index] is CommaToken)
+                index++;
+
+            return node;
+        }
+
+        private static ExpressionNode ParseSimpleMemberAccessExpressionNode(IReadOnlyList<SyntaxToken> tokens, ref int index)
+        {
+            var node = new SimpleMemberAccessExpressionNode();
+
+            node.SourceMember = new IdentifierNameNode {Name = (NameToken) tokens[index++]};
+            index++; //Skip the period
+            node.AccessedMember = new IdentifierNameNode {Name = (NameToken) tokens[index++]};
+
+            return node;
         }
 
         //public static SyntaxNode Parse(IEnumerable<SyntaxToken> tokens)
