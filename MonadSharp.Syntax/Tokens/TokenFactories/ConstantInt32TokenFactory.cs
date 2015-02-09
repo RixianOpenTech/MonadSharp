@@ -19,7 +19,7 @@
 
         public override string TokenRegexPattern
         {
-            get { return @"\d+"; }
+            get { return @"\W\d+\W"; }
         }
     }
 }
