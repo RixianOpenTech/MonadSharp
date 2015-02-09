@@ -161,7 +161,7 @@ namespace MonadSharp.Compiler.Emitter
             var sb = new StringBuilder();
 
             sb.Append("(");
-            if (argumentListNode.ArgumentExpressions != null)
+            if (argumentListNode.ArgumentExpressions != null && argumentListNode.ArgumentExpressions.Count > 0)
             {
                 var arguments = argumentListNode.ArgumentExpressions.Select(Emit)
                     .Aggregate((left, right) => string.Format("{0}, {1}", left, right));
