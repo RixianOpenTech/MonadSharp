@@ -38,8 +38,16 @@ namespace MonadSharp.Compiler.Emitter
                 sb.AppendLine(emittedStatement);
             }
 
-            var evalArgs = currentScope.EvaluatedIdentifiers.Aggregate((left, right) => string.Format("{0}, {1}", left, right));
-            sb.AppendLine(string.Format("return ObservableEx.ForkJoin({0}).ToVoid();",evalArgs));
+            if (currentScope.EvaluatedIdentifiers.Count > 0)
+            {
+                var evalArgs =
+                    currentScope.EvaluatedIdentifiers.Aggregate((left, right) => string.Format("{0}, {1}", left, right));
+                sb.AppendLine(string.Format("return ObservableEx.ForkJoin({0}).ToVoid();", evalArgs));
+            }
+            else
+            {
+                sb.AppendLine("return Observable.Return(Unit.Default);");
+            }
             sb.AppendLine("}");
 
             return sb.ToString();
@@ -146,7 +154,22 @@ namespace MonadSharp.Compiler.Emitter
 
         public static string Emit(ArgumentExpressionNode argumentExpressionNode)
         {
-            return argumentExpressionNode.IdentifierName.Name.TokenValue;
+            return Emit(argumentExpressionNode.Expression);
+        }
+
+        public static string Emit(TrueLiteralExpressionNode trueLiteralExpressionNode)
+        {
+            return EmitReturn(trueLiteralExpressionNode.TrueToken.TokenValue);
+        }
+
+        public static string Emit(FalseLiteralExpressionNode falseLiteralExpressionNode)
+        {
+            return EmitReturn(falseLiteralExpressionNode.FalseToken.TokenValue);
+        }
+
+        public static string Emit(Int32LiteralExpressionNode int32LiteralExpressionNode)
+        {
+            return EmitReturn(int32LiteralExpressionNode.Int32Token.TokenValue);
         }
 
         public static string Emit(SimpleMemberAccessExpressionNode simpleMemberAccessExpressionNode)
@@ -182,7 +205,15 @@ namespace MonadSharp.Compiler.Emitter
                 return Emit((InvocationExpressionNode)expression);
             if (expression is ArgumentExpressionNode)
                 return Emit((ArgumentExpressionNode)expression);
-            return "???";
+            if (expression is TrueLiteralExpressionNode)
+                return Emit((TrueLiteralExpressionNode)expression);
+            if (expression is FalseLiteralExpressionNode)
+                return Emit((FalseLiteralExpressionNode)expression);
+            if (expression is Int32LiteralExpressionNode)
+                return Emit((Int32LiteralExpressionNode)expression);
+            if (expression is IdentifierNameNode)
+                return ((IdentifierNameNode) expression).Name.TokenValue;
+            throw new Exception();
         }
 
         public static string Emit(StringLiteralExpressionNode stringLiteralExpressionNode)

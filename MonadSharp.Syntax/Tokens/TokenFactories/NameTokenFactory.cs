@@ -19,7 +19,7 @@
 
         public override string TokenRegexPattern
         {
-            get { return @"\w+"; }
+            get { return @"^[A-Za-z_][a-zA-Z0-9_]*"; }
         }
     }
 }

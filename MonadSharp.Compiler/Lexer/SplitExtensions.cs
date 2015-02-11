@@ -42,9 +42,9 @@ namespace MonadSharp.Compiler.Parser
                 .SplitSerial()
                 .SplitParallel()
                 .SplitEval()
-                .SplitConstantInt32()
                 .SplitConstantBoolean()
                 .SplitName()
+                .SplitConstantInt32()
                 .Where(t => !string.IsNullOrWhiteSpace(t.TokenValue));
         }
 
@@ -75,142 +75,142 @@ namespace MonadSharp.Compiler.Parser
 
         private static IEnumerable<SyntaxToken> SplitPeriod(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, PeriodToken.TokenName);
+            return Split(tokens, PeriodToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitSemicolon(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, SemicolonToken.TokenName);
+            return Split(tokens, SemicolonToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitConstantString(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, ConstantStringToken.TokenName);
+            return Split(tokens, ConstantStringToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitConstantInt32(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, ConstantInt32Token.TokenName);
+            return Split(tokens, ConstantInt32Token.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitConstantBoolean(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, BooleanTypeToken.TokenName);
+            return Split(tokens, BooleanTypeToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitLeftCurlyBrace(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, LeftCurlyBraceToken.TokenName);
+            return Split(tokens, LeftCurlyBraceToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitRightCurlyBrace(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, RightCurlyBraceToken.TokenName);
+            return Split(tokens, RightCurlyBraceToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitLeftParen(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, LeftParenToken.TokenName);
+            return Split(tokens, LeftParenToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitRightParen(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, RightParenToken.TokenName);
+            return Split(tokens, RightParenToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitEquals(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, EqualsToken.TokenName);
+            return Split(tokens, EqualsToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitPlus(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, PlusToken.TokenName);
+            return Split(tokens, PlusToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitMinus(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, MinusToken.TokenName);
+            return Split(tokens, MinusToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitLessThan(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, LessThanToken.TokenName);
+            return Split(tokens, LessThanToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitGreaterThan(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, GreaterThanToken.TokenName);
+            return Split(tokens, GreaterThanToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitAsterisk(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, AsteriskToken.TokenName);
+            return Split(tokens, AsteriskToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitForwardSlash(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, ForwardSlashToken.TokenName);
+            return Split(tokens, ForwardSlashToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitPercent(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, PercentToken.TokenName);
+            return Split(tokens, PercentToken.TokenName).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitBool(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, BooleanToken.TokenName, true);
+            return Split(tokens, BooleanToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitString(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, StringToken.TokenName, true);
+            return Split(tokens, StringToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitInt32(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, Int32Token.TokenName, true);
+            return Split(tokens, Int32Token.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitUnit(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, UnitToken.TokenName, true);
+            return Split(tokens, UnitToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitIf(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, IfToken.TokenName, true);
+            return Split(tokens, IfToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitElse(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, ElseToken.TokenName, true);
+            return Split(tokens, ElseToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitWhile(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, WhileToken.TokenName, true);
+            return Split(tokens, WhileToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitSerial(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, SerialToken.TokenName, true);
+            return Split(tokens, SerialToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitParallel(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, ParallelToken.TokenName, true);
+            return Split(tokens, ParallelToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitEval(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, EvalToken.TokenName, true);
+            return Split(tokens, EvalToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitName(this IEnumerable<SyntaxToken> tokens)
         {
-            return Split(tokens, NameToken.TokenName);
+            return Split(tokens, NameToken.TokenName).ToList();
         }
     }
 }

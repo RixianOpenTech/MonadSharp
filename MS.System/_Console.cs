@@ -151,7 +151,11 @@ namespace MsSystem
 
         public static IObservable<Unit> WriteLine()
         {
-            return Observable.FromAsync(() => new Task(Console.WriteLine)).ToVoid();
+            return Observable.FromAsync(() =>
+            {
+                Console.WriteLine();
+                return Task.FromResult(Unit.Default);
+            }).ToVoid();
         }
 
         public static IObservable<Unit> WriteLine(IObservable<Boolean> value)

@@ -10,6 +10,6 @@ namespace MonadSharp.Syntax.Nodes
 {
     public class ArgumentExpressionNode : ExpressionNode
     {
-        public IdentifierNameNode IdentifierName { get; set; }
+        public ExpressionNode Expression { get; set; }
     }
 }

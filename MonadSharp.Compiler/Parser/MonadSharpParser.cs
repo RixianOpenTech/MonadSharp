@@ -88,6 +88,10 @@ namespace MonadSharp.Compiler.Parser
             {
                 node = ParseEvalExpressionStatement(tokens, ref index);
             }
+            //else if (currentToken is NameToken)
+            //{
+            //    node. = ParseExpressionNode(tokens, ref index);
+            //}
 
             index++; //Skip the semicolon
             return node;
@@ -164,10 +168,7 @@ namespace MonadSharp.Compiler.Parser
             }
             else if (currentToken is FalseToken)
             {
-                return new FalseLiteralExpressionNode
-                {
-                    FalseToken = (FalseToken)currentToken
-                };
+                return new FalseLiteralExpressionNode {FalseToken = (FalseToken) currentToken};
 
             }
             else if (currentToken is NameToken && tokens[index] is PeriodToken)
@@ -180,8 +181,12 @@ namespace MonadSharp.Compiler.Parser
                 }
                 return memberAccessNode;
             }
+            else if (currentToken is NameToken)
+            {
+                return new IdentifierNameNode {Name = (NameToken) currentToken};
+            }
 
-            return null;
+            throw new Exception();
         }
 
         private static ExpressionNode ParseInvocationExpressionNode(IReadOnlyList<SyntaxToken> tokens, ref int index, ExpressionNode expressionNode)
@@ -213,7 +218,7 @@ namespace MonadSharp.Compiler.Parser
         {
             var node = new ArgumentExpressionNode();
 
-            node.IdentifierName = new IdentifierNameNode {Name = (NameToken) tokens[index++]};
+            node.Expression = ParseExpressionNode(tokens, ref index);
             if (tokens[index] is CommaToken)
                 index++;
 
