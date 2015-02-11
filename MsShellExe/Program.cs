@@ -5,6 +5,7 @@ using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 
 namespace MsShellExe
 {
