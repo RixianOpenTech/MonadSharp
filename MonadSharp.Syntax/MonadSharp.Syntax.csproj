@@ -40,6 +40,7 @@
     <Compile Include="Nodes\Abstract\ExpressionNode.cs" />
     <Compile Include="Nodes\ArgumentListNode.cs" />
     <Compile Include="Nodes\EqualsValueClauseNode.cs" />
+    <Compile Include="Nodes\RangeNode.cs" />
     <Compile Include="Nodes\EvalExpressionStatementNode.cs" />
     <Compile Include="Nodes\ExpressionStatementNode.cs" />
     <Compile Include="Nodes\IdentifierNameNode.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Tokens\Fixed\BinaryOperators\RangeToken.cs" />
     <Compile Include="Tokens\Fixed\BinaryOperators\AsteriskToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\EvalToken.cs" />
+    <Compile Include="Tokens\Fixed\Keywords\RangeKeywordToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\TrueToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\FalseToken.cs" />
     <Compile Include="Tokens\Fixed\Keywords\PredefinedTypes\BooleanToken.cs" />
@@ -106,6 +108,8 @@
     <Compile Include="Tokens\TokenFactories\EvalTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\ElseTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\EqualsTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\RangeKeywordTokenFactory.cs" />
+    <Compile Include="Tokens\TokenFactories\RangeTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\ForwardSlashTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\GreaterThanTokenFactory.cs" />
     <Compile Include="Tokens\TokenFactories\IfTokenFactory.cs" />

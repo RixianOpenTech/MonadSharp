@@ -29,7 +29,7 @@ namespace MonadSharp.Compiler.Emitter
 
         public static string Emit(Scope scope, BlockNode block)
         {
-            var currentScope = new Scope();
+            var currentScope = new Scope(scope.IdentifierIndex + 1);
             var sb = new StringBuilder();
             sb.AppendLine("{");
             foreach (var statementNode in block.Statements)
@@ -61,6 +61,8 @@ namespace MonadSharp.Compiler.Emitter
                 return Emit(scope, (EvalExpressionStatementNode)statementNode);
             if (statementNode is VariableDeclarationStatementNode)
                 return Emit(scope, (VariableDeclarationStatementNode)statementNode);
+            if (statementNode is RangeNode)
+                return Emit(scope, (RangeNode)statementNode);
             return null;
         }
 
@@ -69,7 +71,7 @@ namespace MonadSharp.Compiler.Emitter
             var sb = new StringBuilder();
 
             sb.AppendLine(string.Format("public static {0} {1}{2}", EmitType(Emit(methodDeclarationNode.ReturnType)), Emit(methodDeclarationNode.Name), Emit(methodDeclarationNode.ParameterList)));
-            sb.AppendLine(Emit(new Scope(), methodDeclarationNode.Block));
+            sb.AppendLine(Emit(new Scope(0), methodDeclarationNode.Block));
 
             return sb.ToString();
         }
@@ -120,7 +122,7 @@ namespace MonadSharp.Compiler.Emitter
 
         public static string Emit(Scope scope, EvalExpressionStatementNode expressionStatementNode)
         {
-            var evalName = string.Format("_{0}", scope.EvaluatedIdentifiers.Count);
+            var evalName = string.Format("_{0}", scope.IdentifierIndex++);
             scope.EvaluatedIdentifiers.Add(evalName);
             var statement = string.Format("var {0} = {1};", evalName, Emit(expressionStatementNode.Expression));
             return statement;
@@ -129,6 +131,19 @@ namespace MonadSharp.Compiler.Emitter
         public static string Emit(Scope scope, VariableDeclarationStatementNode expressionStatementNode)
         {
             var statement = string.Format("IObservable<{0}> {1};", expressionStatementNode.VariableType.TokenValue, Emit(expressionStatementNode.Declarator));
+            return statement;
+        }
+
+        public static string Emit(Scope scope, RangeNode expressionStatementNode)
+        {
+            var evalName = string.Format("_{0}", scope.IdentifierIndex++);
+            scope.EvaluatedIdentifiers.Add(evalName);
+            var statement = string.Format(
+                @"var {0} = ObservableExt.Range({1}, {2}).Select({3} => {4}).Flatten();", evalName,
+                Emit(expressionStatementNode.StartExpresssion), 
+                Emit(expressionStatementNode.EndExpresssion),
+                Emit(expressionStatementNode.IndexName),
+                Emit(new Scope(scope.IdentifierIndex), expressionStatementNode.Block));
             return statement;
         }
 

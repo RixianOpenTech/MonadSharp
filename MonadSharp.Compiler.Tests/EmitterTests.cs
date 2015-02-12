@@ -23,5 +23,21 @@ unit Main()
             var ast = MonadSharpParser.Parse(tokens);
             var emitted = MonadSharpEmitter.Emit(ast);
         }
+
+        [TestMethod]
+        public void SimpleLoopTest()
+        {
+            var program = @"
+unit Main()
+{
+    range(x=0..10)
+    {
+        eval Console.WriteLine(x);
+    }
+}";
+            var tokens = MonadSharpLexer.Lex(program);
+            var ast = MonadSharpParser.Parse(tokens);
+            var emitted = MonadSharpEmitter.Emit(ast);
+        }
     }
 }

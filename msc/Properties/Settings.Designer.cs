@@ -26,8 +26,8 @@ namespace msc.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("using MsSystem;\r\nusing MsSystem.Extensions;\r\nusing System;\r\nusing System.Reactive" +
-            ";\r\nusing System.Reactive.Linq;\r\n\r\n#pragma warning disable 0028\r\n\r\nnamespace MsSh" +
-            "ellExe\r\n{\r\n    public static class ObservableExecutable\r\n    {")]
+            ";\r\nusing System.Reactive.Linq;\r\nusing MS.Core;\r\n\r\n#pragma warning disable 0028\r\n" +
+            "\r\nnamespace MsShellExe\r\n{\r\n    public static class ObservableExecutable\r\n    {")]
         public string ProgramShellStart {
             get {
                 return ((string)(this["ProgramShellStart"]));

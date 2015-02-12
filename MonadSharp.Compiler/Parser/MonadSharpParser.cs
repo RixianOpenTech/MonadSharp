@@ -83,17 +83,38 @@ namespace MonadSharp.Compiler.Parser
             if (currentToken is ITypeToken && tokens[index + 1] is NameToken)
             {
                 node = ParseVariableDeclarationStatementNode(tokens, ref index);
+                index++; //Skip the semicolon
             }
             else if (currentToken is EvalToken)
             {
                 node = ParseEvalExpressionStatement(tokens, ref index);
+                index++; //Skip the semicolon
+            }
+            else if (currentToken is RangeKeywordToken)
+            {
+                node = ParseRangeStatement(tokens, ref index);
             }
             //else if (currentToken is NameToken)
             //{
             //    node. = ParseExpressionNode(tokens, ref index);
             //}
 
-            index++; //Skip the semicolon
+            return node;
+        }
+
+        private static StatementNode ParseRangeStatement(IReadOnlyList<SyntaxToken> tokens, ref int index)
+        {
+            index += 2; //Skip range keyword and left paren
+            var node = new RangeNode();
+
+            node.IndexName = (NameToken)tokens[index++];
+            index++; // skip equals sign
+            node.StartExpresssion = ParseExpressionNode(tokens, ref index);
+            index++; //Skip range token
+            node.EndExpresssion = ParseExpressionNode(tokens, ref index);
+
+            index++; //Skip right paren
+            node.Block = ParseBlockNode(tokens, ref index);
             return node;
         }
 

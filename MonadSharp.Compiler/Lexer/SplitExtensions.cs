@@ -18,6 +18,7 @@ namespace MonadSharp.Compiler.Parser
             var initialTokens = new[] {new UnknownToken(text)};
             return initialTokens
                 .SplitConstantString()
+                .SplitRange()
                 .SplitPeriod()
                 .SplitSemicolon()
                 .SplitLeftCurlyBrace()
@@ -36,6 +37,7 @@ namespace MonadSharp.Compiler.Parser
                 .SplitInt32()
                 .SplitBool()
                 .SplitUnit()
+                .SplitRangeKeyword()
                 .SplitIf()
                 .SplitElse()
                 .SplitWhile()
@@ -143,6 +145,11 @@ namespace MonadSharp.Compiler.Parser
             return Split(tokens, GreaterThanToken.TokenName).ToList();
         }
 
+        private static IEnumerable<SyntaxToken> SplitRange(this IEnumerable<SyntaxToken> tokens)
+        {
+            return Split(tokens, RangeToken.TokenName).ToList();
+        }
+
         private static IEnumerable<SyntaxToken> SplitAsterisk(this IEnumerable<SyntaxToken> tokens)
         {
             return Split(tokens, AsteriskToken.TokenName).ToList();
@@ -181,6 +188,11 @@ namespace MonadSharp.Compiler.Parser
         private static IEnumerable<SyntaxToken> SplitIf(this IEnumerable<SyntaxToken> tokens)
         {
             return Split(tokens, IfToken.TokenName, true).ToList();
+        }
+
+        private static IEnumerable<SyntaxToken> SplitRangeKeyword(this IEnumerable<SyntaxToken> tokens)
+        {
+            return Split(tokens, RangeKeywordToken.TokenName, true).ToList();
         }
 
         private static IEnumerable<SyntaxToken> SplitElse(this IEnumerable<SyntaxToken> tokens)

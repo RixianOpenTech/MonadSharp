@@ -9,9 +9,13 @@ namespace MonadSharp.Compiler.Emitter
     public sealed class Scope
     {
         public List<string> EvaluatedIdentifiers { get; private set; }
-        public Scope()
+        public int IdentifierIndex { get; set; }
+        public bool Serial { get; private set; }
+        public Scope(int identifierIndex, bool serial = false)
         {
             this.EvaluatedIdentifiers = new List<string>();
+            this.IdentifierIndex = identifierIndex;
+            this.Serial = serial;
         }
     }
 }

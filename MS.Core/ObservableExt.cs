@@ -109,6 +109,13 @@ namespace MS.Core
             return source.Select(state => Observable.Generate<TState, TResult>(state, condition, iterate, resultSelector)).Flatten();
         }
 
+        public static IObservable<IObservable<int>> Range(
+            IObservable<int> start,
+            IObservable<int> end)
+        {
+            return start.Zip(end, Observable.Range);
+        }
+
         public static IObservable<T> SubscribeOnce<T>(this IObservable<T> source)
         {
             var published = source.Publish();

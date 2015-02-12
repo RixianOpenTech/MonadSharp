@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MonadSharp.Compiler;
 using System.Reactive;
 using MsSystem;
+using MS.Core;
 
 namespace SampleProgramRunner
 {
