@@ -139,7 +139,7 @@ namespace MonadSharp.Compiler.Emitter
             var evalName = string.Format("_{0}", scope.IdentifierIndex++);
             scope.EvaluatedIdentifiers.Add(evalName);
             var statement = string.Format(
-                @"var {0} = ObservableExt.Range({1}, {2}).Select({3} => {4}).Flatten();", evalName,
+                @"var {0} = ObservableExt.Range({1}, {2}, {3} => {4});", evalName,
                 Emit(expressionStatementNode.StartExpresssion), 
                 Emit(expressionStatementNode.EndExpresssion),
                 Emit(expressionStatementNode.IndexName),

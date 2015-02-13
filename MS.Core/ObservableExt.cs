@@ -109,11 +109,12 @@ namespace MS.Core
             return source.Select(state => Observable.Generate<TState, TResult>(state, condition, iterate, resultSelector)).Flatten();
         }
 
-        public static IObservable<IObservable<int>> Range(
+        public static IObservable<Unit> Range(
             IObservable<int> start,
-            IObservable<int> end)
+            IObservable<int> end, 
+            Func<IObservable<int>, IObservable<Unit>> block)
         {
-            return start.Zip(end, Observable.Range);
+            return start.Zip(end, Observable.Range).Flatten().Select(Observable.Return).Select(block).Flatten();
         }
 
         public static IObservable<T> SubscribeOnce<T>(this IObservable<T> source)
