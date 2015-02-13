@@ -29,7 +29,7 @@ namespace MonadSharp.Compiler.Emitter
 
         public static string Emit(Scope scope, BlockNode block)
         {
-            var currentScope = new Scope(scope.IdentifierIndex + 1);
+            var currentScope = new Scope(scope.IdentifierIndex);
             var sb = new StringBuilder();
             sb.AppendLine("{");
             foreach (var statementNode in block.Statements)
@@ -50,17 +50,18 @@ namespace MonadSharp.Compiler.Emitter
             }
             sb.AppendLine("}");
 
+            scope.IdentifierIndex = currentScope.IdentifierIndex;
             return sb.ToString();
         }
 
         public static string Emit(Scope scope, StatementNode statementNode)
         {
             if (statementNode is ExpressionStatementNode)
-                return Emit(scope, (ExpressionStatementNode)statementNode);
+                return Emit((ExpressionStatementNode)statementNode);
             if (statementNode is EvalExpressionStatementNode)
                 return Emit(scope, (EvalExpressionStatementNode)statementNode);
             if (statementNode is VariableDeclarationStatementNode)
-                return Emit(scope, (VariableDeclarationStatementNode)statementNode);
+                return Emit((VariableDeclarationStatementNode)statementNode);
             if (statementNode is RangeNode)
                 return Emit(scope, (RangeNode)statementNode);
             if (statementNode is IfStatementNode)
@@ -116,7 +117,7 @@ namespace MonadSharp.Compiler.Emitter
             return "Unit";
         }
 
-        public static string Emit(Scope scope, ExpressionStatementNode expressionStatementNode)
+        public static string Emit(ExpressionStatementNode expressionStatementNode)
         {
             var statement = string.Format("{0};", Emit(expressionStatementNode.Expression));
             return statement;
@@ -130,7 +131,7 @@ namespace MonadSharp.Compiler.Emitter
             return statement;
         }
 
-        public static string Emit(Scope scope, VariableDeclarationStatementNode expressionStatementNode)
+        public static string Emit(VariableDeclarationStatementNode expressionStatementNode)
         {
             var statement = string.Format("IObservable<{0}> {1};", expressionStatementNode.VariableType.TokenValue, Emit(expressionStatementNode.Declarator));
             return statement;
@@ -145,7 +146,7 @@ namespace MonadSharp.Compiler.Emitter
                 Emit(expressionStatementNode.StartExpresssion), 
                 Emit(expressionStatementNode.EndExpresssion),
                 Emit(expressionStatementNode.IndexName),
-                Emit(new Scope(scope.IdentifierIndex), expressionStatementNode.Block));
+                Emit(scope, expressionStatementNode.Block));
             return statement;
         }
 
@@ -156,13 +157,13 @@ namespace MonadSharp.Compiler.Emitter
             string elseBlock = string.Empty;
             if (expressionStatementNode.ElseBlock != null)
             {
-                elseBlock = string.Format(", () => {0}", Emit(new Scope(scope.IdentifierIndex + 1), expressionStatementNode.ElseBlock));
+                elseBlock = string.Format(", () => {0}", Emit(scope, expressionStatementNode.ElseBlock));
             }
 
             var statement = string.Format(
                 @"var {0} = ObservableExt.If({1}, () => {2}{3});", evalName,
                 Emit(expressionStatementNode.BoolExpression),
-                Emit(new Scope(scope.IdentifierIndex + 1), expressionStatementNode.IfBlock),
+                Emit(scope, expressionStatementNode.IfBlock),
                 elseBlock);
             return statement;
         }
