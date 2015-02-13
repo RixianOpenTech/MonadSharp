@@ -94,10 +94,33 @@ namespace MonadSharp.Compiler.Parser
             {
                 node = ParseRangeStatement(tokens, ref index);
             }
-            //else if (currentToken is NameToken)
-            //{
-            //    node. = ParseExpressionNode(tokens, ref index);
-            //}
+            else if (currentToken is IfToken)
+            {
+                node = ParseIfStatement(tokens, ref index);
+            }
+            else if (currentToken is NameToken)
+            {
+                throw new NotImplementedException();
+                //node = ParseExpressionStatementNode(tokens, ref index);
+            }
+
+            return node;
+        }
+
+        private static StatementNode ParseIfStatement(IReadOnlyList<SyntaxToken> tokens, ref int index)
+        {
+            index += 2; //Skip if keyword and left paren
+            var node = new IfStatementNode();
+
+            node.BoolExpression = ParseExpressionNode(tokens, ref index);
+            index++; // Skip right paren
+            node.IfBlock = ParseBlockNode(tokens, ref index);
+
+            if (tokens[index] is ElseToken)
+            {
+                index++; //Skip else token
+                node.ElseBlock = ParseBlockNode(tokens, ref index);
+            }
 
             return node;
         }

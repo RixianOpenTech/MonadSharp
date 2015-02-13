@@ -40,6 +40,7 @@
     <Compile Include="Nodes\Abstract\ExpressionNode.cs" />
     <Compile Include="Nodes\ArgumentListNode.cs" />
     <Compile Include="Nodes\EqualsValueClauseNode.cs" />
+    <Compile Include="Nodes\IfStatementNode.cs" />
     <Compile Include="Nodes\RangeNode.cs" />
     <Compile Include="Nodes\EvalExpressionStatementNode.cs" />
     <Compile Include="Nodes\ExpressionStatementNode.cs" />

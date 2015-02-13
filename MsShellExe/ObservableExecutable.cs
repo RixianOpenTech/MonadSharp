@@ -12,13 +12,11 @@ namespace MsShellExe
     public static class ObservableExecutable
     {public static IObservable<Unit> Main()
 {
-var _1 = ObservableExt.Range(Observable.Return(0), Observable.Return(10), x => {
-var _3 = _Console.Write(Observable.Return("Your number is: "));
-var _4 = _Console.WriteLine(x);
-return ObservableEx.ForkJoin(_3, _4).ToVoid();
-}
-);
-return ObservableEx.ForkJoin(_1).ToVoid();
+var _1 = _Console.Write(Observable.Return("Please Enter Your Name: "));
+IObservable<string> name = _Console.ReadLine();
+var _2 = _Console.Write(Observable.Return("Hello "));
+var _3 = _Console.WriteLine(name);
+return ObservableEx.ForkJoin(_1, _2, _3).ToVoid();
 }
 
     }

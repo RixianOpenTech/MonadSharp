@@ -63,6 +63,8 @@ namespace MonadSharp.Compiler.Emitter
                 return Emit(scope, (VariableDeclarationStatementNode)statementNode);
             if (statementNode is RangeNode)
                 return Emit(scope, (RangeNode)statementNode);
+            if (statementNode is IfStatementNode)
+                return Emit(scope, (IfStatementNode)statementNode);
             return null;
         }
 
@@ -144,6 +146,24 @@ namespace MonadSharp.Compiler.Emitter
                 Emit(expressionStatementNode.EndExpresssion),
                 Emit(expressionStatementNode.IndexName),
                 Emit(new Scope(scope.IdentifierIndex), expressionStatementNode.Block));
+            return statement;
+        }
+
+        public static string Emit(Scope scope, IfStatementNode expressionStatementNode)
+        {
+            var evalName = string.Format("_{0}", scope.IdentifierIndex++);
+            scope.EvaluatedIdentifiers.Add(evalName);
+            string elseBlock = string.Empty;
+            if (expressionStatementNode.ElseBlock != null)
+            {
+                elseBlock = string.Format(", () => {0}", Emit(new Scope(scope.IdentifierIndex + 1), expressionStatementNode.ElseBlock));
+            }
+
+            var statement = string.Format(
+                @"var {0} = ObservableExt.If({1}, () => {2}{3});", evalName,
+                Emit(expressionStatementNode.BoolExpression),
+                Emit(new Scope(scope.IdentifierIndex + 1), expressionStatementNode.IfBlock),
+                elseBlock);
             return statement;
         }
 

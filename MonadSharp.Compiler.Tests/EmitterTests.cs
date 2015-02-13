@@ -39,5 +39,25 @@ unit Main()
             var ast = MonadSharpParser.Parse(tokens);
             var emitted = MonadSharpEmitter.Emit(ast);
         }
+
+        [TestMethod]
+        public void SimpleBranchTest()
+        {
+            var program = @"
+unit Main()
+{
+    if(true)
+    {
+        eval Console.WriteLine(""This is true..."");
+    }
+    else
+    {
+        eval Console.WriteLine(""This is false..."");
+    }
+}";
+            var tokens = MonadSharpLexer.Lex(program);
+            var ast = MonadSharpParser.Parse(tokens);
+            var emitted = MonadSharpEmitter.Emit(ast);
+        }
     }
 }

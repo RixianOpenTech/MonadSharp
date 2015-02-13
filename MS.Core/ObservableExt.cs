@@ -100,6 +100,28 @@ namespace MS.Core
             return source.Select(value => Observable.If(() => value, ifBranch, elseBranch)).Flatten();
         }
 
+        public static IObservable<TResult> If<TResult>(
+            this IObservable<bool> source,
+            Func<IObservable<TResult>> ifBranch,
+            Func<IObservable<TResult>> elseBranch)
+        {
+            return source.Select(value => Observable.If(() => value, ifBranch(), elseBranch())).Flatten();
+        }
+
+        public static IObservable<TResult> If<TResult>(
+            this IObservable<bool> source,
+            IObservable<TResult> ifBranch)
+        {
+            return source.Select(value => Observable.If(() => value, ifBranch, Observable.Return(default(TResult)))).Flatten();
+        }
+
+        public static IObservable<TResult> If<TResult>(
+            this IObservable<bool> source,
+            Func<IObservable<TResult>> ifBranch)
+        {
+            return source.Select(value => Observable.If(() => value, ifBranch(), Observable.Return(default(TResult)))).Flatten();
+        }
+
         public static IObservable<TResult> Generate<TState, TResult>(
             this IObservable<TState> source,
             Func<TState, bool> condition,
