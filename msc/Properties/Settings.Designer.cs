@@ -48,5 +48,19 @@ namespace msc.Properties {
                 this["ProgramShellEnd"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("using System.Reactive.Linq;\r\n\r\nnamespace MsShellExe\r\n{\r\n    class Program\r\n    {\r" +
+            "\n        static void Main(string[] args)\r\n        {\r\n            ObservableExecu" +
+            "table.Main().Wait();\r\n        }\r\n    }\r\n}\r\n")]
+        public string MainProgramCode {
+            get {
+                return ((string)(this["MainProgramCode"]));
+            }
+            set {
+                this["MainProgramCode"] = value;
+            }
+        }
     }
 }

@@ -39,11 +39,11 @@ namespace MsShellExe
                                             return ObservableEx.ForkJoin(_8).ToVoid();
                                         }
                 );
-            var _10 = _Console.Write(Observable.Return("Please Enter Your Name: "));
             IObservable<string> name = _Console.ReadLine();
-            var _11 = _Console.Write(Observable.Return("Hello "));
-            var _12 = _Console.WriteLine(name);
-            return ObservableEx.ForkJoin(_0, _1, _2, _3, _4, _5, _7, _10, _11, _12).ToVoid();
+            var _10 = _Console.Write(Observable.Return("Please Enter Your Name: ")).ContinueWith(
+                _Console.Write(Observable.Return("Hello ")).ContinueWith(
+                    _Console.WriteLine(name)));
+            return ObservableEx.ForkJoin(_0, _1, _2, _3, _4, _5, _7, _10).ToVoid();
         }
 
     }

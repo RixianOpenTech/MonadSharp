@@ -21,5 +21,20 @@ namespace MsShellExe
       <Value Profile="(Default)">    }
 }</Value>
     </Setting>
+    <Setting Name="MainProgramCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">using System.Reactive.Linq;
+
+namespace MsShellExe
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ObservableExecutable.Main().Wait();
+        }
+    }
+}
+</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
