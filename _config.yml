@@ -3,7 +3,7 @@ author: "Samuel McAravey"
 description: "Really cool blog about ... something"
 #subheading: "Really cool blog about ... something"
 more: "read more"
-url: "https://RixianOpenTech.github.com/MonadSharp/"
+url: "https://rixianopentech.github.com/MonadSharp/"
 baseurl: "/contrast" # comment out if in root directory
 
 comments:
