@@ -7,7 +7,7 @@ url: "http://rixianopentech.github.io"
 baseurl: "/MonadSharp" # comment out if in root directory
 
 comments:
-    disqus: "niklasbuschmann"
+    disqus: ""
 #    isso: "comments.mysite.org"
 
 style:
