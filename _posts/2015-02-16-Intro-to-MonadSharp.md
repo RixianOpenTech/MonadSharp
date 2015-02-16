@@ -13,4 +13,4 @@ Welcome to MonadSharp!
 MonadSharp is an experimental programming language written in C# which compiles into C#. 
 
 ## Tell me more... ##
-
+[Computation at the Speed of Monads](http://rixianopentech.github.io/MonadSharp/Documents/ComputationAtTheSpeedOfMonadsPaper.pdf)
