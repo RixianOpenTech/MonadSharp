@@ -33,9 +33,10 @@ namespace msc
                 var asmStream = currentAssembly.GetManifestResourceStream(assemblyName);
                 p = p.AddMetadataReference(MetadataReference.CreateFromStream(asmStream));
             }
-            
+
             p = p.AddMetadataReference(MetadataReference.CreateFromAssembly(typeof(object).Assembly));
             p = p.AddMetadataReference(MetadataReference.CreateFromAssembly(typeof(MsSystem._Console).Assembly));
+            p = p.AddMetadataReference(MetadataReference.CreateFromAssembly(typeof(Enumerable).Assembly));
             p = p.AddMetadataReference(MetadataReference.CreateFromAssembly(typeof(MS.Core.ObservableExt).Assembly));
             p = p.AddMetadataReference(MetadataReference.CreateFromAssembly(Assembly.Load(new AssemblyName("System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"))));
 

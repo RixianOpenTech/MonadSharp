@@ -26,7 +26,7 @@ namespace MonadSharp.Compiler
             var _3 = _Console.WriteLine(x);
             var _4 = _Console.WriteLine(u);
 
-            //var _5 = Serial(ThisProgram().ObserveOn(ThreadPoolScheduler.Instance), ThatProgram().ObserveOn(ThreadPoolScheduler.Instance), ThisProgram().ObserveOn(ThreadPoolScheduler.Instance));
+            //var _5 = IsSerial(ThisProgram().ObserveOn(ThreadPoolScheduler.Instance), ThatProgram().ObserveOn(ThreadPoolScheduler.Instance), ThisProgram().ObserveOn(ThreadPoolScheduler.Instance));
             //var _5 = this.ThisProgram().ContinueWith(
             //    this.ThatProgram());
 

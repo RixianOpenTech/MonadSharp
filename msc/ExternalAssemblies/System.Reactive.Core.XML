@@ -2098,31 +2098,31 @@
             Gets a value that indicates whether the object is disposed.
             </summary>
         </member>
-        <member name="T:System.Reactive.Disposables.SerialDisposable">
+        <member name="T:System.Reactive.Disposables.IsSerialDisposable">
             <summary>
             Represents a disposable resource whose underlying disposable resource can be replaced by another disposable resource, causing automatic disposal of the previous underlying disposable resource.
             </summary>
         </member>
-        <member name="M:System.Reactive.Disposables.SerialDisposable.#ctor">
+        <member name="M:System.Reactive.Disposables.IsSerialDisposable.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:System.Reactive.Disposables.SerialDisposable"/> class.
+            Initializes a new instance of the <see cref="T:System.Reactive.Disposables.IsSerialDisposable"/> class.
             </summary>
         </member>
-        <member name="M:System.Reactive.Disposables.SerialDisposable.Dispose">
+        <member name="M:System.Reactive.Disposables.IsSerialDisposable.Dispose">
             <summary>
             Disposes the underlying disposable as well as all future replacements.
             </summary>
         </member>
-        <member name="P:System.Reactive.Disposables.SerialDisposable.IsDisposed">
+        <member name="P:System.Reactive.Disposables.IsSerialDisposable.IsDisposed">
             <summary>
             Gets a value that indicates whether the object is disposed.
             </summary>
         </member>
-        <member name="P:System.Reactive.Disposables.SerialDisposable.Disposable">
+        <member name="P:System.Reactive.Disposables.IsSerialDisposable.Disposable">
             <summary>
             Gets or sets the underlying disposable.
             </summary>
-            <remarks>If the SerialDisposable has already been disposed, assignment to this property causes immediate disposal of the given disposable object. Assigning this property disposes the previous disposable object.</remarks>
+            <remarks>If the IsSerialDisposable has already been disposed, assignment to this property causes immediate disposal of the given disposable object. Assigning this property disposes the previous disposable object.</remarks>
         </member>
         <member name="T:System.Reactive.Disposables.SingleAssignmentDisposable">
             <summary>

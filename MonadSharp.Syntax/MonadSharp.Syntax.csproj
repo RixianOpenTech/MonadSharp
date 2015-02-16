@@ -45,6 +45,7 @@
     <Compile Include="Nodes\EvalExpressionStatementNode.cs" />
     <Compile Include="Nodes\ExpressionStatementNode.cs" />
     <Compile Include="Nodes\IdentifierNameNode.cs" />
+    <Compile Include="Nodes\RootSyntaxNode.cs" />
     <Compile Include="Nodes\TrueLiteralExpressionNode.cs" />
     <Compile Include="Nodes\FalseLiteralExpressionNode.cs" />
     <Compile Include="Nodes\InvocationExpressionNode.cs" />

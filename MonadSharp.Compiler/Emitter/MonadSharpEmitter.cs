@@ -12,7 +12,13 @@ namespace MonadSharp.Compiler.Emitter
     {
         public static string Emit(SyntaxNode tree)
         {
-            return EmitterDefinitions.Emit((MethodDeclarationNode)tree);
+            var sb = new StringBuilder();
+            var rootSyntaxNode = (RootSyntaxNode) tree;
+            foreach (var syntaxNode in rootSyntaxNode.SyntaxNodes)
+            {
+                sb.AppendLine(EmitterDefinitions.Emit((MethodDeclarationNode) syntaxNode));
+            }
+            return sb.ToString();
         }
     }
 }

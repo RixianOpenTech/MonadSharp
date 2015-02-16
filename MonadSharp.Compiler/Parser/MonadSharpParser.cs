@@ -21,24 +21,34 @@ namespace MonadSharp.Compiler.Parser
                 throw new Exception();
 
             int index = 0;
+            var root = new RootSyntaxNode();
             //foreach (var token in remainingTokens)
             //{
             //}
+            while (tokens.Count() - 1 > index)
+            {
+                root.SyntaxNodes.Add(ParseMethodDeclarationNode(remainingTokens, ref index));
+            }
 
-            return ParseMethodDeclarationNode(remainingTokens, ref index);
+            return root;
         }
 
         private static MethodDeclarationNode ParseMethodDeclarationNode(IReadOnlyList<SyntaxToken> tokens, ref int index)
         {
             var node = new MethodDeclarationNode();
 
+            var currentToken = tokens[index++];
+            bool isSerial = currentToken is SerialToken;
+            if (isSerial)
+                currentToken = tokens[index++];
+
             node.ReturnType = new PredefinedTypeNode
             {
-                TypeToken = (IPredefinedTypeToken)tokens[index++]
+                TypeToken = (IPredefinedTypeToken)currentToken
             };
             node.Name = (NameToken)tokens[index++];
             node.ParameterList = ParseParameterListNode(tokens, ref index);
-            node.Block = ParseBlockNode(tokens, ref index);
+            node.Block = ParseBlockNode(tokens, ref index, isSerial);
 
             return node;
         }
@@ -60,9 +70,11 @@ namespace MonadSharp.Compiler.Parser
             return node;
         }
 
-        private static BlockNode ParseBlockNode(IReadOnlyList<SyntaxToken> tokens, ref int index)
+        private static BlockNode ParseBlockNode(IReadOnlyList<SyntaxToken> tokens, ref int index, bool isSerial = false)
         {
             var node = new BlockNode();
+
+            node.IsSerial = isSerial;
 
             index++; // Skip the left brace
             while (tokens[index] is RightCurlyBraceToken == false)
@@ -227,6 +239,10 @@ namespace MonadSharp.Compiler.Parser
             }
             else if (currentToken is NameToken)
             {
+                if (tokens[index] is LeftParenToken)
+                {
+                    return ParseInvocationExpressionNode(tokens, ref index, new IdentifierNameNode {Name = (NameToken) currentToken});
+                }
                 return new IdentifierNameNode {Name = (NameToken) currentToken};
             }
 
