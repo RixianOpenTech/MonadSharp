@@ -1,0 +1,4 @@
+
+*.lock
+/.sass-cache
+/_site
