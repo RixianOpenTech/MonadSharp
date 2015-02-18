@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using MS.Core;
 using MsSystem.Extensions;
@@ -146,7 +147,12 @@ namespace MsSystem
 
         public static IObservable<string> ReadLine()
         {
-            return Observable.FromAsync(() => Task.FromResult(Console.ReadLine()));
+            return Observable.FromAsync(() => Task.FromResult(Console.ReadLine())).Once();
+            //AsyncSubject<string> subject = new AsyncSubject<string>();
+            //return Observable.Create<string>(observer =>
+            //                                 {
+            //                                     real
+            //                                 })
         }
 
         public static IObservable<Unit> WriteLine()

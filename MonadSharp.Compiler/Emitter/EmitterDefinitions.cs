@@ -22,8 +22,8 @@ namespace MonadSharp.Compiler.Emitter
         public static string EmitCheckForSystemType(IdentifierNameNode identifier, bool isSerial)
         {
             var name = identifier.Name.TokenValue;
-            if (isSerial)
-                return name;
+            //if (isSerial)
+            //    return name;
 
             if (name == "Console")
                 return "_" + name;
@@ -53,6 +53,10 @@ namespace MonadSharp.Compiler.Emitter
                 {
                     sb.AppendLine("return Observable.Return(Unit.Default);");
                 }
+            }
+            else
+            {
+                sb.AppendLine("return Observable.Return(Unit.Default);");
             }
             sb.AppendLine("}");
 
@@ -137,7 +141,7 @@ namespace MonadSharp.Compiler.Emitter
         {
             if (isSerial)
             {
-                return string.Format("{0};", Emit(expressionStatementNode.Expression, isSerial));
+                return string.Format("{0}.Wait();", Emit(expressionStatementNode.Expression, isSerial));
             }
 
             var evalName = string.Format("_{0}", scope.IdentifierIndex++);
@@ -155,17 +159,18 @@ namespace MonadSharp.Compiler.Emitter
         public static string Emit(Scope scope, RangeNode expressionStatementNode, bool isSerial)
         {
             expressionStatementNode.Block.IsSerial = isSerial;
-            if (isSerial)
-            {
-                return string.Format("foreach (var {0} in Enumerable.Range({1},{2})){3}",
-                                     Emit(expressionStatementNode.IndexName),
-                                     Emit(expressionStatementNode.StartExpresssion, isSerial),
-                                     Emit(expressionStatementNode.EndExpresssion, isSerial),
-                                     Emit(scope, expressionStatementNode.Block));
-            }
+            //if (isSerial)
+            //{
+            //    return string.Format("foreach (var {0} in Enumerable.Range({1},{2})){3}",
+            //                         Emit(expressionStatementNode.IndexName),
+            //                         Emit(expressionStatementNode.StartExpresssion, isSerial),
+            //                         Emit(expressionStatementNode.EndExpresssion, isSerial),
+            //                         Emit(scope, expressionStatementNode.Block));
+            //}
 
             var evalName = string.Format("_{0}", scope.IdentifierIndex++);
             scope.EvaluatedIdentifiers.Add(evalName);
+            expressionStatementNode.Block.IsSerial = isSerial;
             var statement = string.Format(
                 @"var {0} = ObservableExt.Range({1}, {2}, {3} => {4});", evalName,
                 Emit(expressionStatementNode.StartExpresssion, isSerial), 
@@ -304,8 +309,8 @@ namespace MonadSharp.Compiler.Emitter
 
         private static string EmitReturn(string value, bool isSerial)
         {
-            if (isSerial)
-                return value;
+            //if (isSerial)
+            //    return value;
             return string.Format("Observable.Return({0})", value);
         }
 

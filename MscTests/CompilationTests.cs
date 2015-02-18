@@ -59,6 +59,20 @@ unit Main()
         }
 
         [TestMethod]
+        public void UnitVariableTest()
+        {
+            const string programText = @"
+unit Main()
+{
+    unit u = Console.Write(""Unit: "");
+    eval Console.WriteLine(u);
+}
+";
+            var compilationResult = Compiler.CompileText(programText);
+            Assert.IsTrue(compilationResult);
+        }
+
+        [TestMethod]
         public void WriteLineSingleIntVariableTest()
         {
             const string programText = @"
