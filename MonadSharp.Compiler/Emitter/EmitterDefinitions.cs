@@ -87,7 +87,7 @@ namespace MonadSharp.Compiler.Emitter
             sb.AppendLine(Emit(new Scope(0), methodDeclarationNode.Block));
             if (methodDeclarationNode.Block.IsSerial)
             {
-                sb.Insert(sb.Length - 5, "return Observable.Return(Unit.Default);");
+                //sb.Insert(sb.Length - 5, "return Observable.Return(Unit.Default);");
             }
 
             return sb.ToString();

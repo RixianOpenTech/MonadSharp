@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monad Sharp</title>
+    <description>Really cool blog about ... something</description>
+    <link>http://rixianopentech.github.io/MonadSharp</link>
+    <atom:link href="http://rixianopentech.github.io/MonadSharpfeed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 16 Feb 2015 09:53:09 -0700</pubDate>
+    <lastBuildDate>Mon, 16 Feb 2015 09:53:09 -0700</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Introduction to MonadSharp</title>
+        <description>&lt;h2 id=&quot;what-is-monadsharp&quot;&gt;What is MonadSharp?&lt;/h2&gt;
+&lt;p&gt;MonadSharp is an experimental programming language written in C# which compiles into C#. It uses monads to automatically parallelize the code you write while still preserving the meaning of what was written. First you should read the following paper as a theoretical introduction to the reason MonadSharp was created, then come back and we will work through some examples:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://rixianopentech.github.io/MonadSharp/Documents/ComputationAtTheSpeedOfMonadsPaper.pdf&quot;&gt;Computation at the Speed of Monads&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h2&gt;
+&lt;p&gt;The basic idea is that we can use a wrapped value instead of a raw value as parameters to functions and we will automatically get parallelism. The generated C# looks a little bit weird, but if you blur your eyes a bit you will see that it’s no different than the regular C#, for example:&lt;/p&gt;
+
+&lt;p&gt;Original C# signature:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Modified M# signature:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;n&quot;&gt;_Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IObservable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 16 Feb 2015 15:37:00 -0700</pubDate>
+        <link>http://rixianopentech.github.io/example/2015/02/16/Intro-to-MonadSharp.html</link>
+        <guid isPermaLink="true">http://rixianopentech.github.io/MonadSharp/example/2015/02/16/Intro-to-MonadSharp.html</guid>
+        
+        
+        <category>example</category>
+        
+      </item>
+    
+  </channel>
+</rss>

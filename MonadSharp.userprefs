@@ -1,0 +1,13 @@
+﻿<Properties StartupItem="msc/msc.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="msc/Program.cs">
+    <Files>
+      <File FileName="msc/Program.cs" Line="24" Column="1" />
+      <File FileName="msc/Compiler.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

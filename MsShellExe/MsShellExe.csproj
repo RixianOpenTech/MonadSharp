@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -69,11 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MS.Core\MS.Core.csproj">
-      <Project>{c0a0f9b0-2cfa-47c1-8477-9fdaad44f00f}</Project>
+      <Project>{C0A0F9B0-2CFA-47C1-8477-9FDAAD44F00F}</Project>
       <Name>MS.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\MS.System\MS.System.csproj">
-      <Project>{d5942f87-d674-400c-8dbd-7c2c32970710}</Project>
+      <Project>{D5942F87-D674-400C-8DBD-7C2C32970710}</Project>
       <Name>MS.System</Name>
     </ProjectReference>
   </ItemGroup>

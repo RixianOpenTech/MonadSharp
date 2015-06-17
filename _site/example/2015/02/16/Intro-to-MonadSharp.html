@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Theme by Niklas Buschmann <http://github.com/niklasbuschmann> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Really cool blog about ... something">
+    <title> Introduction to MonadSharp › Monad Sharp</title>
+    <link rel="canonical" href="http://rixianopentech.github.io/MonadSharp/example/2015/02/16/Intro-to-MonadSharp.html">
+    <link href="/MonadSharp/main.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Gentium+Basic:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link rel="alternate" type="application/rss+xml" title="Monad Sharp &raquo; Feed" href="/MonadSharp/feed.xml">
+    <script src="//monadsharp.disqus.com/embed.js" async></script>
+    
+  </head>
+  <body>
+    <header>
+      <h1><a href="/MonadSharp/">Monad Sharp</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/MonadSharp/">Home</a></li><li><a href="/MonadSharp/archive.html">Archive</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    
+    <article>
+      <header>
+        <h2><a href="/example/2015/02/16/Intro-to-MonadSharp.html">Introduction to MonadSharp</a></h2>
+        <p><time datetime="2015-02-16T15:37:00-07:00">Feb 16, 2015</time> • example</p>
+      </header>
+      <div>
+<h2 id="what-is-monadsharp">What is MonadSharp?</h2>
+<p>MonadSharp is an experimental programming language written in C# which compiles into C#. It uses monads to automatically parallelize the code you write while still preserving the meaning of what was written. First you should read the following paper as a theoretical introduction to the reason MonadSharp was created, then come back and we will work through some examples:</p>
+
+<p><a href="http://rixianopentech.github.io/MonadSharp/Documents/ComputationAtTheSpeedOfMonadsPaper.pdf">Computation at the Speed of Monads</a></p>
+
+<h2 id="how-does-it-work">How does it work?</h2>
+<p>The basic idea is that we can use a wrapped value instead of a raw value as parameters to functions and we will automatically get parallelism. The generated C# looks a little bit weird, but if you blur your eyes a bit you will see that it’s no different than the regular C#, for example:</p>
+
+<p>Original C# signature:</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span> <span class="k">value</span><span class="p">);</span></code></pre></div>
+
+<p>Modified M# signature:</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">_Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="k">value</span><span class="p">);</span></code></pre></div>
+
+
+      </div>
+      
+      
+      <div id="disqus_thread"></div>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    </article>
+
+    <footer>
+      <span><a href="http://rixianopentech.github.io">Rixian</a></span>
+      <span><a href="https://github.com/RixianOpenTech/MonadSharp"><i class="fa fa-github-square"></i></a></span>
+      <span>&copy; 2015</span>
+    </footer>
+  </body>
+</html>

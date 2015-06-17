@@ -11,6 +11,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using MonadSharp.Compiler.Emitter;
 using MonadSharp.Compiler.Lexer;
 using MonadSharp.Compiler.Parser;
+using System.Diagnostics;
 
 namespace msc
 {
@@ -52,6 +53,15 @@ namespace msc
             p = programFile.Project;
             var compiled = p.GetCompilationAsync().Result;
             var res = compiled.Emit(outputFilename ?? "shell.exe");
+
+            if (!res.Success)
+            {
+                foreach (var diagnostic in res.Diagnostics)
+                {
+                    Debug.WriteLine(diagnostic.Location.GetMappedLineSpan().StartLinePosition.Line.ToString() + " " + diagnostic.GetMessage());
+                }
+            }
+
             return res.Success;
         }
     }
