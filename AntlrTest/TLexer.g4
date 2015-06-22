@@ -2,31 +2,6 @@ lexer grammar TLexer;
 
 fragment DIGIT : [0-9] ;
 
-BinaryOperatorToken
-    : OR
-    | AND
-    | EQ
-    | NEQ
-    | GT
-    | LT
-    | GTEQ
-    | LTEQ
-    | PLUS
-    | MINUS
-    | MULT
-    | DIV
-    | POW
-    | MOD;
-
-PARALLEL_MODIFIER : PARALLEL | SERIAL;
-ACCESS_MODIFIER : PUBLIC | PRIVATE;
-
-PREDEFINEDTYPE
-    : INT
-    | STRING
-    | BOOL
-    | UNIT;
-
 // Keywords
 PUBLIC : 'public';
 PRIVATE : 'private';
