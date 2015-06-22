@@ -1,10 +1,6 @@
 parser grammar TParser;
 
-invocationExpression : expression OPAR argumentList CPAR;
-argumentList : expression*;
-
 rangeLoop : RANGE OPAR rangeExpression CPAR block;
-rangeExpression : expression RANGEDOTS expression;
 
 ifStatement : IF OPAR expression CPAR block elseStatement?;
 elseStatement : ELSE (ifStatement|block);
@@ -27,8 +23,22 @@ variableDeclarationStatement : PREDEFINEDTYPE variableDeclarator SCOL;
 variableDeclarator : ID equalsValueClause;
 equalsValueClause : ASSIGN expression;
 
+//Expressions
 expression
-    : literalExpression;
+    : rangeExpression
+    | groupedExpression
+    | literalExpression
+    | invocationExpression
+    | memberAccessExpression;
+
+rangeExpression : expression RANGEDOTS expression;
+
+invocationExpression : expression OPAR argumentList CPAR;
+argumentList : expression*;
+
+memberAccessExpression : expression PERIOD expression;
+
+groupedExpression : OPAR expression CPAR;
 
 literalExpression
     : int32LiteralExpression
