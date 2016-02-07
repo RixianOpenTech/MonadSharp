@@ -1,6 +1,6 @@
 # MonadSharp
 
-MonadSharp is an experimental language based on the Reactive Extension (Rx). The basis for the language comes from the ideas outline in this paper: https://github.com/RixianOpenTech/RxWrappers
+MonadSharp is an experimental language based on the Reactive Extension (Rx). The basis for the language comes from the ideas outline in this paper: http://rixianopentech.github.io/MonadSharp/Documents/ComputationAtTheSpeedOfMonadsPaper.pdf
 
 This is a language that is very dependent on generated wrappers from the Rx Wrapper project: https://github.com/RixianOpenTech/RxWrappers
 
